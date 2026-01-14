@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos Online - Restaurante Rápido</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF5722;
+            --secondary: #FF9800;
+            --dark: #333333;
+            --light: #FFFFFF;
+            --gray: #F5F5F5;
+            --success: #4CAF50;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f8f8;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 32px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .logo p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .table-info {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        main {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 30px 0;
+        }
+
+        @media (min-width: 992px) {
+            main {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Menu Section */
+        .menu-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--secondary);
+        }
+
+        .menu-categories {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+        }
+
+        .category-btn {
+            background-color: var(--gray);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .category-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .menu-items {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .menu-item {
+            background-color: var(--gray);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item.selected {
+            outline: 3px solid var(--primary);
+        }
+
+        .menu-item-image {
+            height: 150px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .menu-item-content {
+            padding: 20px;
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .menu-item-name {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--dark);
+        }
+
+        .menu-item-price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .menu-item-desc {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .menu-item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .add-to-order {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-to-order:hover {
+            background-color: #E64A19;
+        }
+
+        /* Order Section */
+        .order-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .order-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .form-control {
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        @media (min-width: 576px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .order-items-container {
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item-details {
+            flex-grow: 1;
+        }
+
+        .order-item-name {
+            font-weight: 500;
+        }
+
+        .order-item-options {
+            font-size: 13px;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .order-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: 15px;
+        }
+
+        .quantity-btn {
+            background-color: var(--gray);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .order-item-quantity span {
+            font-weight: 600;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .order-item-price {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 70px;
+            text-align: right;
+        }
+
+        .remove-item {
+            background-color: #ffebee;
+            color: #f44336;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .order-summary {
+            background-color: var(--gray);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .btn-submit {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #388E3C;
+        }
+
+        .btn-submit:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        /* Loading Overlay - ARREGLADO: display: none por defecto */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .dots-loading {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .dots-loading div {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: white;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .dots-loading div:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .dots-loading div:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        /* Success Message - ARREGLADO: display: none por defecto */
+        .success-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1001;
+            display: none;
+            max-width: 90%;
+            width: 500px;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 70px;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+
+        .success-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .success-text {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .btn-back {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Modal for item customization - ARREGLADO: display: none por defecto */
+        .customize-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .customize-modal.active {
+            display: flex;
+        }
+
+        .customize-content {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            padding: 30px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .customize-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .customize-title {
+            font-size: 22px;
+            color: var(--primary);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .customize-options {
+            margin-bottom: 25px;
+        }
+
+        .option-group {
+            margin-bottom: 20px;
+        }
+
+        .option-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .option-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .option-checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .option-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+            margin: 25px 0;
+        }
+
+        .quantity-btn-large {
+            background-color: var(--gray);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .quantity-value {
+            font-size: 28px;
+            font-weight: 700;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .btn-add-to-order {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 18px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        /* Telegram Status */
+        .telegram-status {
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: 600;
+            display: none;
+        }
+        
+        .telegram-status.connected {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 2px solid #4caf50;
+        }
+        
+        .telegram-status.error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 2px solid #f44336;
+        }
+        
+        /* Test Telegram Button */
+        .test-telegram-btn {
+            background-color: #0088cc;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .logo h1 {
+                font-size: 24px;
+            }
+            
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .menu-section, .order-section {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div>
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div>
+                    <h1>Restaurante Rápido</h1>
+                    <p>Pedidos Online desde tu Mesa</p>
+                </div>
+            </div>
+            <div class="table-info">
+                <i class="fas fa-table"></i> Mesa: <span id="tableNumber">5</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Menu Section -->
+        <section class="menu-section">
+            <h2 class="section-title">
+                <i class="fas fa-utensils"></i> Nuestro Menú
+            </h2>
+            
+            <div class="menu-categories" id="menuCategories">
+                <!-- Categories will be loaded by JavaScript -->
+            </div>
+            
+            <div class="menu-items" id="menuItems">
+                <!-- Menu items will be loaded by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Order Section -->
+        <section class="order-section">
+            <h2 class="section-title">
+                <i class="fas fa-shopping-cart"></i> Tu Pedido
+            </h2>
+            
+            <form class="order-form" id="orderForm">
+                <div class="form-group">
+                    <label class="form-label" for="customerName">
+                        <i class="fas fa-user"></i> Nombre del Cliente *
+                    </label>
+                    <input type="text" id="customerName" class="form-control" placeholder="Ingresa tu nombre completo" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="customerEmail">
+                        <i class="fas fa-envelope"></i> Correo Electrónico *
+                    </label>
+                    <input type="email" id="customerEmail" class="form-control" placeholder="ejemplo@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-list"></i> Items del Pedido
+                    </label>
+                    <div class="order-items-container" id="orderItems">
+                        <!-- Order items will be added here -->
+                        <p style="text-align: center; color: #999; padding: 20px;">
+                            No hay items en tu pedido. Selecciona platillos del menú.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="specialInstructions">
+                        <i class="fas fa-sticky-note"></i> Instrucciones Especiales / Observaciones
+                    </label>
+                    <textarea id="specialInstructions" class="form-control" rows="3" placeholder="Ej: Sin cebolla, salsa aparte, bien cocido, etc."></textarea>
+                </div>
+                
+                <div class="order-summary">
+                    <div class="order-total">
+                        <span>Total a Pagar:</span>
+                        <span id="orderTotal">$0.00</span>
+                    </div>
+                </div>
+                
+                <button type="button" class="btn-submit" id="submitOrder" onclick="handleOrderSubmit()" disabled>
+                    <i class="fas fa-paper-plane"></i> Enviar Pedido al Restaurante
+                </button>
+                
+                <!-- Estado de Telegram -->
+                <div id="telegramStatus" class="telegram-status"></div>
+                
+                <!-- Botón para probar Telegram -->
+                <button type="button" class="test-telegram-btn" onclick="testTelegramConnection()">
+                    <i class="fab fa-telegram"></i> Probar Conexión con Telegram
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Item Customization Modal -->
+    <div class="customize-modal" id="customizeModal">
+        <div class="customize-content">
+            <div class="customize-header">
+                <h3 class="customize-title" id="modalItemName">Personalizar Item</h3>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="customize-options" id="customizeOptions">
+                <!-- Options will be loaded by JavaScript -->
+            </div>
+            
+            <div class="quantity-selector">
+                <button class="quantity-btn-large" id="decreaseQuantity">-</button>
+                <div class="quantity-value" id="modalQuantity">1</div>
+                <button class="quantity-btn-large" id="increaseQuantity">+</button>
+            </div>
+            
+            <button class="btn-add-to-order" id="addToOrderBtn">
+                <i class="fas fa-cart-plus"></i> Agregar al Pedido
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="dots-loading">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="loading-text">Enviando tu pedido...</div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h3 class="success-title">¡Pedido Enviado con Éxito!</h3>
+        <p class="success-text">Tu pedido ha sido registrado y enviado a la cocina. Recibirás una confirmación por correo electrónico.</p>
+        <button class="btn-back" id="backToMenu">Hacer Otro Pedido</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2023 Restaurante Rápido - Sistema de Pedidos Online</p>
+            <p>Pedidos desde tu mesa • Entrega rápida • Calidad garantizada</p>
+        </div>
+    </footer>
+
+    <script>
+        // ================= CONFIGURACIÓN TELEGRAM =================
+        const TELEGRAM_BOT_TOKEN = "8244972591:AAHnTjxaltU8Qkgm03nVVBnOT-3eXnnukJ8";
+        const TELEGRAM_CHAT_ID = "7806030847";
+        
+        // ================= DATOS DEL MENÚ =================
+        const menuData = {
+            categories: [
+                { id: 'hamburguesas', name: 'Hamburguesas', icon: 'fas fa-hamburger' },
+                { id: 'pizzas', name: 'Pizzas', icon: 'fas fa-pizza-slice' },
+                { id: 'sandwiches', name: 'Sándwiches', icon: 'fas fa-bread-slice' },
+                { id: 'ensaladas', name: 'Ensaladas', icon: 'fas fa-leaf' },
+                { id: 'bebidas', name: 'Bebidas', icon: 'fas fa-glass-whiskey' },
+                { id: 'postres', name: 'Postres', icon: 'fas fa-ice-cream' }
+            ],
+            
+            items: [
+                {
+                    id: 1,
+                    name: "Hamburguesa Clásica",
+                    description: "Carne de res, lechuga, tomate, queso cheddar",
+                    price: 8.99,
+                    category: "hamburguesas",
+                    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                    options: [
+                        {
+                            title: "Tipo de carne",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "Res", price: 0 },
+                                { name: "Pollo", price: 0 },
+                                { name: "Vegetariana", price: 1.50 }
+                            ]
+                        },
+                        {
+                            title: "Extras",
+                            type: "checkbox",
+                            required: false,
+                            items: [
+                                { name: "Queso extra", price: 1.00 },
+                                { name: "Bacon", price: 1.50 },
+                                { name: "Aguacate", price: 1.50 },
+                                { name: "Champiñones", price: 1.00 }
+                            ]
+                        },
+                        {
+                            title: "Punto de cocción",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "Poco hecho", price: 0 },
+                                { name: "Al punto", price: 0 },
+                                { name: "Bien hecho", price: 0 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    name: "Hamburguesa BBQ",
+                    description: "Carne de res con salsa BBQ, cebolla caramelizada",
+                    price: 10.50,
+                    category: "hamburguesas",
+                    image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                    options: [
+                        {
+                            title: "Tipo de carne",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "Res", price: 0 },
+                                { name: "Cerdo", price: 0 }
+                            ]
+                        },
+                        {
+                            title: "Extras",
+                            type: "checkbox",
+                            required: false,
+                            items: [
+                                { name: "Queso cheddar", price: 1.00 },
+                                { name: "Aros de cebolla", price: 2.00 },
+                                { name: "Jalapeños", price: 0.50 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    name: "Pizza Pepperoni",
+                    description: "Pizza mediana con pepperoni y queso mozzarella",
+                    price: 12.99,
+                    category: "pizzas",
+                    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                    options: [
+                        {
+                            title: "Tamaño",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "Personal", price: -2.00 },
+                                { name: "Mediana", price: 0 },
+                                { name: "Familiar", price: 4.00 }
+                            ]
+                        },
+                        {
+                            title: "Ingredientes extra",
+                            type: "checkbox",
+                            required: false,
+                            items: [
+                                { name: "Champiñones", price: 1.50 },
+                                { name: "Pimientos", price: 1.00 },
+                                { name: "Cebolla", price: 1.00 },
+                                { name: "Aceitunas", price: 1.50 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    name: "Sándwich de Pollo",
+                    description: "Pechuga de pollo a la plancha con vegetales",
+                    price: 7.50,
+                    category: "sandwiches",
+                    image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                    options: [
+                        {
+                            title: "Tipo de pan",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "Blanco", price: 0 },
+                                { name: "Integral", price: 0.50 },
+                                { name: "Brioche", price: 1.00 }
+                            ]
+                        },
+                        {
+                            title: "Extras",
+                            type: "checkbox",
+                            required: false,
+                            items: [
+                                { name: "Queso suizo", price: 1.00 },
+                                { name: "Aguacate", price: 1.50 },
+                                { name: "Bacon", price: 1.50 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    name: "Ensalada César",
+                    description: "Lechuga, pollo, croutones y aderezo césar",
+                    price: 9.00,
+                    category: "ensaladas",
+                    image: "https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                    options: [
+                        {
+                            title: "Proteína",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "Pollo", price: 0 },
+                                { name: "Camarón", price: 3.00 },
+                                { name: "Tofu", price: 1.50 }
+                            ]
+                        },
+                        {
+                            title: "Aderezo",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "César", price: 0 },
+                                { name: "Ranch", price: 0 },
+                                { name: "Balsámico", price: 0 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    name: "Refresco Grande",
+                    description: "500ml Coca-Cola, Sprite o Fanta",
+                    price: 3.00,
+                    category: "bebidas",
+                    image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                    options: []
+                },
+                {
+                    id: 7,
+                    name: "Helado de Vainilla",
+                    description: "Helado artesanal con topping a elegir",
+                    price: 4.50,
+                    category: "postres",
+                    image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                    options: [
+                        {
+                            title: "Topping",
+                            type: "checkbox",
+                            required: false,
+                            items: [
+                                { name: "Chocolate", price: 0.50 },
+                                { name: "Caramelo", price: 0.50 },
+                                { name: "Fresas", price: 1.00 },
+                                { name: "Nueces", price: 0.75 }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // ================= VARIABLES GLOBALES =================
+        let currentOrder = {
+            items: [],
+            customerName: "",
+            customerEmail: "",
+            specialInstructions: "",
+            tableNumber: 5
+        };
+
+        let currentItem = null;
+        let currentCustomizations = {};
+        let currentQuantity = 1;
+
+        // ================= ELEMENTOS DOM =================
+        let menuCategories, menuItems, orderItems, orderTotal, submitOrder;
+        let customizeModal, closeModal, modalItemName, customizeOptions;
+        let modalQuantity, decreaseQuantity, increaseQuantity, addToOrderBtn;
+        let loadingOverlay, successMessage, backToMenu, telegramStatus;
+
+        // ================= INICIALIZAR APP =================
+        function initApp() {
+            // Inicializar referencias DOM
+            menuCategories = document.getElementById('menuCategories');
+            menuItems = document.getElementById('menuItems');
+            orderItems = document.getElementById('orderItems');
+            orderTotal = document.getElementById('orderTotal');
+            submitOrder = document.getElementById('submitOrder');
+            customizeModal = document.getElementById('customizeModal');
+            closeModal = document.getElementById('closeModal');
+            modalItemName = document.getElementById('modalItemName');
+            customizeOptions = document.getElementById('customizeOptions');
+            modalQuantity = document.getElementById('modalQuantity');
+            decreaseQuantity = document.getElementById('decreaseQuantity');
+            increaseQuantity = document.getElementById('increaseQuantity');
+            addToOrderBtn = document.getElementById('addToOrderBtn');
+            loadingOverlay = document.getElementById('loadingOverlay');
+            successMessage = document.getElementById('successMessage');
+            backToMenu = document.getElementById('backToMenu');
+            telegramStatus = document.getElementById('telegramStatus');
+            
+            // Renderizar menú
+            renderCategories();
+            renderMenuItems('hamburguesas');
+            
+            // Configurar mesa desde URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const table = urlParams.get('mesa') || 5;
+            document.getElementById('tableNumber').textContent = table;
+            currentOrder.tableNumber = parseInt(table);
+            
+            // Configurar event listeners
+            setupEventListeners();
+            
+            // Actualizar estado inicial
+            updateOrderDisplay();
+            
+            console.log("✅ Sistema inicializado correctamente");
+        }
+
+        function setupEventListeners() {
+            // Event listeners para el modal
+            closeModal.addEventListener('click', closeCustomizeModal);
+            decreaseQuantity.addEventListener('click', () => changeQuantity(-1));
+            increaseQuantity.addEventListener('click', () => changeQuantity(1));
+            addToOrderBtn.addEventListener('click', addCustomizedItemToOrder);
+            
+            // Event listener para cerrar modal al hacer clic fuera
+            customizeModal.addEventListener('click', function(e) {
+                if (e.target === customizeModal) {
+                    closeCustomizeModal();
+                }
+            });
+            
+            // Event listener para botón de regresar
+            backToMenu.addEventListener('click', resetOrder);
+            
+            // Event listeners para actualizar botón de enviar
+            document.getElementById('customerName').addEventListener('input', updateSubmitButton);
+            document.getElementById('customerEmail').addEventListener('input', updateSubmitButton);
+        }
+
+        // ================= FUNCIONES DEL MENÚ =================
+        function renderCategories() {
+            menuCategories.innerHTML = '';
+            
+            menuData.categories.forEach(category => {
+                const button = document.createElement('button');
+                button.className = 'category-btn';
+                button.innerHTML = `<i class="${category.icon}"></i> ${category.name}`;
+                
+                if (category.id === 'hamburguesas') {
+                    button.classList.add('active');
+                }
+                
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.category-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    button.classList.add('active');
+                    renderMenuItems(category.id);
+                });
+                
+                menuCategories.appendChild(button);
+            });
+        }
+
+        function renderMenuItems(categoryId) {
+            menuItems.innerHTML = '';
+            
+            const filteredItems = menuData.items.filter(item => item.category === categoryId);
+            
+            if (filteredItems.length === 0) {
+                menuItems.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #666;">
+                        <i class="fas fa-utensils" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <p>No hay items disponibles en esta categoría.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            filteredItems.forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item';
+                menuItem.innerHTML = `
+                    <div class="menu-item-image" style="background-image: url('${item.image}')"></div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <div class="menu-item-name">${item.name}</div>
+                            <div class="menu-item-price">$${item.price.toFixed(2)}</div>
+                        </div>
+                        <div class="menu-item-desc">${item.description}</div>
+                        <div class="menu-item-footer">
+                            <button class="add-to-order" data-id="${item.id}">
+                                <i class="fas fa-plus"></i> Agregar al Pedido
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                menuItem.querySelector('.add-to-order').addEventListener('click', (e) => {
+                    const itemId = parseInt(e.currentTarget.getAttribute('data-id'));
+                    openCustomizeModal(itemId);
+                });
+                
+                menuItems.appendChild(menuItem);
+            });
+        }
+
+        function openCustomizeModal(itemId) {
+            currentItem = menuData.items.find(item => item.id === itemId);
+            if (!currentItem) return;
+            
+            currentCustomizations = {};
+            currentQuantity = 1;
+            
+            modalItemName.textContent = `Personalizar: ${currentItem.name}`;
+            modalQuantity.textContent = currentQuantity;
+            
+            renderCustomizationOptions();
+            customizeModal.classList.add('active');
+        }
+
+        function closeCustomizeModal() {
+            customizeModal.classList.remove('active');
+        }
+
+        function renderCustomizationOptions() {
+            customizeOptions.innerHTML = '';
+            
+            if (!currentItem.options || currentItem.options.length === 0) {
+                customizeOptions.innerHTML = `
+                    <div style="text-align: center; padding: 20px; color: #666;">
+                        <i class="fas fa-check-circle" style="font-size: 48px; margin-bottom: 15px; color: var(--success);"></i>
+                        <p>Este item no tiene opciones de personalización.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            currentItem.options.forEach((optionGroup, groupIndex) => {
+                const groupDiv = document.createElement('div');
+                groupDiv.className = 'option-group';
+                
+                let optionsHTML = `<div class="option-title">${optionGroup.title}${optionGroup.required ? ' *' : ''}</div>`;
+                
+                optionGroup.items.forEach((option, optionIndex) => {
+                    const optionId = `option-${groupIndex}-${optionIndex}`;
+                    const optionPrice = option.price > 0 ? `+$${option.price.toFixed(2)}` : 
+                                     option.price < 0 ? `-$${Math.abs(option.price).toFixed(2)}` : '';
+                    
+                    if (optionGroup.type === 'radio') {
+                        const isChecked = optionGroup.required && optionIndex === 0;
+                        
+                        if (isChecked) {
+                            if (!currentCustomizations[optionGroup.title]) {
+                                currentCustomizations[optionGroup.title] = [];
+                            }
+                            currentCustomizations[optionGroup.title].push(option.name);
+                        }
+                        
+                        optionsHTML += `
+                            <div class="option-item">
+                                <div>
+                                    <input type="radio" id="${optionId}" name="option-${groupIndex}" 
+                                           value="${option.name}" class="option-checkbox" ${isChecked ? 'checked' : ''}>
+                                    <label for="${optionId}">${option.name}</label>
+                                </div>
+                                <div class="option-price">${optionPrice}</div>
+                            </div>
+                        `;
+                    } else {
+                        optionsHTML += `
+                            <div class="option-item">
+                                <div>
+                                    <input type="checkbox" id="${optionId}" 
+                                           value="${option.name}" class="option-checkbox">
+                                    <label for="${optionId}">${option.name}</label>
+                                </div>
+                                <div class="option-price">${optionPrice}</div>
+                            </div>
+                        `;
+                    }
+                });
+                
+                groupDiv.innerHTML = optionsHTML;
+                customizeOptions.appendChild(groupDiv);
+            });
+            
+            // Agregar event listeners a los checkboxes/radios
+            document.querySelectorAll('.option-checkbox').forEach(input => {
+                input.addEventListener('change', updateCustomizations);
+            });
+        }
+
+        function updateCustomizations() {
+            currentCustomizations = {};
+            
+            if (!currentItem || !currentItem.options) return;
+            
+            currentItem.options.forEach((optionGroup, groupIndex) => {
+                if (optionGroup.type === 'radio') {
+                    const selectedOption = document.querySelector(`input[name="option-${groupIndex}"]:checked`);
+                    if (selectedOption) {
+                        currentCustomizations[optionGroup.title] = [selectedOption.value];
+                    }
+                } else {
+                    const checkedOptions = [];
+                    const groupDiv = customizeOptions.querySelectorAll('.option-group')[groupIndex];
+                    if (groupDiv) {
+                        groupDiv.querySelectorAll('input:checked').forEach(input => {
+                            checkedOptions.push(input.value);
+                        });
+                    }
+                    
+                    if (checkedOptions.length > 0) {
+                        currentCustomizations[optionGroup.title] = checkedOptions;
+                    }
+                }
+            });
+        }
+
+        function changeQuantity(change) {
+            currentQuantity = Math.max(1, currentQuantity + change);
+            modalQuantity.textContent = currentQuantity;
+        }
+
+        function addCustomizedItemToOrder() {
+            if (!currentItem) return;
+            
+            updateCustomizations();
+            
+            let itemPrice = currentItem.price;
+            let customizationText = "";
+            
+            Object.entries(currentCustomizations).forEach(([groupName, options]) => {
+                const optionGroup = currentItem.options.find(opt => opt.title === groupName);
+                if (!optionGroup) return;
+                
+                options.forEach(optionName => {
+                    const option = optionGroup.items.find(item => item.name === optionName);
+                    if (option) {
+                        itemPrice += option.price;
+                        customizationText += `${optionName}, `;
+                    }
+                });
+            });
+            
+            if (customizationText) {
+                customizationText = customizationText.slice(0, -2);
+            }
+            
+            // Verificar si ya existe el item con las mismas personalizaciones
+            const existingItemIndex = currentOrder.items.findIndex(item => 
+                item.id === currentItem.id && 
+                JSON.stringify(item.customizations) === JSON.stringify(currentCustomizations)
+            );
+            
+            if (existingItemIndex !== -1) {
+                currentOrder.items[existingItemIndex].quantity += currentQuantity;
+            } else {
+                currentOrder.items.push({
+                    id: currentItem.id,
+                    name: currentItem.name,
+                    basePrice: currentItem.price,
+                    price: itemPrice,
+                    quantity: currentQuantity,
+                    customizations: currentCustomizations,
+                    customizationText: customizationText
+                });
+            }
+            
+            updateOrderDisplay();
+            closeCustomizeModal();
+        }
+
+        // ================= FUNCIONES DEL PEDIDO =================
+        function updateOrderDisplay() {
+            if (currentOrder.items.length === 0) {
+                orderItems.innerHTML = `
+                    <p style="text-align: center; color: #999; padding: 20px;">
+                        No hay items en tu pedido. Selecciona platillos del menú.
+                    </p>
+                `;
+                orderTotal.textContent = "$0.00";
+                updateSubmitButton();
+                return;
+            }
+            
+            orderItems.innerHTML = '';
+            let total = 0;
+            
+            currentOrder.items.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+                orderItem.innerHTML = `
+                    <div class="order-item-details">
+                        <div class="order-item-name">${item.name} x${item.quantity}</div>
+                        ${item.customizationText ? `<div class="order-item-options">${item.customizationText}</div>` : ''}
+                    </div>
+                    <div class="order-item-quantity">
+                        <button class="quantity-btn" onclick="changeOrderItemQuantity(${index}, -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="quantity-btn" onclick="changeOrderItemQuantity(${index}, 1)">+</button>
+                    </div>
+                    <div class="order-item-price">$${itemTotal.toFixed(2)}</div>
+                    <button class="remove-item" onclick="removeOrderItem(${index})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                
+                orderItems.appendChild(orderItem);
+            });
+            
+            orderTotal.textContent = `$${total.toFixed(2)}`;
+            updateSubmitButton();
+        }
+
+        function changeOrderItemQuantity(index, change) {
+            if (currentOrder.items[index]) {
+                currentOrder.items[index].quantity = Math.max(1, currentOrder.items[index].quantity + change);
+                updateOrderDisplay();
+            }
+        }
+
+        function removeOrderItem(index) {
+            currentOrder.items.splice(index, 1);
+            updateOrderDisplay();
+        }
+
+        function updateSubmitButton() {
+            const customerName = document.getElementById('customerName').value.trim();
+            const customerEmail = document.getElementById('customerEmail').value.trim();
+            const hasItems = currentOrder.items.length > 0;
+            
+            if (customerName && customerEmail && hasItems) {
+                submitOrder.disabled = false;
+                submitOrder.innerHTML = `<i class="fas fa-paper-plane"></i> Enviar Pedido al Restaurante`;
+            } else {
+                submitOrder.disabled = true;
+                
+                if (!hasItems) {
+                    submitOrder.innerHTML = `<i class="fas fa-shopping-cart"></i> Agrega items a tu pedido`;
+                } else if (!customerName) {
+                    submitOrder.innerHTML = `<i class="fas fa-user"></i> Ingresa tu nombre`;
+                } else {
+                    submitOrder.innerHTML = `<i class="fas fa-envelope"></i> Ingresa tu correo`;
+                }
+            }
+        }
+
+        // ================= FUNCIONES TELEGRAM =================
+        async function testTelegramConnection() {
+            telegramStatus.textContent = "Probando conexión con Telegram...";
+            telegramStatus.className = "telegram-status";
+            telegramStatus.style.display = "block";
+            
+            try {
+                const testUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getMe`;
+                const response = await fetch(testUrl);
+                const data = await response.json();
+                
+                if (data.ok) {
+                    telegramStatus.textContent = `✅ Conectado a Telegram: @${data.result.username}`;
+                    telegramStatus.className = "telegram-status connected";
+                    
+                    // Probar envío de mensaje de prueba
+                    const testMessage = encodeURIComponent("✅ Prueba: Sistema de pedidos conectado correctamente");
+                    const sendUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${testMessage}`;
+                    
+                    const sendResponse = await fetch(sendUrl);
+                    const sendData = await sendResponse.json();
+                    
+                    if (sendData.ok) {
+                        telegramStatus.textContent += " - Mensaje de prueba enviado ✓";
+                    } else {
+                        telegramStatus.textContent += " - Error al enviar mensaje";
+                    }
+                    
+                } else {
+                    telegramStatus.textContent = "❌ Error: Token de Telegram inválido";
+                    telegramStatus.className = "telegram-status error";
+                }
+            } catch (error) {
+                telegramStatus.textContent = "❌ Error de conexión con Telegram";
+                telegramStatus.className = "telegram-status error";
+                console.error("Error Telegram:", error);
+            }
+        }
+
+        async function sendOrderToTelegram(order) {
+            // Formatear mensaje para Telegram
+            let message = `🛎️ *NUEVO PEDIDO RESTAURANTE* 🛎️\n\n`;
+            message += `*Cliente:* ${order.customerName}\n`;
+            message += `*Correo:* ${order.customerEmail}\n`;
+            message += `*Mesa:* ${order.tableNumber}\n`;
+            message += `*Fecha:* ${new Date().toLocaleString('es-ES')}\n\n`;
+            message += `*DETALLE DEL PEDIDO:*\n`;
+            
+            let total = 0;
+            order.items.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                message += `\n${index + 1}. *${item.name}* x${item.quantity}\n`;
+                message += `   Precio: $${item.price.toFixed(2)} c/u\n`;
+                message += `   Subtotal: $${itemTotal.toFixed(2)}\n`;
+                
+                if (item.customizationText) {
+                    message += `   Personalizaciones: ${item.customizationText}\n`;
+                }
+            });
+            
+            message += `\n*TOTAL: $${total.toFixed(2)}*\n`;
+            
+            if (order.specialInstructions) {
+                message += `\n*INSTRUCCIONES ESPECIALES:*\n${order.specialInstructions}\n`;
+            }
+            
+            // Codificar mensaje para URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Crear URL de Telegram
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${encodedMessage}&parse_mode=Markdown`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.ok) {
+                    console.log('✅ Pedido enviado a Telegram');
+                    return true;
+                } else {
+                    console.error('❌ Error Telegram:', data);
+                    return false;
+                }
+            } catch (error) {
+                console.error('❌ Error de conexión:', error);
+                return false;
+            }
+        }
+
+        // ================= MANEJO DEL PEDIDO =================
+        async function handleOrderSubmit() {
+            // Obtener valores del formulario
+            currentOrder.customerName = document.getElementById('customerName').value.trim();
+            currentOrder.customerEmail = document.getElementById('customerEmail').value.trim();
+            currentOrder.specialInstructions = document.getElementById('specialInstructions').value.trim();
+            
+            // Validar
+            if (!currentOrder.customerName || !currentOrder.customerEmail) {
+                alert('Por favor completa tu nombre y correo electrónico.');
+                return;
+            }
+            
+            if (currentOrder.items.length === 0) {
+                alert('Agrega items a tu pedido primero.');
+                return;
+            }
+            
+            // Mostrar loading
+            loadingOverlay.classList.add('active');
+            
+            try {
+                // Enviar a Telegram
+                const telegramSuccess = await sendOrderToTelegram(currentOrder);
+                
+                // Ocultar loading después de 2 segundos
+                setTimeout(() => {
+                    loadingOverlay.classList.remove('active');
+                    
+                    if (telegramSuccess) {
+                        // Mostrar mensaje de éxito
+                        successMessage.classList.add('active');
+                        
+                        // Guardar pedido localmente
+                        saveOrderLocally();
+                    } else {
+                        alert('Error al enviar a Telegram. El pedido se guardó localmente.');
+                        saveOrderLocally();
+                    }
+                }, 2000);
+                
+            } catch (error) {
+                loadingOverlay.classList.remove('active');
+                alert('Error al procesar el pedido. Intenta de nuevo.');
+                console.error('Error:', error);
+            }
+        }
+
+        function saveOrderLocally() {
+            const orderToSave = {
+                ...currentOrder,
+                id: Date.now(),
+                fecha: new Date().toLocaleString('es-ES')
+            };
+            
+            // Obtener pedidos existentes o crear array vacío
+            let allOrders = JSON.parse(localStorage.getItem('restaurantOrders')) || [];
+            allOrders.push(orderToSave);
+            localStorage.setItem('restaurantOrders', JSON.stringify(allOrders));
+            
+            console.log('✅ Pedido guardado localmente');
+        }
+
+        function resetOrder() {
+            // Limpiar pedido actual
+            currentOrder.items = [];
+            
+            // Limpiar formulario
+            document.getElementById('customerName').value = "";
+            document.getElementById('customerEmail').value = "";
+            document.getElementById('specialInstructions').value = "";
+            
+            // Ocultar mensaje de éxito
+            successMessage.classList.remove('active');
+            
+            // Actualizar display
+            updateOrderDisplay();
+            
+            // Volver al menú
+            window.scrollTo(0, 0);
+        }
+
+        // ================= INICIALIZAR =================
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', initApp);
+        
+        // Mostrar información de configuración en consola
+        console.log("🚀 Sistema de Pedidos - Configuración:");
+        console.log("📱 Telegram Token:", TELEGRAM_BOT_TOKEN);
+        console.log("👤 Chat ID:", TELEGRAM_CHAT_ID);
+        console.log("✅ Sistema listo para usar!");
+    </script>
+</body>
+</html>
