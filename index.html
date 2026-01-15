@@ -721,6 +721,68 @@
             color: white;
         }
         
+        /* ========== TABLA DE PRODUCTOS COMO EN LA IMAGEN ========== */
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            display: none;
+        }
+        
+        .cart-table.active {
+            display: table;
+        }
+        
+        .cart-table-header {
+            background: linear-gradient(135deg, #ff7c7c, #ff9a5a);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .cart-table-header th {
+            padding: 18px 15px;
+            text-align: left;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .cart-table-row {
+            border-bottom: 2px solid #fef6f4;
+            transition: all 0.3s;
+        }
+        
+        .cart-table-row:hover {
+            background: #fffbf9;
+        }
+        
+        .cart-table-row td {
+            padding: 20px 15px;
+            vertical-align: middle;
+        }
+        
+        .product-cell {
+            font-weight: 700;
+            color: #333;
+            font-size: 15px;
+        }
+        
+        .price-cell {
+            font-weight: 600;
+            color: #666;
+            font-size: 15px;
+        }
+        
+        .quantity-cell {
+            width: 140px;
+        }
+        
+        .total-cell {
+            font-weight: 800;
+            color: #ff6b6b;
+            font-size: 16px;
+            text-align: right;
+        }
+        
         /* ========== RESUMEN DE PEDIDO ESTILO IMAGEN ========== */
         .order-summary-modern {
             background: white;
@@ -1802,6 +1864,23 @@
                         </div>
                     </div>
                     
+                    <!-- TABLA DE PRODUCTOS COMO EN LA IMAGEN -->
+                    <div id="cartTableContainer" style="display: none;">
+                        <table class="cart-table" id="cartTable">
+                            <thead class="cart-table-header">
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                    <th>Can</th>
+                                    <th>Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cartTableBody">
+                                <!-- Filas de productos se cargan aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
                     <div class="order-summary-modern" id="orderSummary" style="display: none;">
                         <div class="summary-content-modern">
                             <div class="summary-row-modern">
@@ -2050,6 +2129,66 @@
             items: [
                 {
                     id: 1,
+                    name: "Churrasco",
+                    description: "Carne de res a la parrilla con guarniciones",
+                    price: convertirAPesos(6.99),
+                    category: "hamburguesas",
+                    image: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
+                    options: [
+                        {
+                            title: "Tipo de carne",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "Res", price: 0 },
+                                { name: "Cerdo", price: 0 },
+                                { name: "Pollo", price: convertirAPesos(1.00) }
+                            ]
+                        },
+                        {
+                            title: "Extras",
+                            type: "checkbox",
+                            required: false,
+                            items: [
+                                { name: "Queso extra", price: convertirAPesos(1.00) },
+                                { name: "Bacon", price: convertirAPesos(1.50) },
+                                { name: "Aguacate", price: convertirAPesos(1.50) }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    name: "Plátano Frito",
+                    description: "Plátano maduro frito crujiente",
+                    price: convertirAPesos(3.99),
+                    category: "postres",
+                    image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
+                    options: [
+                        {
+                            title: "Tamaño",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "Pequeño", price: 0 },
+                                { name: "Mediano", price: convertirAPesos(1.00) },
+                                { name: "Grande", price: convertirAPesos(2.00) }
+                            ]
+                        },
+                        {
+                            title: "Salsas",
+                            type: "checkbox",
+                            required: false,
+                            items: [
+                                { name: "Salsa de ajo", price: convertirAPesos(0.50) },
+                                { name: "Salsa de queso", price: convertirAPesos(0.75) },
+                                { name: "Miel", price: convertirAPesos(0.50) }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 3,
                     name: "Hamburguesa Clásica",
                     description: "Carne de res, lechuga, tomate, queso cheddar",
                     price: convertirAPesos(9.99),
@@ -2080,7 +2219,7 @@
                     ]
                 },
                 {
-                    id: 2,
+                    id: 4,
                     name: "Hamburguesa BBQ",
                     description: "Carne con salsa BBQ, cebolla caramelizada",
                     price: convertirAPesos(11.50),
@@ -2108,7 +2247,7 @@
                     ]
                 },
                 {
-                    id: 3,
+                    id: 5,
                     name: "Pizza Pepperoni",
                     description: "Pizza mediana con pepperoni y queso",
                     price: convertirAPesos(12.99),
@@ -2128,7 +2267,7 @@
                     ]
                 },
                 {
-                    id: 4,
+                    id: 6,
                     name: "Sándwich de Pollo",
                     description: "Pollo a la plancha con vegetales",
                     price: convertirAPesos(8.50),
@@ -2137,7 +2276,7 @@
                     options: []
                 },
                 {
-                    id: 5,
+                    id: 7,
                     name: "Refresco Grande",
                     description: "500ml Coca-Cola, Sprite o Fanta",
                     price: convertirAPesos(3.00),
@@ -2146,7 +2285,7 @@
                     options: []
                 },
                 {
-                    id: 6,
+                    id: 8,
                     name: "Helado de Vainilla",
                     description: "Helado artesanal con topping",
                     price: convertirAPesos(5.50),
@@ -2173,6 +2312,7 @@
         let currentItem = null;
         let currentCustomizations = {};
         let currentQuantity = 1;
+        let cartViewMode = 'list'; // 'list' o 'table'
         
         // ================= INICIALIZAR APP =================
         function initApp() {
@@ -2322,7 +2462,7 @@
                             <div class="item-price">${formatoPesos(item.price)}</div>
                         </div>
                         <div class="item-desc">${item.description}</div>
-                        <button class="add-btn" onclick="openCustomization(${item.id})">
+                        <button class="add-btn" onclick="addToCartDirectly(${item.id})">
                             <i class="fas fa-plus"></i> Agregar
                         </button>
                     </div>
@@ -2332,7 +2472,307 @@
             });
         }
         
-        // ================= CUSTOMIZATION =================
+        // ================= FUNCIÓN PARA AGREGAR DIRECTAMENTE AL CARRITO =================
+        function addToCartDirectly(itemId) {
+            currentItem = menuData.items.find(item => item.id === itemId);
+            if (!currentItem) return;
+            
+            // Usar opciones por defecto
+            currentCustomizations = {};
+            currentQuantity = 1;
+            
+            // Si tiene opciones, usar las primeras opciones por defecto
+            if (currentItem.options && currentItem.options.length > 0) {
+                currentItem.options.forEach(optionGroup => {
+                    if (optionGroup.type === 'radio' && optionGroup.items.length > 0) {
+                        currentCustomizations[optionGroup.title] = [optionGroup.items[0].name];
+                    }
+                });
+            }
+            
+            // Calcular precio con personalizaciones por defecto
+            let itemPrice = currentItem.price;
+            let customizationText = "";
+            
+            Object.entries(currentCustomizations).forEach(([groupName, options]) => {
+                const optionGroup = currentItem.options.find(opt => opt.title === groupName);
+                if (!optionGroup) return;
+                
+                options.forEach(optionName => {
+                    const option = optionGroup.items.find(item => item.name === optionName);
+                    if (option) {
+                        itemPrice += option.price;
+                        customizationText += `${optionName}, `;
+                    }
+                });
+            });
+            
+            if (customizationText) {
+                customizationText = customizationText.slice(0, -2);
+            }
+            
+            // Verificar si ya existe en el carrito
+            const existingIndex = cart.findIndex(item => 
+                item.id === currentItem.id && 
+                JSON.stringify(item.customizations) === JSON.stringify(currentCustomizations)
+            );
+            
+            if (existingIndex !== -1) {
+                cart[existingIndex].quantity += currentQuantity;
+                showNotification(`+${currentQuantity} unidad(es) de ${currentItem.name}`, 'success');
+            } else {
+                cart.push({
+                    id: currentItem.id,
+                    name: currentItem.name,
+                    price: itemPrice,
+                    quantity: currentQuantity,
+                    customizations: {...currentCustomizations},
+                    customizationText: customizationText
+                });
+                showNotification(`${currentItem.name} agregado al carrito`, 'success');
+            }
+            
+            // Vibrar el dispositivo (si está disponible)
+            if (navigator.vibrate) {
+                navigator.vibrate([100, 50, 100]);
+            }
+            
+            // Actualizar UI
+            updateCart();
+            
+            // Mostrar notificación rápida
+            showQuickCartNotification();
+        }
+        
+        function showQuickCartNotification() {
+            const notification = document.createElement('div');
+            notification.className = 'notification success';
+            notification.style.position = 'fixed';
+            notification.style.top = '50%';
+            notification.style.left = '50%';
+            notification.style.transform = 'translate(-50%, -50%)';
+            notification.style.zIndex = '9999';
+            notification.style.textAlign = 'center';
+            notification.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <div style="font-size: 18px; margin-top: 10px;">¡Agregado!</div>
+                <div style="font-size: 14px; opacity: 0.9;">Producto agregado al carrito</div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Mostrar con animación
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            // Remover después de 1.5 segundos
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 1500);
+        }
+        
+        // ================= MANEJO DEL CARRITO COMO LA IMAGEN =================
+        function updateCart() {
+            const cartItemsContainer = document.getElementById('cartItemsContainer');
+            const emptyCart = document.getElementById('emptyCart');
+            const orderSummary = document.getElementById('orderSummary');
+            const floatingCheckout = document.getElementById('floatingCheckout');
+            const cartBadge = document.getElementById('cartBadge');
+            const cartCount = document.getElementById('cartCount');
+            const checkoutTotal = document.getElementById('checkoutTotal');
+            const headerCartCount = document.getElementById('headerCartCount');
+            const cartTableContainer = document.getElementById('cartTableContainer');
+            const cartTable = document.getElementById('cartTable');
+            const cartTableBody = document.getElementById('cartTableBody');
+            
+            // Actualizar badge y contador
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = `${totalItems} ${totalItems === 1 ? 'item' : 'items'}`;
+            headerCartCount.textContent = totalItems;
+            
+            if (totalItems > 0) {
+                cartBadge.textContent = totalItems;
+                cartBadge.style.display = 'inline-block';
+            } else {
+                cartBadge.style.display = 'none';
+            }
+            
+            // Mostrar/ocultar elementos
+            if (cart.length === 0) {
+                emptyCart.style.display = 'flex';
+                orderSummary.style.display = 'none';
+                floatingCheckout.style.display = 'none';
+                cartTableContainer.style.display = 'none';
+                cartItemsContainer.innerHTML = '';
+                cartItemsContainer.appendChild(emptyCart);
+                return;
+            }
+            
+            emptyCart.style.display = 'none';
+            orderSummary.style.display = 'block';
+            floatingCheckout.style.display = 'block';
+            
+            // Decidir qué vista mostrar (lista o tabla)
+            if (cartViewMode === 'table') {
+                cartItemsContainer.style.display = 'none';
+                cartTableContainer.style.display = 'block';
+                renderCartTable();
+            } else {
+                cartItemsContainer.style.display = 'block';
+                cartTableContainer.style.display = 'none';
+                renderCartList();
+            }
+            
+            // Calcular totales
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const iva = Math.round(subtotal * 0.10);
+            const total = subtotal + iva;
+            
+            // Actualizar resumen
+            document.getElementById('subtotal').textContent = formatoPesos(subtotal);
+            document.getElementById('totalAmount').textContent = formatoPesos(total);
+            
+            // Actualizar info de cuotas
+            const installmentInfo = document.getElementById('installmentInfo');
+            if (total > 0) {
+                const installmentAmount = Math.round(total / 12);
+                installmentInfo.innerHTML = `
+                    Hasta <strong>12 x ${formatoPesos(installmentAmount)}</strong> sin interés
+                `;
+            } else {
+                installmentInfo.innerHTML = '';
+            }
+            
+            // Actualizar botón de checkout flotante
+            checkoutTotal.textContent = formatoPesos(total);
+        }
+        
+        function renderCartList() {
+            const cartItemsContainer = document.getElementById('cartItemsContainer');
+            let cartHTML = '';
+            
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                
+                cartHTML += `
+                    <div class="cart-product-item">
+                        <div class="product-info">
+                            <div class="product-name">${item.name}</div>
+                            ${item.customizationText ? `
+                                <div style="font-size: 13px; color: #666; margin-bottom: 8px; background: #fef6f4; padding: 8px 12px; border-radius: 8px; border-left: 3px solid #ff6b6b;">
+                                    <i class="fas fa-cog"></i> ${item.customizationText}
+                                </div>
+                            ` : ''}
+                            <div class="product-controls">
+                                <div class="quantity-selector-small">
+                                    <button class="qty-btn-small" onclick="updateCartQuantity(${index}, -1)">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <span class="qty-value-small">${item.quantity}</span>
+                                    <button class="qty-btn-small" onclick="updateCartQuantity(${index}, 1)">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                <div class="product-price">${formatoPesos(itemTotal)}</div>
+                            </div>
+                        </div>
+                        <button class="remove-product-btn" onclick="removeFromCart(${index})" title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            
+            cartItemsContainer.innerHTML = cartHTML;
+        }
+        
+        function renderCartTable() {
+            const cartTableBody = document.getElementById('cartTableBody');
+            let tableHTML = '';
+            
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                
+                tableHTML += `
+                    <tr class="cart-table-row">
+                        <td class="product-cell">${item.name}</td>
+                        <td class="price-cell">${formatoPesos(item.price)}</td>
+                        <td class="quantity-cell">
+                            <div class="quantity-selector-small">
+                                <button class="qty-btn-small" onclick="updateCartQuantity(${index}, -1)">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="qty-value-small">${item.quantity}</span>
+                                <button class="qty-btn-small" onclick="updateCartQuantity(${index}, 1)">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </td>
+                        <td class="total-cell">${formatoPesos(itemTotal)}</td>
+                    </tr>
+                `;
+            });
+            
+            cartTableBody.innerHTML = tableHTML;
+        }
+        
+        function updateCartQuantity(index, delta) {
+            if (cart[index]) {
+                const oldQuantity = cart[index].quantity;
+                const newQuantity = Math.max(1, cart[index].quantity + delta);
+                
+                // Si intentan reducir a 0, eliminar el item
+                if (newQuantity === 0) {
+                    removeFromCart(index);
+                    return;
+                }
+                
+                cart[index].quantity = newQuantity;
+                
+                // Vibrar
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+                
+                // Mostrar notificación de cambio
+                if (delta > 0) {
+                    showNotification(`+1 ${cart[index].name}`, 'success');
+                } else {
+                    showNotification(`-1 ${cart[index].name}`, 'warning');
+                }
+                
+                updateCart();
+            }
+        }
+        
+        function removeFromCart(index) {
+            const itemName = cart[index].name;
+            const itemPrice = cart[index].price * cart[index].quantity;
+            
+            // Vibrar
+            if (navigator.vibrate) {
+                navigator.vibrate([50, 25, 50]);
+            }
+            
+            cart.splice(index, 1);
+            updateCart();
+            
+            // Mostrar notificación
+            showNotification(`${itemName} eliminado del carrito`, 'error');
+        }
+        
+        function toggleCartView() {
+            cartViewMode = cartViewMode === 'list' ? 'table' : 'list';
+            updateCart();
+        }
+        
+        // ================= CUSTOMIZATION (para cuando se necesite personalizar) =================
         function openCustomization(itemId) {
             currentItem = menuData.items.find(item => item.id === itemId);
             if (!currentItem) return;
@@ -2447,6 +2887,30 @@
             document.getElementById('customPrice').textContent = formatoPesos(totalPrice);
         }
         
+        function updateCustomizations() {
+            currentCustomizations = {};
+            
+            if (!currentItem.options) return;
+            
+            currentItem.options.forEach((optionGroup, groupIndex) => {
+                if (optionGroup.type === 'radio') {
+                    const selected = document.querySelector(`input[name="option-${groupIndex}"]:checked`);
+                    if (selected) {
+                        currentCustomizations[optionGroup.title] = [selected.value];
+                    }
+                } else {
+                    const checked = [];
+                    document.querySelectorAll(`.option-group:nth-child(${groupIndex + 1}) input:checked`).forEach(input => {
+                        checked.push(input.value);
+                    });
+                    
+                    if (checked.length > 0) {
+                        currentCustomizations[optionGroup.title] = checked;
+                    }
+                }
+            });
+        }
+        
         function addCustomizedItem() {
             if (!currentItem) return;
             
@@ -2510,174 +2974,7 @@
             }, 300);
         }
         
-        function updateCustomizations() {
-            currentCustomizations = {};
-            
-            if (!currentItem.options) return;
-            
-            currentItem.options.forEach((optionGroup, groupIndex) => {
-                if (optionGroup.type === 'radio') {
-                    const selected = document.querySelector(`input[name="option-${groupIndex}"]:checked`);
-                    if (selected) {
-                        currentCustomizations[optionGroup.title] = [selected.value];
-                    }
-                } else {
-                    const checked = [];
-                    document.querySelectorAll(`.option-group:nth-child(${groupIndex + 1}) input:checked`).forEach(input => {
-                        checked.push(input.value);
-                    });
-                    
-                    if (checked.length > 0) {
-                        currentCustomizations[optionGroup.title] = checked;
-                    }
-                }
-            });
-        }
-        
-        // ================= MANEJO DEL CARRITO COMO LA IMAGEN =================
-        function updateCart() {
-            const cartItemsContainer = document.getElementById('cartItemsContainer');
-            const emptyCart = document.getElementById('emptyCart');
-            const orderSummary = document.getElementById('orderSummary');
-            const floatingCheckout = document.getElementById('floatingCheckout');
-            const cartBadge = document.getElementById('cartBadge');
-            const cartCount = document.getElementById('cartCount');
-            const checkoutTotal = document.getElementById('checkoutTotal');
-            const headerCartCount = document.getElementById('headerCartCount');
-            
-            // Actualizar badge y contador
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = `${totalItems} ${totalItems === 1 ? 'item' : 'items'}`;
-            headerCartCount.textContent = totalItems;
-            
-            if (totalItems > 0) {
-                cartBadge.textContent = totalItems;
-                cartBadge.style.display = 'inline-block';
-            } else {
-                cartBadge.style.display = 'none';
-            }
-            
-            // Mostrar/ocultar elementos
-            if (cart.length === 0) {
-                emptyCart.style.display = 'flex';
-                orderSummary.style.display = 'none';
-                floatingCheckout.style.display = 'none';
-                cartItemsContainer.innerHTML = '';
-                cartItemsContainer.appendChild(emptyCart);
-                return;
-            }
-            
-            emptyCart.style.display = 'none';
-            orderSummary.style.display = 'block';
-            floatingCheckout.style.display = 'block';
-            
-            // Renderizar items del carrito con diseño como la imagen
-            let cartHTML = '';
-            let subtotal = 0;
-            
-            cart.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
-                subtotal += itemTotal;
-                
-                cartHTML += `
-                    <div class="cart-product-item">
-                        <div class="product-info">
-                            <div class="product-name">${item.name}</div>
-                            ${item.customizationText ? `
-                                <div style="font-size: 13px; color: #666; margin-bottom: 8px; background: #fef6f4; padding: 8px 12px; border-radius: 8px; border-left: 3px solid #ff6b6b;">
-                                    <i class="fas fa-cog"></i> ${item.customizationText}
-                                </div>
-                            ` : ''}
-                            <div class="product-controls">
-                                <div class="quantity-selector-small">
-                                    <button class="qty-btn-small" onclick="updateCartQuantity(${index}, -1)">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <span class="qty-value-small">${item.quantity}</span>
-                                    <button class="qty-btn-small" onclick="updateCartQuantity(${index}, 1)">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                                <div class="product-price">${formatoPesos(itemTotal)}</div>
-                            </div>
-                        </div>
-                        <button class="remove-product-btn" onclick="removeFromCart(${index})" title="Eliminar">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `;
-            });
-            
-            cartItemsContainer.innerHTML = cartHTML;
-            
-            // Calcular totales
-            const iva = Math.round(subtotal * 0.10);
-            const total = subtotal + iva;
-            
-            // Actualizar resumen
-            document.getElementById('subtotal').textContent = formatoPesos(subtotal);
-            document.getElementById('totalAmount').textContent = formatoPesos(total);
-            
-            // Actualizar info de cuotas
-            const installmentInfo = document.getElementById('installmentInfo');
-            if (total > 0) {
-                const installmentAmount = Math.round(total / 12);
-                installmentInfo.innerHTML = `
-                    Hasta <strong>12 x ${formatoPesos(installmentAmount)}</strong> sin interés
-                `;
-            } else {
-                installmentInfo.innerHTML = '';
-            }
-            
-            // Actualizar botón de checkout flotante
-            checkoutTotal.textContent = formatoPesos(total);
-        }
-        
-        function updateCartQuantity(index, delta) {
-            if (cart[index]) {
-                const oldQuantity = cart[index].quantity;
-                const newQuantity = Math.max(1, cart[index].quantity + delta);
-                
-                // Si intentan reducir a 0, eliminar el item
-                if (newQuantity === 0) {
-                    removeFromCart(index);
-                    return;
-                }
-                
-                cart[index].quantity = newQuantity;
-                
-                // Vibrar
-                if (navigator.vibrate) {
-                    navigator.vibrate(50);
-                }
-                
-                // Mostrar notificación de cambio
-                if (delta > 0) {
-                    showNotification(`+1 ${cart[index].name}`, 'success');
-                } else {
-                    showNotification(`-1 ${cart[index].name}`, 'warning');
-                }
-                
-                updateCart();
-            }
-        }
-        
-        function removeFromCart(index) {
-            const itemName = cart[index].name;
-            const itemPrice = cart[index].price * cart[index].quantity;
-            
-            // Vibrar
-            if (navigator.vibrate) {
-                navigator.vibrate([50, 25, 50]);
-            }
-            
-            cart.splice(index, 1);
-            updateCart();
-            
-            // Mostrar notificación
-            showNotification(`${itemName} eliminado del carrito`, 'error');
-        }
-        
+        // ================= CHECKOUT =================
         function calculateShipping() {
             const postalCode = document.getElementById('postalCode').value.trim();
             
@@ -2709,7 +3006,6 @@
             }, 1000);
         }
         
-        // ================= CHECKOUT =================
         function openCheckoutModal() {
             if (cart.length === 0) {
                 showNotification('Agrega items a tu carrito primero', 'error');
