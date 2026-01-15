@@ -519,7 +519,7 @@
             flex-direction: column;
         }
         
-        /* ========== CART ITEMS - DISEÑO COMPLETAMENTE REVISADO ========== */
+        /* ========== CARRITO DISEÑO COMO IMAGEN ========== */
         .cart-container {
             flex: 1;
             display: flex;
@@ -529,7 +529,7 @@
             padding: 0 15px;
         }
         
-        .cart-items {
+        .cart-content {
             background: white;
             border-radius: 20px;
             overflow: hidden;
@@ -606,8 +606,8 @@
             min-height: 200px;
         }
         
-        /* ========== NUEVO DISEÑO PARA ITEMS DEL CARRITO ========== */
-        .cart-item-compact {
+        /* ========== NUEVO DISEÑO DE PRODUCTOS COMO LA IMAGEN ========== */
+        .cart-product-item {
             display: flex;
             align-items: center;
             padding: 20px;
@@ -619,124 +619,51 @@
             flex-wrap: nowrap;
         }
         
-        .cart-item-compact:hover {
+        .cart-product-item:hover {
             background: #fffbf9;
         }
         
-        .cart-item-compact:last-child {
+        .cart-product-item:last-child {
             border-bottom: none;
         }
         
-        .cart-item-main {
+        .product-info {
             flex: 1;
             min-width: 0;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
         }
         
-        .cart-item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .cart-item-name {
+        .product-name {
             font-weight: 700;
             font-size: 16px;
             color: #333;
-            flex: 1;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            margin-bottom: 8px;
+            display: block;
         }
         
-        .cart-item-quantity-badge {
-            background: #fff8f6;
-            color: #ff6b6b;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-weight: 800;
-            font-size: 14px;
-            border: 1px solid #ffe8e0;
-            white-space: nowrap;
-        }
-        
-        .cart-item-price-info {
+        .product-controls {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
-            background: #fff8f6;
-            padding: 10px 15px;
-            border-radius: 12px;
-            border: 1px solid #ffe8e0;
+            margin-top: 10px;
+            gap: 15px;
         }
         
-        .cart-item-price-unit {
-            font-size: 14px;
-            color: #666;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-        
-        .cart-item-price-amount {
-            font-weight: 800;
-            color: #ff6b6b;
-            font-size: 16px;
-        }
-        
-        .cart-item-total {
+        .quantity-selector-small {
             display: flex;
             align-items: center;
             gap: 8px;
-            background: linear-gradient(135deg, #fef6f4, #ffe8e0);
-            padding: 12px 15px;
-            border-radius: 12px;
-            border: 1px solid #ffd7cc;
-            margin-top: 5px;
-        }
-        
-        .cart-item-total-label {
-            font-size: 13px;
-            color: #666;
-            font-weight: 500;
-        }
-        
-        .cart-item-total-amount {
-            font-weight: 800;
-            color: #ff6b6b;
-            font-size: 18px;
-            flex: 1;
-            text-align: right;
-        }
-        
-        .cart-item-actions {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            flex-shrink: 0;
-        }
-        
-        .quantity-control-compact {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #fef6f4, #ffe8e0);
-            padding: 8px 15px;
-            border-radius: 25px;
-            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.1);
+            background: #fef6f4;
+            padding: 6px 12px;
+            border-radius: 20px;
             border: 1px solid #ffd7cc;
         }
         
-        .qty-btn-compact {
+        .qty-btn-small {
             background: white;
             border: none;
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -746,29 +673,37 @@
             color: #ff6b6b;
             box-shadow: 0 2px 6px rgba(255, 107, 107, 0.2);
             transition: all 0.2s;
-            font-size: 16px;
+            font-size: 14px;
         }
         
-        .qty-btn-compact:hover {
+        .qty-btn-small:hover {
             background: #ff6b6b;
             color: white;
             transform: scale(1.1);
         }
         
-        .qty-value-compact {
+        .qty-value-small {
             font-weight: 800;
-            font-size: 16px;
-            min-width: 30px;
+            font-size: 15px;
+            min-width: 25px;
             text-align: center;
             color: #333;
         }
         
-        .remove-btn-compact {
+        .product-price {
+            font-weight: 800;
+            color: #ff6b6b;
+            font-size: 17px;
+            min-width: 100px;
+            text-align: right;
+        }
+        
+        .remove-product-btn {
             background: linear-gradient(135deg, #ffebee, #ffcdd2);
             color: #ff4757;
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -777,16 +712,17 @@
             transition: all 0.3s;
             box-shadow: 0 3px 10px rgba(255, 71, 87, 0.2);
             flex-shrink: 0;
+            margin-left: 10px;
         }
         
-        .remove-btn-compact:hover {
+        .remove-product-btn:hover {
             transform: scale(1.1);
             background: #ff4757;
             color: white;
         }
         
-        /* ========== ORDER SUMMARY ========== */
-        .order-summary {
+        /* ========== RESUMEN DE PEDIDO ESTILO IMAGEN ========== */
+        .order-summary-modern {
             background: white;
             border-radius: 20px;
             overflow: hidden;
@@ -796,46 +732,141 @@
             border: 1px solid #ffe8e0;
         }
         
-        .summary-header {
-            background: linear-gradient(135deg, #ff7c7c, #ff9a5a);
-            color: white;
-            padding: 20px;
-            font-size: 18px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
+        .summary-content-modern {
+            padding: 25px;
         }
         
-        .summary-content {
-            padding: 20px;
-        }
-        
-        .summary-row {
+        .summary-row-modern {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 0;
+            padding: 15px 0;
             border-bottom: 2px dashed #ffe8e0;
             font-size: 15px;
         }
         
-        .summary-row:last-child {
+        .summary-row-modern:last-child {
             border-bottom: none;
         }
         
-        .summary-row.total {
-            font-size: 22px;
-            font-weight: 800;
+        .summary-label {
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .summary-value {
+            font-weight: 700;
             color: #333;
+        }
+        
+        .summary-total {
+            font-size: 20px;
+            font-weight: 800;
+            color: #ff6b6b;
+        }
+        
+        .shipping-section {
+            margin-top: 20px;
             padding-top: 20px;
-            margin-top: 10px;
-            border-top: 3px solid #ffe8e0;
-            background: #fff8f6;
-            padding: 20px;
+            border-top: 2px dashed #ffe8e0;
+        }
+        
+        .shipping-title {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        
+        .shipping-option {
+            background: #fef6f4;
+            padding: 15px;
             border-radius: 12px;
-            margin: 0 -20px -20px -20px;
+            border: 1px solid #ffe8e0;
+            margin-bottom: 10px;
+        }
+        
+        .shipping-calc {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .postal-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ffe8e0;
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            background: #fff8f6;
+        }
+        
+        .postal-input:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            background: white;
+        }
+        
+        .calc-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .calc-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
+        }
+        
+        .installment-info {
+            font-size: 13px;
+            color: #666;
+            text-align: center;
+            margin-top: 10px;
+            background: #fff8f6;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ffe8e0;
+        }
+        
+        /* ========== BOTÓN DE CHECKOUT ESTILO IMAGEN ========== */
+        .checkout-btn-modern {
+            width: 100%;
+            padding: 22px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .checkout-btn-modern:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+        
+        .checkout-btn-modern:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
         
         /* ========== FLOATING CHECKOUT BUTTON ========== */
@@ -893,17 +924,6 @@
         .checkout-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
-        }
-        
-        .checkout-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-        
-        .checkout-btn:disabled:before {
-            display: none;
         }
         
         /* ========== BOTÓN FLOTANTE INFERIOR DERECHO ========== */
@@ -1642,11 +1662,11 @@
                 padding: 0 12px;
             }
             
-            .cart-items {
+            .cart-content {
                 margin-bottom: 15px;
             }
             
-            .order-summary {
+            .order-summary-modern {
                 margin-bottom: 15px;
             }
             
@@ -1766,39 +1786,61 @@
             <!-- ORDER SECTION -->
             <section class="order-section" id="orderSection">
                 <div class="cart-container">
-                    <div class="cart-items">
+                    <div class="cart-content">
                         <div class="cart-header">
-                            <h3>Tu Pedido Actual</h3>
+                            <h3>Carrito de compras</h3>
                             <div class="cart-count" id="cartCount">0 items</div>
                         </div>
                         
                         <div class="cart-items-container" id="cartItemsContainer">
                             <div class="empty-cart" id="emptyCart">
                                 <i class="fas fa-shopping-cart"></i>
-                                <h3>Tu pedido está vacío</h3>
+                                <h3>Tu carrito está vacío</h3>
                                 <p>Agrega items del menú para continuar</p>
                             </div>
                             <!-- Items del carrito se cargan aquí -->
                         </div>
                     </div>
                     
-                    <div class="order-summary" id="orderSummary" style="display: none;">
-                        <div class="summary-header">
-                            <i class="fas fa-receipt"></i> Resumen del Pedido
-                        </div>
-                        <div class="summary-content">
-                            <div class="summary-row">
-                                <span>Subtotal</span>
-                                <span id="subtotal">$0.00</span>
+                    <div class="order-summary-modern" id="orderSummary" style="display: none;">
+                        <div class="summary-content-modern">
+                            <div class="summary-row-modern">
+                                <span class="summary-label">Subtotal (sin envío):</span>
+                                <span class="summary-value" id="subtotal">$0.00</span>
                             </div>
-                            <div class="summary-row">
-                                <span>IVA (10%)</span>
-                                <span id="iva">$0.00</span>
+                            
+                            <div class="shipping-section">
+                                <div class="shipping-title">Medios de envío</div>
+                                <div class="shipping-option">
+                                    <div style="margin-bottom: 10px; color: #666; font-size: 14px;">
+                                        Tu código postal <strong style="color: #ff6b6b;">CALCULAR</strong>
+                                    </div>
+                                    <div class="shipping-calc">
+                                        <input type="text" class="postal-input" placeholder="Ej: 110111" id="postalCode">
+                                        <button class="calc-btn" onclick="calculateShipping()">
+                                            <i class="fas fa-calculator"></i> Calcular
+                                        </button>
+                                    </div>
+                                    <div style="margin-top: 10px; font-size: 13px; color: #666;">
+                                        <a href="#" style="color: #ff6b6b; text-decoration: none;">
+                                            <i class="fas fa-question-circle"></i> No sé mi código postal
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="summary-row total">
-                                <span>Total a pagar</span>
-                                <span id="totalAmount">$0.00</span>
+                            
+                            <div class="summary-row-modern" style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #ffe8e0;">
+                                <span class="summary-label" style="font-size: 18px;">Total:</span>
+                                <span class="summary-total" id="totalAmount">$0.00</span>
                             </div>
+                            
+                            <div class="installment-info" id="installmentInfo">
+                                <!-- Info de cuotas se carga aquí -->
+                            </div>
+                            
+                            <button class="checkout-btn-modern" onclick="openCheckoutModal()">
+                                <i class="fas fa-bolt"></i> INICIAR COMPRA
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -2450,7 +2492,7 @@
                     customizations: {...currentCustomizations},
                     customizationText: customizationText
                 });
-                showNotification(`${currentItem.name} agregado al pedido`, 'success');
+                showNotification(`${currentItem.name} agregado al carrito`, 'success');
             }
             
             // Vibrar el dispositivo (si está disponible)
@@ -2492,7 +2534,7 @@
             });
         }
         
-        // ================= MANEJO DEL CARRITO MEJORADO =================
+        // ================= MANEJO DEL CARRITO COMO LA IMAGEN =================
         function updateCart() {
             const cartItemsContainer = document.getElementById('cartItemsContainer');
             const emptyCart = document.getElementById('emptyCart');
@@ -2529,7 +2571,7 @@
             orderSummary.style.display = 'block';
             floatingCheckout.style.display = 'block';
             
-            // Renderizar items del carrito con nuevo diseño
+            // Renderizar items del carrito con diseño como la imagen
             let cartHTML = '';
             let subtotal = 0;
             
@@ -2538,55 +2580,56 @@
                 subtotal += itemTotal;
                 
                 cartHTML += `
-                    <div class="cart-item-compact">
-                        <div class="cart-item-main">
-                            <div class="cart-item-header">
-                                <div class="cart-item-name">${item.name}</div>
-                                <div class="cart-item-quantity-badge">x${item.quantity}</div>
-                            </div>
+                    <div class="cart-product-item">
+                        <div class="product-info">
+                            <div class="product-name">${item.name}</div>
                             ${item.customizationText ? `
-                                <div class="cart-item-options" style="background: #fef6f4; padding: 10px 12px; border-radius: 10px; margin-top: 5px; border-left: 3px solid #ff6b6b; font-size: 13px; color: #666;">
+                                <div style="font-size: 13px; color: #666; margin-bottom: 8px; background: #fef6f4; padding: 8px 12px; border-radius: 8px; border-left: 3px solid #ff6b6b;">
                                     <i class="fas fa-cog"></i> ${item.customizationText}
                                 </div>
                             ` : ''}
-                            <div class="cart-item-price-info">
-                                <span class="cart-item-price-unit">Precio unitario:</span>
-                                <span class="cart-item-price-amount">${formatoPesos(item.price)}</span>
-                            </div>
-                            <div class="cart-item-total">
-                                <span class="cart-item-total-label">Total item:</span>
-                                <span class="cart-item-total-amount">${formatoPesos(itemTotal)}</span>
+                            <div class="product-controls">
+                                <div class="quantity-selector-small">
+                                    <button class="qty-btn-small" onclick="updateCartQuantity(${index}, -1)">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <span class="qty-value-small">${item.quantity}</span>
+                                    <button class="qty-btn-small" onclick="updateCartQuantity(${index}, 1)">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                <div class="product-price">${formatoPesos(itemTotal)}</div>
                             </div>
                         </div>
-                        <div class="cart-item-actions">
-                            <div class="quantity-control-compact">
-                                <button class="qty-btn-compact" onclick="updateCartQuantity(${index}, -1)">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <span class="qty-value-compact">${item.quantity}</span>
-                                <button class="qty-btn-compact" onclick="updateCartQuantity(${index}, 1)">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <button class="remove-btn-compact" onclick="removeFromCart(${index})" title="Eliminar">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
+                        <button class="remove-product-btn" onclick="removeFromCart(${index})" title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </div>
                 `;
             });
             
             cartItemsContainer.innerHTML = cartHTML;
             
-            // Actualizar resumen
+            // Calcular totales
             const iva = Math.round(subtotal * 0.10);
             const total = subtotal + iva;
             
+            // Actualizar resumen
             document.getElementById('subtotal').textContent = formatoPesos(subtotal);
-            document.getElementById('iva').textContent = formatoPesos(iva);
             document.getElementById('totalAmount').textContent = formatoPesos(total);
             
-            // Actualizar botón de checkout
+            // Actualizar info de cuotas
+            const installmentInfo = document.getElementById('installmentInfo');
+            if (total > 0) {
+                const installmentAmount = Math.round(total / 12);
+                installmentInfo.innerHTML = `
+                    Hasta <strong>12 x ${formatoPesos(installmentAmount)}</strong> sin interés
+                `;
+            } else {
+                installmentInfo.innerHTML = '';
+            }
+            
+            // Actualizar botón de checkout flotante
             checkoutTotal.textContent = formatoPesos(total);
         }
         
@@ -2602,9 +2645,6 @@
                 }
                 
                 cart[index].quantity = newQuantity;
-                
-                // Calcular diferencia en precio
-                const priceDifference = cart[index].price * (cart[index].quantity - oldQuantity);
                 
                 // Vibrar
                 if (navigator.vibrate) {
@@ -2635,13 +2675,44 @@
             updateCart();
             
             // Mostrar notificación
-            showNotification(`${itemName} eliminado del pedido`, 'error');
+            showNotification(`${itemName} eliminado del carrito`, 'error');
+        }
+        
+        function calculateShipping() {
+            const postalCode = document.getElementById('postalCode').value.trim();
+            
+            if (!postalCode) {
+                showNotification('Por favor ingresa tu código postal', 'warning');
+                return;
+            }
+            
+            // Simular cálculo de envío
+            showNotification('Calculando costo de envío...', 'success');
+            
+            // Mostrar costo de envío después de 1 segundo
+            setTimeout(() => {
+                // En un sistema real, aquí se haría una llamada a una API
+                const shippingCost = Math.random() > 0.5 ? convertirAPesos(2.50) : 0;
+                
+                if (shippingCost > 0) {
+                    showNotification(`Costo de envío: ${formatoPesos(shippingCost)}`, 'success');
+                    
+                    // Actualizar total con envío
+                    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                    const iva = Math.round(subtotal * 0.10);
+                    const total = subtotal + iva + shippingCost;
+                    
+                    document.getElementById('totalAmount').textContent = formatoPesos(total);
+                } else {
+                    showNotification('¡Envío gratis para tu código postal!', 'success');
+                }
+            }, 1000);
         }
         
         // ================= CHECKOUT =================
         function openCheckoutModal() {
             if (cart.length === 0) {
-                showNotification('Agrega items a tu pedido primero', 'error');
+                showNotification('Agrega items a tu carrito primero', 'error');
                 return;
             }
             
