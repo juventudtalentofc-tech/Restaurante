@@ -129,46 +129,6 @@
             color: rgba(255,255,255,0.95);
         }
         
-        .cart-header-badge {
-            background: rgba(255,255,255,0.25);
-            padding: 10px 18px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid rgba(255,255,255,0.3);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            position: relative;
-            overflow: hidden;
-            color: white;
-        }
-        
-        .cart-header-badge:hover {
-            background: rgba(255,255,255,0.35);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(255, 107, 107, 0.25);
-        }
-        
-        .cart-header-badge:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: 0.5s;
-        }
-        
-        .cart-header-badge:hover:before {
-            left: 100%;
-        }
-        
         /* ========== APP NAVIGATION - SALMONSITO ========== */
         .app-nav {
             display: flex;
@@ -241,21 +201,6 @@
             box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
         }
         
-        .cart-badge {
-            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            box-shadow: 0 3px 8px rgba(255, 107, 107, 0.3);
-            border: 2px solid white;
-        }
-        
         /* ========== APP CONTENT ========== */
         .app-content {
             flex: 1;
@@ -268,7 +213,7 @@
         
         /* ========== MENU SECTION ========== */
         .menu-section {
-            padding: 20px 15px;
+            padding: 20px 15px 100px;
             display: none;
             flex: 1;
         }
@@ -403,10 +348,10 @@
             grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
             gap: 16px;
             padding: 0 5px;
-            margin-bottom: 100px;
+            margin-bottom: 20px;
         }
         
-        /* ========== MENU ITEM CARD - CON PRECIO DEBAJO DEL NOMBRE ========== */
+        /* ========== MENU ITEM CARD ========== */
         .menu-card {
             background: white;
             border-radius: 18px;
@@ -505,263 +450,6 @@
             box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
         }
         
-        /* ========== ORDER SECTION - DISEÑO MEJORADO ========== */
-        .order-section {
-            padding: 0;
-            display: none;
-            height: 100%;
-            overflow-y: auto;
-            flex: 1;
-        }
-        
-        .order-section.active {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        /* ========== CARRITO DISEÑO SIMPLIFICADO ========== */
-        .cart-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: #fef6f4;
-            min-height: 0;
-            padding: 0 15px 100px;
-        }
-        
-        .cart-content {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.12);
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-height: 300px;
-            border: 1px solid #ffe8e0;
-        }
-        
-        .cart-header {
-            background: linear-gradient(135deg, #ff7c7c, #ff9a5a);
-            color: white;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-shrink: 0;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .cart-header h3 {
-            font-size: 18px;
-            font-weight: 600;
-        }
-        
-        .cart-count {
-            background: rgba(255,255,255,0.25);
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            color: white;
-        }
-        
-        .empty-cart {
-            text-align: center;
-            padding: 60px 20px;
-            color: #aaa;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 300px;
-        }
-        
-        .empty-cart i {
-            font-size: 70px;
-            margin-bottom: 20px;
-            opacity: 0.5;
-            color: #ffd7cc;
-        }
-        
-        .empty-cart h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #ff9a5a;
-        }
-        
-        .empty-cart p {
-            font-size: 14px;
-            max-width: 250px;
-            line-height: 1.5;
-        }
-        
-        .cart-items-container {
-            flex: 1;
-            overflow-y: auto;
-            max-height: 60vh;
-            padding: 0;
-            min-height: 200px;
-        }
-        
-        /* ========== DISEÑO SIMPLIFICADO DEL CARRITO ========== */
-        .cart-product-item {
-            display: flex;
-            align-items: center;
-            padding: 18px 15px;
-            border-bottom: 2px solid #fef6f4;
-            background: white;
-            transition: all 0.3s;
-            animation: slideInRight 0.3s ease-out;
-            gap: 15px;
-        }
-        
-        .cart-product-item:hover {
-            background: #fffbf9;
-        }
-        
-        .cart-product-item:last-child {
-            border-bottom: none;
-        }
-        
-        .product-info {
-            flex: 1;
-            min-width: 0;
-            overflow: hidden;
-        }
-        
-        .product-name {
-            font-weight: 700;
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 8px;
-            display: block;
-        }
-        
-        .product-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 8px;
-        }
-        
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #fef6f4;
-            padding: 6px 12px;
-            border-radius: 20px;
-            border: 1px solid #ffd7cc;
-        }
-        
-        .qty-btn {
-            background: white;
-            border: 1px solid #ffd7cc;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-weight: bold;
-            color: #ff6b6b;
-            transition: all 0.2s;
-            font-size: 14px;
-            box-shadow: 0 2px 5px rgba(255, 107, 107, 0.1);
-        }
-        
-        .qty-btn:hover {
-            background: #ff6b6b;
-            color: white;
-            transform: scale(1.1);
-        }
-        
-        .qty-value {
-            font-weight: 800;
-            font-size: 15px;
-            min-width: 25px;
-            text-align: center;
-            color: #333;
-        }
-        
-        .product-total {
-            font-weight: 800;
-            color: #ff6b6b;
-            font-size: 17px;
-            text-align: right;
-            min-width: 90px;
-        }
-        
-        .remove-product-btn {
-            background: #ffebee;
-            color: #ff4757;
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            flex-shrink: 0;
-            box-shadow: 0 2px 8px rgba(255, 71, 87, 0.1);
-        }
-        
-        .remove-product-btn:hover {
-            background: #ff4757;
-            color: white;
-            transform: scale(1.1);
-        }
-        
-        /* ========== RESUMEN DE PEDIDO SIMPLIFICADO ========== */
-        .order-summary-modern {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.12);
-            flex-shrink: 0;
-            border: 1px solid #ffe8e0;
-        }
-        
-        .summary-content-modern {
-            padding: 20px;
-        }
-        
-        .summary-row-modern {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 2px dashed #ffe8e0;
-            font-size: 15px;
-        }
-        
-        .summary-row-modern:last-child {
-            border-bottom: none;
-        }
-        
-        .summary-label {
-            font-weight: 500;
-            color: #666;
-        }
-        
-        .summary-value {
-            font-weight: 700;
-            color: #333;
-        }
-        
-        .summary-total {
-            font-size: 20px;
-            font-weight: 800;
-            color: #ff6b6b;
-        }
-        
         /* ========== FLOATING CHECKOUT BUTTON ========== */
         .floating-checkout {
             position: fixed;
@@ -781,7 +469,7 @@
         
         .checkout-btn {
             width: 100%;
-            padding: 20px;
+            padding: 22px;
             background: linear-gradient(135deg, #ff6b6b, #ff8e53);
             color: white;
             border: none;
@@ -791,7 +479,8 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 12px;
             transition: all 0.3s;
             box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
             position: relative;
@@ -818,62 +507,192 @@
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
         }
         
-        .checkout-info {
+        /* ========== MODAL DE ADICIONALES ========== */
+        .customization-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+        }
+        
+        .customization-modal.active {
+            display: flex;
+        }
+        
+        .custom-header {
+            padding: 25px 20px 15px;
+            background: linear-gradient(135deg, #ff7c7c, #ff9a5a);
+            color: white;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
         }
         
-        .checkout-total {
+        .custom-header h2 {
             font-size: 22px;
-            font-weight: 800;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            font-weight: 700;
         }
         
-        /* ========== BOTÓN FLOTANTE INFERIOR DERECHO ========== */
-        .floating-fingerprint {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            z-index: 95;
-            width: 60px;
-            height: 60px;
-            transform: scale(1);
-            border-style: none;
-            outline: none;
-            cursor: pointer;
+        .close-modal {
+            background: rgba(255,255,255,0.25);
+            border: none;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #ffd7cc 0%, #ffe8e0 100%);
-            box-shadow: -2px -7px 10px #fff8f6, 4px 6px 10px #ffb8a8;
-            transition: all .3s;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255, 107, 107, 0.2);
+            transition: all 0.3s;
         }
         
-        .floating-fingerprint:active {
-            background: linear-gradient(45deg, #ffb8a8 0%, #ffd7cc 100%);
-            box-shadow: -2px -7px 10px #ffd7cc, 
-                4px 6px 10px #ffb8a8,
-                inset -2px -7px 10px #fff8f6, 
-                inset 4px 6px 10px #ffb8a8;
-            transition: all .3s;
-            transform: scale(.95);
+        .close-modal:hover {
+            background: rgba(255,255,255,0.35);
+            transform: rotate(90deg);
         }
         
-        .floating-fingerprint i {
-            font-size: 24px;
-            background: linear-gradient(-45deg, #ff6b6b 0%, #ff9a5a 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transition: all .3s;
+        .custom-options {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
         }
         
-        .floating-fingerprint:active i {
-            transform: scale(.9);
-            transition: all .3s;
+        .option-group {
+            margin-bottom: 25px;
+            background: #fef6f4;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #ff6b6b;
+            border: 1px solid #ffe8e0;
+        }
+        
+        .option-title {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .option-required {
+            color: #ff4757;
+            font-size: 12px;
+        }
+        
+        .option-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #ffe8e0;
+        }
+        
+        .option-item:last-child {
+            border-bottom: none;
+        }
+        
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            cursor: pointer;
+        }
+        
+        .option-check {
+            width: 22px;
+            height: 22px;
+            accent-color: #ff6b6b;
+        }
+        
+        .option-price {
+            font-weight: 600;
+            color: #ff6b6b;
+            min-width: 80px;
+            text-align: right;
+        }
+        
+        /* ========== QUANTITY SELECTOR ========== */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            padding: 30px 20px;
+            background: #fef6f4;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.1);
+            border: 1px solid #ffe8e0;
+        }
+        
+        .qty-btn-large {
+            background: white;
+            border: none;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 30px;
+            color: #ff6b6b;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.15);
+            transition: all 0.3s;
+            border: 1px solid #ffe8e0;
+        }
+        
+        .qty-btn-large:hover {
+            background: #ff6b6b;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .qty-value-large {
+            font-size: 36px;
+            font-weight: 800;
+            color: #333;
+            min-width: 70px;
+            text-align: center;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .add-to-cart-btn {
+            margin: 0 20px 30px;
+            padding: 22px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        .add-to-cart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
         }
         
         /* ========== CHECKOUT MODAL ========== */
@@ -911,26 +730,6 @@
         .modal-header h2 {
             font-size: 24px;
             font-weight: 700;
-        }
-        
-        .close-modal {
-            background: rgba(255,255,255,0.25);
-            border: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-        
-        .close-modal:hover {
-            background: rgba(255,255,255,0.35);
-            transform: rotate(90deg);
         }
         
         .modal-content {
@@ -1013,7 +812,181 @@
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
         }
         
-        /* ========== NOTIFICATION MEJORADA ========== */
+        /* ========== LOADING OVERLAY ========== */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .loading-overlay.active {
+            display: flex;
+        }
+        
+        /* ========== LOADER CUSTOM ========== */
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 8px solid #ff9a5a;
+            border-radius: 50px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .loader span {
+            display: block;
+            background: #ff9a5a;
+        }
+        
+        .loader .hour, .loader .min {
+            width: 6px;
+            border-radius: 50px;
+            position: absolute;
+            top: 24.5px;
+            left: 21px;
+            animation: load9243 1.2s linear infinite;
+            transform-origin: top center;
+        }
+        
+        .loader .hour {
+            height: 22px;
+        }
+        
+        .loader .min {
+            height: 17px;
+            animation: load9243 4s linear infinite;
+        }
+        
+        .loader .circel {
+            width: 12px;
+            height: 12px;
+            border-radius: 50px;
+            position: absolute;
+            top: 19px;
+            left: 19px;
+            background: #ff9a5a;
+        }
+        
+        @keyframes load9243 {
+            0% {
+                transform: rotate(0deg);
+            }
+            
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .loading-text {
+            font-size: 22px;
+            font-weight: 600;
+            text-align: center;
+            color: #ff9a5a;
+            text-shadow: 0 2px 10px rgba(255, 154, 90, 0.3);
+            margin-top: 20px;
+        }
+        
+        /* ========== SUCCESS MODAL ========== */
+        .success-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .success-modal.active {
+            display: flex;
+        }
+        
+        .success-content {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 25px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            animation: pop-in 0.4s ease-out;
+            box-shadow: 0 20px 60px rgba(255, 107, 107, 0.3);
+            border: 1px solid #ffe8e0;
+        }
+        
+        @keyframes pop-in {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .success-icon {
+            font-size: 80px;
+            color: #ff6b6b;
+            margin-bottom: 25px;
+            animation: bounce 0.5s ease-out;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .success-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .success-message {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .btn-continue {
+            padding: 18px 45px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        .btn-continue:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+        
+        /* ========== NOTIFICATION ========== */
         .notification {
             position: fixed;
             top: 120px;
@@ -1061,17 +1034,8 @@
             100% { transform: scale(1); }
         }
         
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-        
         .pulse {
             animation: pulse 0.3s ease-in-out;
-        }
-        
-        .bounce {
-            animation: bounce 0.3s ease-in-out;
         }
         
         /* ========== RESPONSIVE ADJUSTMENTS ========== */
@@ -1098,24 +1062,9 @@
                 margin: 0 15px;
             }
             
-            .cart-container {
-                padding: 0 12px 100px;
-            }
-            
-            .floating-fingerprint {
-                bottom: 80px;
-                right: 15px;
-                width: 55px;
-                height: 55px;
-            }
-            
             .checkout-btn {
-                padding: 18px;
+                padding: 20px;
                 font-size: 16px;
-            }
-            
-            .checkout-total {
-                font-size: 20px;
             }
         }
         
@@ -1137,11 +1086,6 @@
             
             .app-nav {
                 margin: 0 30px;
-            }
-            
-            .floating-fingerprint {
-                right: 30px;
-                bottom: 100px;
             }
         }
         
@@ -1184,7 +1128,7 @@
                     <div class="restaurant-tagline">Pedidos en línea</div>
                 </div>
             </div>
-            <div class="cart-header-badge" onclick="switchToOrderSection()">
+            <div class="cart-header-badge" onclick="openCheckoutModal()">
                 <i class="fas fa-shopping-cart"></i>
                 <span id="headerCartCount">0</span>
             </div>
@@ -1195,9 +1139,8 @@
             <button class="nav-btn active" data-section="menu">
                 <i class="fas fa-utensils"></i> Menú
             </button>
-            <button class="nav-btn" data-section="order">
+            <button class="nav-btn" data-section="order" style="display: none;">
                 <i class="fas fa-shopping-cart"></i> Mi Pedido
-                <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
             </button>
         </nav>
         
@@ -1223,63 +1166,42 @@
                     <!-- Items del menú se cargan aquí -->
                 </div>
             </section>
-            
-            <!-- ORDER SECTION -->
-            <section class="order-section" id="orderSection">
-                <div class="cart-container">
-                    <div class="cart-content">
-                        <div class="cart-header">
-                            <h3>Carrito de compras</h3>
-                            <div class="cart-count" id="cartCount">0 items</div>
-                        </div>
-                        
-                        <div class="cart-items-container" id="cartItemsContainer">
-                            <div class="empty-cart" id="emptyCart">
-                                <i class="fas fa-shopping-cart"></i>
-                                <h3>Tu carrito está vacío</h3>
-                                <p>Agrega items del menú para continuar</p>
-                            </div>
-                            <!-- Items del carrito se cargan aquí -->
-                        </div>
-                    </div>
-                    
-                    <div class="order-summary-modern" id="orderSummary" style="display: none;">
-                        <div class="summary-content-modern">
-                            <div class="summary-row-modern">
-                                <span class="summary-label">Subtotal:</span>
-                                <span class="summary-value" id="subtotal">$0</span>
-                            </div>
-                            
-                            <div class="summary-row-modern">
-                                <span class="summary-label">IVA (10%):</span>
-                                <span class="summary-value" id="iva">$0</span>
-                            </div>
-                            
-                            <div class="summary-row-modern">
-                                <span class="summary-label" style="font-size: 18px;">Total a pagar:</span>
-                                <span class="summary-total" id="totalAmount">$0</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </main>
         
         <!-- FLOATING CHECKOUT BUTTON -->
         <div class="floating-checkout" id="floatingCheckout">
             <button class="checkout-btn" onclick="openCheckoutModal()">
-                <div class="checkout-info">
-                    <i class="fas fa-bolt"></i>
-                    <span>Agilizar Compra</span>
-                </div>
-                <div class="checkout-total" id="checkoutTotal">$0</div>
+                <i class="fas fa-bolt"></i> Agilizar
             </button>
         </div>
         
-        <!-- BOTÓN FLOTANTE INFERIOR DERECHO -->
-        <button class="floating-fingerprint" onclick="showFingerprintMessage()">
-            <i class="fas fa-fingerprint"></i>
-        </button>
+        <!-- MODAL DE ADICIONALES -->
+        <div class="customization-modal" id="customizationModal">
+            <div class="custom-header">
+                <h2 id="customItemName">Personalizar Item</h2>
+                <button class="close-modal" onclick="closeCustomizationModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="custom-options" id="customOptions">
+                <!-- Opciones se cargan aquí -->
+            </div>
+            
+            <div class="quantity-selector">
+                <button class="qty-btn-large" onclick="changeCustomQuantity(-1)">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <div class="qty-value-large" id="customQuantity">1</div>
+                <button class="qty-btn-large" onclick="changeCustomQuantity(1)">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            
+            <button class="add-to-cart-btn" onclick="addCustomizedItem()">
+                <i class="fas fa-cart-plus"></i> Agregar al Pedido
+            </button>
+        </div>
         
         <!-- CHECKOUT MODAL -->
         <div class="checkout-modal" id="checkoutModal">
@@ -1340,6 +1262,30 @@
                 </button>
             </div>
         </div>
+        
+        <!-- LOADING OVERLAY -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loader">
+                <span class="hour"></span>
+                <span class="min"></span>
+                <span class="circel"></span>
+            </div>
+            <div class="loading-text">Enviando tu pedido...</div>
+        </div>
+        
+        <!-- SUCCESS MODAL -->
+        <div class="success-modal" id="successModal">
+            <div class="success-content">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="success-title">¡Pedido Enviado!</h3>
+                <p class="success-message">Tu pedido ha sido registrado exitosamente y enviado a la cocina. Te esperamos pronto en el restaurante.</p>
+                <button class="btn-continue" onclick="continueShopping()">
+                    Continuar
+                </button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -1347,93 +1293,11 @@
         const TELEGRAM_BOT_TOKEN = "8244972591:AAHnTjxaltU8Qkgm03nVVBnOT-3eXnnukJ8";
         const TELEGRAM_CHAT_ID = "7806030847";
         
-        // ================= FUNCIÓN PARA CONVERTIR A PESOS COLOMBIANOS =================
-        function formatoPesos(valor) {
-            return `$${valor.toLocaleString('es-CO')}`;
-        }
-        
-        // ================= DATOS DEL MENÚ =================
-        const menuData = {
-            categories: [
-                { id: 'hamburguesas', name: '🍔 Hamburguesas' },
-                { id: 'pizzas', name: '🍕 Pizzas' },
-                { id: 'sandwiches', name: '🥪 Sándwiches' },
-                { id: 'ensaladas', name: '🥗 Ensaladas' },
-                { id: 'bebidas', name: '🥤 Bebidas' },
-                { id: 'postres', name: '🍦 Postres' }
-            ],
-            
-            items: [
-                {
-                    id: 1,
-                    name: "Churrasco",
-                    description: "Carne de res a la parrilla con guarniciones",
-                    price: 27960,
-                    category: "hamburguesas",
-                    image: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
-                },
-                {
-                    id: 2,
-                    name: "Plátano Frito",
-                    description: "Plátano maduro frito crujiente",
-                    price: 15960,
-                    category: "postres",
-                    image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
-                },
-                {
-                    id: 3,
-                    name: "Hamburguesa Clásica",
-                    description: "Carne de res, lechuga, tomate, queso cheddar",
-                    price: 39960,
-                    category: "hamburguesas",
-                    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
-                },
-                {
-                    id: 4,
-                    name: "Hamburguesa BBQ",
-                    description: "Carne con salsa BBQ, cebolla caramelizada",
-                    price: 46000,
-                    category: "hamburguesas",
-                    image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
-                },
-                {
-                    id: 5,
-                    name: "Pizza Pepperoni",
-                    description: "Pizza mediana con pepperoni y queso",
-                    price: 51960,
-                    category: "pizzas",
-                    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
-                },
-                {
-                    id: 6,
-                    name: "Sándwich de Pollo",
-                    description: "Pollo a la plancha con vegetales",
-                    price: 34000,
-                    category: "sandwiches",
-                    image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
-                },
-                {
-                    id: 7,
-                    name: "Refresco Grande",
-                    description: "500ml Coca-Cola, Sprite o Fanta",
-                    price: 12000,
-                    category: "bebidas",
-                    image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
-                },
-                {
-                    id: 8,
-                    name: "Helado de Vainilla",
-                    description: "Helado artesanal con topping",
-                    price: 22000,
-                    category: "postres",
-                    image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
-                }
-            ]
-        };
-        
         // ================= VARIABLES GLOBALES =================
         let cart = [];
-        let totalAmount = 0;
+        let currentItem = null;
+        let currentCustomizations = {};
+        let currentQuantity = 1;
         
         // ================= INICIALIZAR APP =================
         function initApp() {
@@ -1447,10 +1311,10 @@
             // Configurar navegación
             setupNavigation();
             
-            // Actualizar carrito
-            updateCart();
+            // Actualizar contador
+            updateCartCount();
             
-            console.log("✅ APP Inicializada - Carrito Profesional");
+            console.log("✅ APP Inicializada");
         }
         
         function renderOffersCarousel() {
@@ -1488,8 +1352,8 @@
                     <div class="offer-content">
                         <h3 class="offer-title">${offer.title}</h3>
                         <p class="offer-desc">${offer.description}</p>
-                        <div class="offer-price">${formatoPesos(offer.price)}</div>
-                        <div class="offer-old-price">${formatoPesos(offer.oldPrice)}</div>
+                        <div class="offer-price">$${offer.price.toLocaleString('es-CO')}</div>
+                        <div class="offer-old-price">$${offer.oldPrice.toLocaleString('es-CO')}</div>
                     </div>
                 `;
                 container.appendChild(offerCard);
@@ -1508,15 +1372,12 @@
                     btn.classList.add('active');
                     
                     // Mostrar sección correspondiente
-                    document.querySelectorAll('.menu-section, .order-section').forEach(sec => {
+                    document.querySelectorAll('.menu-section').forEach(sec => {
                         sec.classList.remove('active');
                     });
-                    document.getElementById(section + 'Section').classList.add('active');
                     
-                    // Actualizar carrito al cambiar a la sección de pedido
-                    if (section === 'order') {
-                        updateCart();
-                    }
+                    // Solo tenemos la sección de menú
+                    document.getElementById('menuSection').classList.add('active');
                     
                     // Scroll to top
                     window.scrollTo(0, 0);
@@ -1524,19 +1385,21 @@
             });
         }
         
-        function switchToOrderSection() {
-            const orderBtn = document.querySelector('.nav-btn[data-section="order"]');
-            if (orderBtn) {
-                orderBtn.click();
-            }
-        }
-        
         // ================= RENDERIZAR MENÚ =================
         function renderCategories() {
             const container = document.getElementById('categoriesContainer');
             container.innerHTML = '';
             
-            menuData.categories.forEach(category => {
+            const categories = [
+                { id: 'hamburguesas', name: '🍔 Hamburguesas' },
+                { id: 'pizzas', name: '🍕 Pizzas' },
+                { id: 'sandwiches', name: '🥪 Sándwiches' },
+                { id: 'ensaladas', name: '🥗 Ensaladas' },
+                { id: 'bebidas', name: '🥤 Bebidas' },
+                { id: 'postres', name: '🍦 Postres' }
+            ];
+            
+            categories.forEach(category => {
                 const chip = document.createElement('div');
                 chip.className = 'category-chip';
                 chip.textContent = category.name;
@@ -1563,7 +1426,7 @@
         
         function renderMenuItems(categoryId) {
             const container = document.getElementById('menuGrid');
-            const items = menuData.items.filter(item => item.category === categoryId);
+            const items = getMenuItems().filter(item => item.category === categoryId);
             
             container.innerHTML = '';
             
@@ -1577,10 +1440,10 @@
                             <div class="item-name">${item.name}</div>
                         </div>
                         <div class="item-price-container">
-                            <div class="item-price">${formatoPesos(item.price)}</div>
+                            <div class="item-price">$${item.price.toLocaleString('es-CO')}</div>
                         </div>
                         <div class="item-desc">${item.description}</div>
-                        <button class="add-btn" onclick="addToCart(${item.id})">
+                        <button class="add-btn" onclick="openCustomization(${item.id})">
                             <i class="fas fa-plus"></i> Agregar
                         </button>
                     </div>
@@ -1590,178 +1453,481 @@
             });
         }
         
-        // ================= FUNCIÓN PARA AGREGAR AL CARRITO =================
-        function addToCart(itemId) {
-            const item = menuData.items.find(item => item.id === itemId);
-            if (!item) return;
-            
-            // Verificar si ya existe en el carrito
-            const existingIndex = cart.findIndex(cartItem => cartItem.id === item.id);
-            
-            if (existingIndex !== -1) {
-                // Incrementar cantidad si ya existe
-                cart[existingIndex].quantity += 1;
-                showNotification(`✚ ${item.name} (+1)`, 'success');
-            } else {
-                // Agregar nuevo item al carrito
-                cart.push({
-                    id: item.id,
-                    name: item.name,
-                    price: item.price,
-                    quantity: 1
-                });
-                showNotification(`✓ ${item.name} agregado al carrito`, 'success');
-            }
-            
-            // Vibrar el dispositivo (si está disponible)
-            if (navigator.vibrate) {
-                navigator.vibrate(50);
-            }
-            
-            // Actualizar carrito
-            updateCart();
-            
-            // Animación en el botón del carrito
-            animateCartButton();
+        function getMenuItems() {
+            return [
+                {
+                    id: 1,
+                    name: "Churrasco",
+                    description: "Carne de res a la parrilla con guarniciones",
+                    price: 27960,
+                    category: "hamburguesas",
+                    image: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
+                    options: [
+                        {
+                            title: "Tipo de carne",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "Res", price: 0 },
+                                { name: "Cerdo", price: 3000 },
+                                { name: "Pollo", price: 2000 }
+                            ]
+                        },
+                        {
+                            title: "Guarniciones",
+                            type: "checkbox",
+                            required: false,
+                            items: [
+                                { name: "Papas fritas", price: 4000 },
+                                { name: "Ensalada", price: 3000 },
+                                { name: "Arroz", price: 2000 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    name: "Plátano Frito",
+                    description: "Plátano maduro frito crujiente",
+                    price: 15960,
+                    category: "postres",
+                    image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
+                    options: [
+                        {
+                            title: "Tamaño",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "Pequeño", price: 0 },
+                                { name: "Mediano", price: 3000 },
+                                { name: "Grande", price: 5000 }
+                            ]
+                        },
+                        {
+                            title: "Salsas",
+                            type: "checkbox",
+                            required: false,
+                            items: [
+                                { name: "Salsa de ajo", price: 1000 },
+                                { name: "Salsa de queso", price: 1500 },
+                                { name: "Miel", price: 1000 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    name: "Hamburguesa Clásica",
+                    description: "Carne de res, lechuga, tomate, queso cheddar",
+                    price: 39960,
+                    category: "hamburguesas",
+                    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
+                    options: [
+                        {
+                            title: "Tipo de carne",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "Res", price: 0 },
+                                { name: "Pollo", price: 2000 },
+                                { name: "Vegetariana", price: 3000 }
+                            ]
+                        },
+                        {
+                            title: "Extras",
+                            type: "checkbox",
+                            required: false,
+                            items: [
+                                { name: "Queso extra", price: 2000 },
+                                { name: "Bacon", price: 3000 },
+                                { name: "Aguacate", price: 2500 },
+                                { name: "Champiñones", price: 2000 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    name: "Hamburguesa BBQ",
+                    description: "Carne con salsa BBQ, cebolla caramelizada",
+                    price: 46000,
+                    category: "hamburguesas",
+                    image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
+                    options: [
+                        {
+                            title: "Tipo de carne",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "Res", price: 0 },
+                                { name: "Cerdo", price: 2000 }
+                            ]
+                        },
+                        {
+                            title: "Extras",
+                            type: "checkbox",
+                            required: false,
+                            items: [
+                                { name: "Queso cheddar", price: 2000 },
+                                { name: "Aros de cebolla", price: 4000 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    name: "Pizza Pepperoni",
+                    description: "Pizza mediana con pepperoni y queso",
+                    price: 51960,
+                    category: "pizzas",
+                    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
+                    options: [
+                        {
+                            title: "Tamaño",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "Personal", price: -10000 },
+                                { name: "Mediana", price: 0 },
+                                { name: "Familiar", price: 15000 }
+                            ]
+                        },
+                        {
+                            title: "Ingredientes extra",
+                            type: "checkbox",
+                            required: false,
+                            items: [
+                                { name: "Extra queso", price: 3000 },
+                                { name: "Champiñones", price: 2000 },
+                                { name: "Pimientos", price: 1500 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    name: "Sándwich de Pollo",
+                    description: "Pollo a la plancha con vegetales",
+                    price: 34000,
+                    category: "sandwiches",
+                    image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
+                    options: [
+                        {
+                            title: "Pan",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "Blanco", price: 0 },
+                                { name: "Integral", price: 1000 },
+                                { name: "Brioche", price: 1500 }
+                            ]
+                        },
+                        {
+                            title: "Aderezos",
+                            type: "checkbox",
+                            required: false,
+                            items: [
+                                { name: "Mayonesa", price: 500 },
+                                { name: "Mostaza", price: 500 },
+                                { name: "Ketchup", price: 500 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 7,
+                    name: "Refresco Grande",
+                    description: "500ml Coca-Cola, Sprite o Fanta",
+                    price: 12000,
+                    category: "bebidas",
+                    image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
+                    options: [
+                        {
+                            title: "Sabor",
+                            type: "radio",
+                            required: true,
+                            items: [
+                                { name: "Coca-Cola", price: 0 },
+                                { name: "Sprite", price: 0 },
+                                { name: "Fanta", price: 0 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 8,
+                    name: "Helado de Vainilla",
+                    description: "Helado artesanal con topping",
+                    price: 22000,
+                    category: "postres",
+                    image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
+                    options: [
+                        {
+                            title: "Toppings",
+                            type: "checkbox",
+                            required: false,
+                            items: [
+                                { name: "Chocolate", price: 1000 },
+                                { name: "Caramelo", price: 1000 },
+                                { name: "Fresas", price: 2000 },
+                                { name: "Nueces", price: 1500 }
+                            ]
+                        }
+                    ]
+                }
+            ];
         }
         
-        function animateCartButton() {
-            const badge = document.getElementById('cartBadge');
-            badge.classList.add('bounce');
-            setTimeout(() => {
-                badge.classList.remove('bounce');
-            }, 300);
-        }
-        
-        // ================= MANEJO DEL CARRITO =================
-        function updateCart() {
-            const cartItemsContainer = document.getElementById('cartItemsContainer');
-            const emptyCart = document.getElementById('emptyCart');
-            const orderSummary = document.getElementById('orderSummary');
+        // ================= FUNCIONES DEL CARRITO =================
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('headerCartCount').textContent = totalItems;
+            
             const floatingCheckout = document.getElementById('floatingCheckout');
-            const cartBadge = document.getElementById('cartBadge');
-            const cartCount = document.getElementById('cartCount');
-            const checkoutTotal = document.getElementById('checkoutTotal');
-            const headerCartCount = document.getElementById('headerCartCount');
-            
-            // Calcular totales
-            let subtotal = 0;
-            let totalItems = 0;
-            
-            cart.forEach(item => {
-                subtotal += item.price * item.quantity;
-                totalItems += item.quantity;
-            });
-            
-            const iva = Math.round(subtotal * 0.10);
-            totalAmount = subtotal + iva;
-            
-            // Actualizar contadores
-            cartCount.textContent = `${totalItems} ${totalItems === 1 ? 'item' : 'items'}`;
-            headerCartCount.textContent = totalItems;
-            
             if (totalItems > 0) {
-                cartBadge.textContent = totalItems;
-                cartBadge.style.display = 'inline-block';
                 floatingCheckout.style.display = 'block';
             } else {
-                cartBadge.style.display = 'none';
                 floatingCheckout.style.display = 'none';
             }
+        }
+        
+        // ================= CUSTOMIZATION =================
+        function openCustomization(itemId) {
+            // Reproducir sonido de iPhone
+            playIphoneSound();
             
-            // Mostrar/ocultar elementos del carrito
-            if (cart.length === 0) {
-                emptyCart.style.display = 'flex';
-                orderSummary.style.display = 'none';
-                cartItemsContainer.innerHTML = '';
-                cartItemsContainer.appendChild(emptyCart);
+            // Vibrar el dispositivo
+            vibrateDevice();
+            
+            const items = getMenuItems();
+            currentItem = items.find(item => item.id === itemId);
+            if (!currentItem) return;
+            
+            currentCustomizations = {};
+            currentQuantity = 1;
+            
+            document.getElementById('customItemName').textContent = currentItem.name;
+            document.getElementById('customQuantity').textContent = currentQuantity;
+            
+            renderCustomizationOptions();
+            document.getElementById('customizationModal').classList.add('active');
+        }
+        
+        function closeCustomizationModal() {
+            document.getElementById('customizationModal').classList.remove('active');
+        }
+        
+        function renderCustomizationOptions() {
+            const container = document.getElementById('customOptions');
+            container.innerHTML = '';
+            
+            if (!currentItem.options || currentItem.options.length === 0) {
+                container.innerHTML = `
+                    <div class="option-group">
+                        <div class="option-title">
+                            Este item no requiere personalización
+                        </div>
+                    </div>
+                `;
                 return;
             }
             
-            emptyCart.style.display = 'none';
-            orderSummary.style.display = 'block';
-            
-            // Actualizar total en el botón flotante
-            checkoutTotal.textContent = formatoPesos(totalAmount);
-            
-            // Renderizar items del carrito
-            let cartHTML = '';
-            
-            cart.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
+            currentItem.options.forEach((optionGroup, groupIndex) => {
+                const groupDiv = document.createElement('div');
+                groupDiv.className = 'option-group';
                 
-                cartHTML += `
-                    <div class="cart-product-item">
-                        <div class="product-info">
-                            <div class="product-name">${item.name}</div>
-                            <div class="product-meta">
-                                <div class="quantity-controls">
-                                    <button class="qty-btn" onclick="updateCartQuantity(${index}, -1)">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <span class="qty-value">${item.quantity}</span>
-                                    <button class="qty-btn" onclick="updateCartQuantity(${index}, 1)">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                                <div class="product-total">${formatoPesos(itemTotal)}</div>
-                            </div>
-                        </div>
-                        <button class="remove-product-btn" onclick="removeFromCart(${index})" title="Eliminar">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                groupDiv.innerHTML = `
+                    <div class="option-title">
+                        ${optionGroup.title}
+                        ${optionGroup.required ? '<span class="option-required">*</span>' : ''}
                     </div>
                 `;
+                
+                optionGroup.items.forEach((option, optionIndex) => {
+                    const priceText = option.price > 0 ? `+$${option.price.toLocaleString('es-CO')}` : 
+                                   option.price < 0 ? `-$${Math.abs(option.price).toLocaleString('es-CO')}` : 'Incluido';
+                    
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option-item';
+                    
+                    if (optionGroup.type === 'radio') {
+                        optionDiv.innerHTML = `
+                            <label class="option-label">
+                                <input type="radio" name="option-${groupIndex}" 
+                                       value="${option.name}" class="option-check"
+                                       ${optionIndex === 0 ? 'checked' : ''}
+                                       onchange="handleOptionSelection()">
+                                <span>${option.name}</span>
+                            </label>
+                            <div class="option-price">${priceText}</div>
+                        `;
+                    } else {
+                        optionDiv.innerHTML = `
+                            <label class="option-label">
+                                <input type="checkbox" value="${option.name}" class="option-check"
+                                       onchange="handleOptionSelection()">
+                                <span>${option.name}</span>
+                            </label>
+                            <div class="option-price">${priceText}</div>
+                        `;
+                    }
+                    
+                    groupDiv.appendChild(optionDiv);
+                });
+                
+                container.appendChild(groupDiv);
+            });
+        }
+        
+        function handleOptionSelection() {
+            // Actualizar selecciones
+            updateCustomizations();
+        }
+        
+        function changeCustomQuantity(delta) {
+            currentQuantity = Math.max(1, currentQuantity + delta);
+            document.getElementById('customQuantity').textContent = currentQuantity;
+        }
+        
+        function updateCustomizations() {
+            currentCustomizations = {};
+            
+            if (!currentItem.options) return;
+            
+            const optionGroups = document.querySelectorAll('.option-group');
+            
+            optionGroups.forEach((group, groupIndex) => {
+                const optionGroup = currentItem.options[groupIndex];
+                if (!optionGroup) return;
+                
+                if (optionGroup.type === 'radio') {
+                    const selected = document.querySelector(`input[name="option-${groupIndex}"]:checked`);
+                    if (selected) {
+                        currentCustomizations[optionGroup.title] = [selected.value];
+                    }
+                } else {
+                    const checked = [];
+                    group.querySelectorAll('input:checked').forEach(input => {
+                        checked.push(input.value);
+                    });
+                    
+                    if (checked.length > 0) {
+                        currentCustomizations[optionGroup.title] = checked;
+                    }
+                }
+            });
+        }
+        
+        function addCustomizedItem() {
+            if (!currentItem) return;
+            
+            // Reproducir sonido de confirmación
+            playConfirmSound();
+            
+            // Vibrar el dispositivo
+            vibrateDevice();
+            
+            // Obtener personalizaciones seleccionadas
+            updateCustomizations();
+            
+            // Calcular precio con personalizaciones
+            let itemPrice = currentItem.price;
+            let customizationText = "";
+            
+            Object.entries(currentCustomizations).forEach(([groupName, options]) => {
+                const optionGroup = currentItem.options.find(opt => opt.title === groupName);
+                if (!optionGroup) return;
+                
+                options.forEach(optionName => {
+                    const option = optionGroup.items.find(item => item.name === optionName);
+                    if (option) {
+                        itemPrice += option.price;
+                        customizationText += `${optionName}, `;
+                    }
+                });
             });
             
-            cartItemsContainer.innerHTML = cartHTML;
-            
-            // Actualizar resumen
-            document.getElementById('subtotal').textContent = formatoPesos(subtotal);
-            document.getElementById('iva').textContent = formatoPesos(iva);
-            document.getElementById('totalAmount').textContent = formatoPesos(totalAmount);
-        }
-        
-        function updateCartQuantity(index, delta) {
-            if (cart[index]) {
-                const newQuantity = cart[index].quantity + delta;
-                
-                if (newQuantity < 1) {
-                    removeFromCart(index);
-                    return;
-                }
-                
-                cart[index].quantity = newQuantity;
-                updateCart();
-                
-                // Mostrar notificación de cambio
-                if (delta > 0) {
-                    showNotification(`✚ ${cart[index].name} (+1)`, 'success');
-                } else {
-                    showNotification(`➖ ${cart[index].name} (-1)`, 'success');
-                }
+            if (customizationText) {
+                customizationText = customizationText.slice(0, -2);
             }
+            
+            // Agregar al carrito
+            cart.push({
+                id: currentItem.id,
+                name: currentItem.name,
+                price: itemPrice,
+                quantity: currentQuantity,
+                customizations: {...currentCustomizations},
+                customizationText: customizationText
+            });
+            
+            // Mostrar notificación
+            showNotification(`✓ ${currentItem.name} agregado al pedido`, 'success');
+            
+            // Actualizar contador
+            updateCartCount();
+            
+            // Cerrar modal
+            closeCustomizationModal();
         }
         
-        function removeFromCart(index) {
-            const itemName = cart[index].name;
-            cart.splice(index, 1);
-            updateCart();
-            showNotification(`✗ ${itemName} eliminado`, 'success');
+        // ================= SONIDOS Y VIBRACIÓN =================
+        function playIphoneSound() {
+            // Crear contexto de audio
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.1);
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + 0.1);
+        }
+        
+        function playConfirmSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(1200, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.1);
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + 0.1);
+        }
+        
+        function vibrateDevice() {
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
         }
         
         // ================= CHECKOUT =================
         function openCheckoutModal() {
             if (cart.length === 0) {
-                showNotification('Agrega items a tu carrito primero', 'success');
+                showNotification('Agrega items al pedido primero', 'success');
                 return;
             }
             
-            // Resetear select de mesa
-            const tableSelect = document.getElementById('tableSelect');
-            if (tableSelect) {
-                tableSelect.value = '';
-            }
+            // Resetear formulario
+            document.getElementById('customerName').value = '';
+            document.getElementById('tableSelect').value = '';
+            document.getElementById('specialInstructions').value = '';
             
             // Actualizar resumen en el modal
             updateCheckoutOrderSummary();
@@ -1780,21 +1946,21 @@
             // Calcular subtotal
             let subtotal = 0;
             
-            cart.forEach(item => {
+            cart.forEach((item, index) => {
                 const itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
                 
                 summaryHTML += `
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ffe8e0;">
-                        <div>
-                            <span style="font-weight: 600;">${item.name}</span>
-                            <div style="font-size: 14px; color: #666;">
-                                ${item.quantity} x ${formatoPesos(item.price)}
+                    <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #ffe8e0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span style="font-weight: 600;">${item.name} x${item.quantity}</span>
+                            <span style="font-weight: 700; color: #ff6b6b;">$${itemTotal.toLocaleString('es-CO')}</span>
+                        </div>
+                        ${item.customizationText ? `
+                            <div style="font-size: 13px; color: #666; background: #fff8f6; padding: 8px 12px; border-radius: 8px; margin-top: 5px; border-left: 3px solid #ff6b6b;">
+                                <i class="fas fa-cog" style="margin-right: 5px;"></i>${item.customizationText}
                             </div>
-                        </div>
-                        <div style="font-weight: 700; color: #ff6b6b;">
-                            ${formatoPesos(itemTotal)}
-                        </div>
+                        ` : ''}
                     </div>
                 `;
             });
@@ -1806,15 +1972,15 @@
                 <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #ffe8e0;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px;">
                         <span>Subtotal:</span>
-                        <span>${formatoPesos(subtotal)}</span>
+                        <span>$${subtotal.toLocaleString('es-CO')}</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px;">
                         <span>IVA (10%):</span>
-                        <span>${formatoPesos(iva)}</span>
+                        <span>$${iva.toLocaleString('es-CO')}</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 18px; font-weight: 800; color: #ff6b6b;">
                         <span>Total:</span>
-                        <span>${formatoPesos(total)}</span>
+                        <span>$${total.toLocaleString('es-CO')}</span>
                     </div>
                 </div>
             `;
@@ -1833,69 +1999,96 @@
                 return;
             }
             
-            // Enviar a Telegram
-            const success = await sendToTelegram({
-                name,
-                table,
-                instructions,
-                cart,
-                total: totalAmount
-            });
+            // Mostrar loading overlay
+            document.getElementById('loadingOverlay').classList.add('active');
             
-            if (success) {
-                // Mostrar éxito
-                showNotification('✅ Pedido enviado exitosamente', 'success');
-                
-                // Limpiar carrito
-                cart = [];
-                updateCart();
-                
-                // Limpiar formulario
-                document.getElementById('customerName').value = '';
-                document.getElementById('specialInstructions').value = '';
-                
-                // Cerrar modal
-                closeCheckoutModal();
-                
-                // Volver al menú
-                setTimeout(() => {
-                    document.querySelector('.nav-btn[data-section="menu"]').click();
-                }, 1500);
-            } else {
-                showNotification('❌ Error al enviar el pedido', 'success');
-            }
+            // Deshabilitar scroll
+            document.body.style.overflow = 'hidden';
+            
+            // Simular procesamiento
+            setTimeout(async () => {
+                try {
+                    // Enviar a Telegram
+                    const success = await sendToTelegram({
+                        name,
+                        table,
+                        instructions,
+                        cart
+                    });
+                    
+                    // Ocultar loading
+                    document.getElementById('loadingOverlay').classList.remove('active');
+                    
+                    // Habilitar scroll
+                    document.body.style.overflow = 'auto';
+                    
+                    if (success) {
+                        // Cerrar modal de checkout
+                        closeCheckoutModal();
+                        
+                        // Mostrar modal de éxito
+                        document.getElementById('successModal').classList.add('active');
+                        
+                        // Limpiar carrito
+                        cart = [];
+                        updateCartCount();
+                    } else {
+                        showNotification('Error al enviar el pedido. Intenta de nuevo.', 'success');
+                    }
+                } catch (error) {
+                    // Ocultar loading
+                    document.getElementById('loadingOverlay').classList.remove('active');
+                    
+                    // Habilitar scroll
+                    document.body.style.overflow = 'auto';
+                    
+                    showNotification('Error de conexión. Verifica tu internet.', 'success');
+                    console.error('Error:', error);
+                }
+            }, 2000);
         }
         
         // ================= TELEGRAM =================
         async function sendToTelegram(orderData) {
-            // Formatear mensaje
-            let message = `🛎️ *NUEVO PEDIDO RESTAURANTE* 🛎️\n\n`;
-            message += `*Cliente:* ${orderData.name}\n`;
-            message += `*${orderData.table === 'barra' ? 'Barra' : orderData.table === 'para_llevar' ? 'Para Llevar' : 'Mesa'} :* ${orderData.table}\n`;
-            message += `*Hora:* ${new Date().toLocaleString('es-ES')}\n`;
-            message += `*Moneda:* Pesos Colombianos (COP)\n\n`;
-            message += `*DETALLE DEL PEDIDO:*\n`;
-            
-            orderData.cart.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
-                message += `\n${index + 1}. *${item.name}* x${item.quantity}\n`;
-                message += `   Subtotal: ${formatoPesos(itemTotal)}\n`;
-            });
-            
+            // Calcular totales
             let subtotal = 0;
             orderData.cart.forEach(item => {
                 subtotal += item.price * item.quantity;
             });
             
             const iva = Math.round(subtotal * 0.10);
+            const total = subtotal + iva;
             
-            message += `\n*SUBTOTAL:* ${formatoPesos(subtotal)}\n`;
-            message += `*IVA (10%):* ${formatoPesos(iva)}\n`;
-            message += `*TOTAL:* ${formatoPesos(orderData.total)}\n`;
+            // Formatear mensaje
+            let message = `🛎️ *NUEVO PEDIDO - RESTAURANTE EXPRESS* 🛎️\n\n`;
+            message += `*Cliente:* ${orderData.name}\n`;
+            message += `*${orderData.table === 'barra' ? 'Barra' : orderData.table === 'para_llevar' ? 'Para Llevar' : 'Mesa'} :* ${orderData.table}\n`;
+            message += `*Hora:* ${new Date().toLocaleString('es-ES')}\n\n`;
+            message += `*📋 DETALLE DEL PEDIDO:*\n`;
+            
+            orderData.cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                message += `\n${index + 1}. *${item.name}* x${item.quantity}\n`;
+                message += `   Precio: $${item.price.toLocaleString('es-CO')}\n`;
+                message += `   Subtotal: $${itemTotal.toLocaleString('es-CO')}\n`;
+                if (item.customizationText) {
+                    message += `   Personalizaciones: ${item.customizationText}\n`;
+                }
+            });
+            
+            message += `\n*💰 RESUMEN DE PAGO:*\n`;
+            message += `Subtotal: $${subtotal.toLocaleString('es-CO')}\n`;
+            message += `IVA (10%): $${iva.toLocaleString('es-CO')}\n`;
+            message += `*TOTAL: $${total.toLocaleString('es-CO')}*\n`;
             
             if (orderData.instructions) {
-                message += `\n*INSTRUCCIONES ESPECIALES:*\n${orderData.instructions}\n`;
+                message += `\n*📝 INSTRUCCIONES ESPECIALES:*\n${orderData.instructions}\n`;
             }
+            
+            message += `\n────────────────────\n`;
+            message += `✅ *Pedido recibido exitosamente*\n`;
+            message += `⏱️ *Tiempo estimado: 20-30 minutos*\n`;
+            message += `🙏 *¡Gracias por tu preferencia!*`;
             
             // Codificar y enviar
             const encodedMessage = encodeURIComponent(message);
@@ -1948,16 +2141,13 @@
             }, 3000);
         }
         
-        // ================= BOTÓN FLOTANTE =================
-        function showFingerprintMessage() {
-            showNotification('🔒 Verificación biométrica activada', 'success');
+        // ================= FUNCIONES ADICIONALES =================
+        function continueShopping() {
+            // Cerrar modal de éxito
+            document.getElementById('successModal').classList.remove('active');
             
-            // Animación del botón
-            const btn = document.querySelector('.floating-fingerprint');
-            btn.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                btn.style.transform = 'scale(1)';
-            }, 200);
+            // Scroll to top
+            window.scrollTo(0, 0);
         }
         
         // ================= INICIALIZAR =================
