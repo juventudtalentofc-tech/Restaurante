@@ -606,9 +606,9 @@
             min-height: 200px;
         }
         
-        .cart-item {
+        /* ========== NUEVO DISEÑO PARA ITEMS DEL CARRITO ========== */
+        .cart-item-compact {
             display: flex;
-            justify-content: space-between;
             align-items: center;
             padding: 20px;
             border-bottom: 2px solid #fef6f4;
@@ -616,90 +616,112 @@
             transition: all 0.3s;
             animation: slideInRight 0.3s ease-out;
             gap: 15px;
+            flex-wrap: nowrap;
         }
         
-        .cart-item:hover {
+        .cart-item-compact:hover {
             background: #fffbf9;
         }
         
-        .cart-item:last-child {
+        .cart-item-compact:last-child {
             border-bottom: none;
         }
         
-        .cart-item-details {
+        .cart-item-main {
             flex: 1;
             min-width: 0;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .cart-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
         }
         
         .cart-item-name {
             font-weight: 700;
             font-size: 16px;
             color: #333;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            overflow: hidden;
-        }
-        
-        .cart-item-name strong {
-            background: #fff8f6;
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-size: 14px;
-            color: #ff6b6b;
-            border: 1px solid #ffe8e0;
-        }
-        
-        .cart-item-options {
-            font-size: 13px;
-            color: #666;
-            background: #fef6f4;
-            padding: 10px 12px;
-            border-radius: 10px;
-            margin-top: 8px;
-            border-left: 3px solid #ff6b6b;
+            flex: 1;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
         
-        .cart-item-price-container {
+        .cart-item-quantity-badge {
+            background: #fff8f6;
+            color: #ff6b6b;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 14px;
+            border: 1px solid #ffe8e0;
+            white-space: nowrap;
+        }
+        
+        .cart-item-price-info {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 10px;
+            gap: 10px;
             background: #fff8f6;
-            padding: 10px 12px;
-            border-radius: 10px;
+            padding: 10px 15px;
+            border-radius: 12px;
             border: 1px solid #ffe8e0;
         }
         
-        .cart-item-price-label {
+        .cart-item-price-unit {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .cart-item-price-amount {
+            font-weight: 800;
+            color: #ff6b6b;
+            font-size: 16px;
+        }
+        
+        .cart-item-total {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #fef6f4, #ffe8e0);
+            padding: 12px 15px;
+            border-radius: 12px;
+            border: 1px solid #ffd7cc;
+            margin-top: 5px;
+        }
+        
+        .cart-item-total-label {
             font-size: 13px;
             color: #666;
             font-weight: 500;
         }
         
-        .cart-item-price {
+        .cart-item-total-amount {
             font-weight: 800;
             color: #ff6b6b;
-            font-size: 17px;
+            font-size: 18px;
+            flex: 1;
+            text-align: right;
         }
         
-        .cart-item-controls {
+        .cart-item-actions {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             flex-shrink: 0;
         }
         
-        .quantity-control {
+        .quantity-control-compact {
             display: flex;
             align-items: center;
             gap: 12px;
@@ -710,7 +732,7 @@
             border: 1px solid #ffd7cc;
         }
         
-        .qty-btn {
+        .qty-btn-compact {
             background: white;
             border: none;
             width: 32px;
@@ -727,13 +749,13 @@
             font-size: 16px;
         }
         
-        .qty-btn:hover {
+        .qty-btn-compact:hover {
             background: #ff6b6b;
             color: white;
             transform: scale(1.1);
         }
         
-        .qty-value {
+        .qty-value-compact {
             font-weight: 800;
             font-size: 16px;
             min-width: 30px;
@@ -741,7 +763,7 @@
             color: #333;
         }
         
-        .remove-btn {
+        .remove-btn-compact {
             background: linear-gradient(135deg, #ffebee, #ffcdd2);
             color: #ff4757;
             border: none;
@@ -757,7 +779,7 @@
             flex-shrink: 0;
         }
         
-        .remove-btn:hover {
+        .remove-btn-compact:hover {
             transform: scale(1.1);
             background: #ff4757;
             color: white;
@@ -2507,7 +2529,7 @@
             orderSummary.style.display = 'block';
             floatingCheckout.style.display = 'block';
             
-            // Renderizar items del carrito
+            // Renderizar items del carrito con nuevo diseño
             let cartHTML = '';
             let subtotal = 0;
             
@@ -2516,40 +2538,37 @@
                 subtotal += itemTotal;
                 
                 cartHTML += `
-                    <div class="cart-item">
-                        <div class="cart-item-details">
-                            <div class="cart-item-name">
-                                ${item.name} <strong>x${item.quantity}</strong>
+                    <div class="cart-item-compact">
+                        <div class="cart-item-main">
+                            <div class="cart-item-header">
+                                <div class="cart-item-name">${item.name}</div>
+                                <div class="cart-item-quantity-badge">x${item.quantity}</div>
                             </div>
                             ${item.customizationText ? `
-                                <div class="cart-item-options">
+                                <div class="cart-item-options" style="background: #fef6f4; padding: 10px 12px; border-radius: 10px; margin-top: 5px; border-left: 3px solid #ff6b6b; font-size: 13px; color: #666;">
                                     <i class="fas fa-cog"></i> ${item.customizationText}
                                 </div>
                             ` : ''}
-                            <div class="cart-item-price-container">
-                                <span class="cart-item-price-label">Precio unitario:</span>
-                                <span class="cart-item-price">${formatoPesos(item.price)}</span>
+                            <div class="cart-item-price-info">
+                                <span class="cart-item-price-unit">Precio unitario:</span>
+                                <span class="cart-item-price-amount">${formatoPesos(item.price)}</span>
+                            </div>
+                            <div class="cart-item-total">
+                                <span class="cart-item-total-label">Total item:</span>
+                                <span class="cart-item-total-amount">${formatoPesos(itemTotal)}</span>
                             </div>
                         </div>
-                        <div class="cart-item-controls">
-                            <div class="quantity-control">
-                                <button class="qty-btn" onclick="updateCartQuantity(${index}, -1)">
+                        <div class="cart-item-actions">
+                            <div class="quantity-control-compact">
+                                <button class="qty-btn-compact" onclick="updateCartQuantity(${index}, -1)">
                                     <i class="fas fa-minus"></i>
                                 </button>
-                                <span class="qty-value">${item.quantity}</span>
-                                <button class="qty-btn" onclick="updateCartQuantity(${index}, 1)">
+                                <span class="qty-value-compact">${item.quantity}</span>
+                                <button class="qty-btn-compact" onclick="updateCartQuantity(${index}, 1)">
                                     <i class="fas fa-plus"></i>
                                 </button>
                             </div>
-                            <div style="text-align: center; margin-top: 10px;">
-                                <div style="font-weight: 800; color: #ff6b6b; font-size: 18px;">
-                                    ${formatoPesos(itemTotal)}
-                                </div>
-                                <div style="font-size: 12px; color: #666; margin-top: 4px;">
-                                    Total item
-                                </div>
-                            </div>
-                            <button class="remove-btn" onclick="removeFromCart(${index})" title="Eliminar">
+                            <button class="remove-btn-compact" onclick="removeFromCart(${index})" title="Eliminar">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
