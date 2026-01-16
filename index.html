@@ -143,7 +143,7 @@
             to { opacity: 1; }
         }
         
-        /* ========== APP HEADER - SALMONSITO ========== */
+        /* ========== APP HEADER ========== */
         .app-header {
             background: linear-gradient(135deg, #ff7c7c 0%, #ff9a5a 100%);
             color: white;
@@ -228,45 +228,7 @@
             color: rgba(255,255,255,0.95);
         }
         
-        .cart-header-badge {
-            position: relative;
-            background: rgba(255,255,255,0.25);
-            width: 50px;
-            height: 50px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid rgba(255,255,255,0.3);
-        }
-        
-        .cart-header-badge:hover {
-            background: rgba(255,255,255,0.35);
-            transform: scale(1.05);
-        }
-        
-        .cart-header-badge span {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ff4757;
-            color: white;
-            min-width: 22px;
-            height: 22px;
-            border-radius: 11px;
-            font-size: 11px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #ff6b6b;
-            box-shadow: 0 2px 8px rgba(255, 71, 87, 0.4);
-        }
-        
-        /* ========== APP NAVIGATION - SALMONSITO ========== */
+        /* ========== APP NAVIGATION ========== */
         .app-nav {
             display: flex;
             background: white;
@@ -479,7 +441,7 @@
             box-shadow: 0 4px 12px rgba(255, 107, 107, 0.25);
         }
         
-        /* ========== MENU GRID - DISEÑO MEJORADO ========== */
+        /* ========== MENU GRID ========== */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
@@ -563,7 +525,7 @@
             flex: 1;
         }
         
-        .add-btn {
+        .select-btn {
             width: 100%;
             padding: 14px;
             background: linear-gradient(135deg, #ff6b6b, #ff8e53);
@@ -582,13 +544,13 @@
             box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
         }
         
-        .add-btn:hover {
+        .select-btn:hover {
             transform: scale(0.98);
             box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
         }
         
-        /* ========== FLOATING CHECKOUT BUTTON ========== */
-        .floating-checkout {
+        /* ========== FLOATING AGILIZAR BUTTON ========== */
+        .floating-agilizar {
             position: fixed;
             bottom: 0;
             left: 0;
@@ -604,7 +566,7 @@
             border-top: 1px solid #ffe8e0;
         }
         
-        .checkout-btn {
+        .agilizar-btn {
             width: 100%;
             padding: 22px;
             background: linear-gradient(135deg, #ff6b6b, #ff8e53);
@@ -624,7 +586,7 @@
             overflow: hidden;
         }
         
-        .checkout-btn:before {
+        .agilizar-btn:before {
             content: '';
             position: absolute;
             top: 0;
@@ -635,17 +597,17 @@
             transition: 0.5s;
         }
         
-        .checkout-btn:hover:before {
+        .agilizar-btn:hover:before {
             left: 100%;
         }
         
-        .checkout-btn:hover {
+        .agilizar-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
         }
         
-        /* ========== MODAL DE ADICIONALES ========== */
-        .customization-modal {
+        /* ========== MODAL AGILIZAR PANTALLA COMPLETA ========== */
+        .agilizar-modal {
             position: fixed;
             top: 0;
             left: 0;
@@ -655,13 +617,14 @@
             z-index: 1000;
             display: none;
             flex-direction: column;
+            overflow-y: auto;
         }
         
-        .customization-modal.active {
+        .agilizar-modal.active {
             display: flex;
         }
         
-        .custom-header {
+        .agilizar-header {
             padding: 25px 20px 15px;
             background: linear-gradient(135deg, #ff7c7c, #ff9a5a);
             color: white;
@@ -675,12 +638,12 @@
             border-bottom-right-radius: 25px;
         }
         
-        .custom-header h2 {
-            font-size: 22px;
+        .agilizar-header h2 {
+            font-size: 24px;
             font-weight: 700;
         }
         
-        .close-modal {
+        .close-agilizar {
             background: rgba(255,255,255,0.25);
             border: none;
             width: 44px;
@@ -695,181 +658,12 @@
             transition: all 0.3s;
         }
         
-        .close-modal:hover {
+        .close-agilizar:hover {
             background: rgba(255,255,255,0.35);
             transform: rotate(90deg);
         }
         
-        .custom-options {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-        }
-        
-        .option-group {
-            margin-bottom: 25px;
-            background: #fef6f4;
-            padding: 20px;
-            border-radius: 12px;
-            border-left: 4px solid #ff6b6b;
-            border: 1px solid #ffe8e0;
-        }
-        
-        .option-title {
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .option-required {
-            color: #ff4757;
-            font-size: 12px;
-        }
-        
-        .option-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #ffe8e0;
-        }
-        
-        .option-item:last-child {
-            border-bottom: none;
-        }
-        
-        .option-label {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex: 1;
-            cursor: pointer;
-        }
-        
-        .option-check {
-            width: 22px;
-            height: 22px;
-            accent-color: #ff6b6b;
-        }
-        
-        .option-price {
-            font-weight: 600;
-            color: #ff6b6b;
-            min-width: 80px;
-            text-align: right;
-        }
-        
-        /* ========== QUANTITY SELECTOR ========== */
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 25px;
-            padding: 30px 20px;
-            background: #fef6f4;
-            margin: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.1);
-            border: 1px solid #ffe8e0;
-        }
-        
-        .qty-btn-large {
-            background: white;
-            border: none;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            font-size: 30px;
-            color: #ff6b6b;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.15);
-            transition: all 0.3s;
-            border: 1px solid #ffe8e0;
-        }
-        
-        .qty-btn-large:hover {
-            background: #ff6b6b;
-            color: white;
-            transform: scale(1.1);
-        }
-        
-        .qty-value-large {
-            font-size: 36px;
-            font-weight: 800;
-            color: #333;
-            min-width: 70px;
-            text-align: center;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .add-to-cart-btn {
-            margin: 0 20px 30px;
-            padding: 22px;
-            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-            color: white;
-            border: none;
-            border-radius: 15px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
-        }
-        
-        .add-to-cart-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
-        }
-        
-        /* ========== CHECKOUT MODAL ========== */
-        .checkout-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: white;
-            z-index: 1000;
-            display: none;
-            flex-direction: column;
-            overflow-y: auto;
-        }
-        
-        .checkout-modal.active {
-            display: flex;
-        }
-        
-        .modal-header {
-            padding: 25px 20px 15px;
-            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 1;
-            border-bottom-left-radius: 25px;
-            border-bottom-right-radius: 25px;
-        }
-        
-        .modal-header h2 {
-            font-size: 24px;
-            font-weight: 700;
-        }
-        
-        .modal-content {
+        .agilizar-content {
             flex: 1;
             padding: 25px 20px;
             overflow-y: auto;
@@ -925,32 +719,64 @@
             box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
         }
         
-        .submit-btn {
-            width: 100%;
-            padding: 22px;
-            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-            color: white;
-            border: none;
+        /* ========== RESUMEN DE SELECCIONES ========== */
+        .selections-summary {
+            background: #fef6f4;
+            padding: 20px;
             border-radius: 15px;
+            margin: 25px 0;
+            border: 2px solid #ffe8e0;
+        }
+        
+        .summary-title {
             font-size: 18px;
             font-weight: 700;
-            cursor: pointer;
+            color: #333;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 30px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
+            gap: 10px;
         }
         
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        .summary-title i {
+            color: #ff6b6b;
         }
         
-        /* ========== LOADING OVERLAY ========== */
-        .loading-overlay {
+        .summary-list {
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #ffe8e0;
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .item-price {
+            font-weight: 700;
+            color: #ff6b6b;
+        }
+        
+        /* ========== INFORMACIÓN OCULTA (FECHA, HORA, MONEDA) ========== */
+        .hidden-info {
+            display: none;
+        }
+        
+        /* ========== LOADING DOTS OVERLAY ========== */
+        .dots-loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -968,71 +794,44 @@
             overflow: hidden;
         }
         
-        .loading-overlay.active {
+        .dots-loading-overlay.active {
             display: flex;
         }
         
-        /* ========== LOADER CUSTOM ========== */
-        .loader {
-            width: 80px;
-            height: 80px;
-            border: 8px solid #ff9a5a;
-            border-radius: 50px;
-            position: relative;
+        .dots-container {
+            display: flex;
+            gap: 15px;
             margin-bottom: 30px;
         }
         
-        .loader span {
-            display: block;
+        .loading-dot {
+            width: 20px;
+            height: 20px;
             background: #ff9a5a;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out;
         }
         
-        .loader .hour, .loader .min {
-            width: 6px;
-            border-radius: 50px;
-            position: absolute;
-            top: 24.5px;
-            left: 21px;
-            animation: load9243 1.2s linear infinite;
-            transform-origin: top center;
-        }
+        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
         
-        .loader .hour {
-            height: 22px;
-        }
-        
-        .loader .min {
-            height: 17px;
-            animation: load9243 4s linear infinite;
-        }
-        
-        .loader .circel {
-            width: 12px;
-            height: 12px;
-            border-radius: 50px;
-            position: absolute;
-            top: 19px;
-            left: 19px;
-            background: #ff9a5a;
-        }
-        
-        @keyframes load9243 {
-            0% {
-                transform: rotate(0deg);
-            }
-            
-            100% {
-                transform: rotate(360deg);
+        @keyframes bounce {
+            0%, 80%, 100% { 
+                transform: scale(0);
+                opacity: 0.3;
+            } 
+            40% { 
+                transform: scale(1);
+                opacity: 1;
             }
         }
         
-        .loading-text {
+        .dots-loading-text {
             font-size: 22px;
             font-weight: 600;
             text-align: center;
             color: #ff9a5a;
             text-shadow: 0 2px 10px rgba(255, 154, 90, 0.3);
-            margin-top: 20px;
         }
         
         /* ========== SUCCESS MODAL ========== */
@@ -1083,10 +882,10 @@
             font-size: 80px;
             color: #ff6b6b;
             margin-bottom: 25px;
-            animation: bounce 0.5s ease-out;
+            animation: bounceSuccess 0.5s ease-out;
         }
         
-        @keyframes bounce {
+        @keyframes bounceSuccess {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
         }
@@ -1123,37 +922,7 @@
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
         }
         
-        /* ========== NOTIFICATION ========== */
-        .notification {
-            position: fixed;
-            top: 120px;
-            right: 20px;
-            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            z-index: 3000;
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            max-width: 300px;
-            border-left: 4px solid #ff8e53;
-            transform: translateX(120%);
-            transition: transform 0.3s ease-out;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .notification.show {
-            transform: translateX(0);
-        }
-        
-        .notification i {
-            font-size: 18px;
-        }
-        
-        /* ========== FOOTER PROFESIONAL ========== */
+        /* ========== FOOTER ========== */
         .app-footer {
             background: linear-gradient(135deg, #333, #444);
             color: white;
@@ -1285,78 +1054,34 @@
             width: 100%;
         }
         
-        /* ========== FORMULARIOS EXTRAS PARA AGILIZAR ========== */
-        .agilizar-form {
-            background: #fef6f4;
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
-            border: 2px solid #ffe8e0;
-            display: none;
-        }
-        
-        .agilizar-form.active {
-            display: block;
-            animation: slideDown 0.3s ease-out;
-        }
-        
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .agilizar-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 20px;
+        /* ========== NOTIFICATION ========== */
+        .notification {
+            position: fixed;
+            top: 120px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            z-index: 3000;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
             display: flex;
             align-items: center;
             gap: 10px;
+            max-width: 300px;
+            border-left: 4px solid #ff8e53;
+            transform: translateX(120%);
+            transition: transform 0.3s ease-out;
+            border: 1px solid rgba(255,255,255,0.2);
         }
         
-        .agilizar-title i {
-            color: #ff6b6b;
+        .notification.show {
+            transform: translateX(0);
         }
         
-        .form-row {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .form-col {
-            flex: 1;
-            min-width: 200px;
-        }
-        
-        /* ========== ANIMATIONS ========== */
-        @keyframes slideInRight {
-            from {
-                transform: translateX(20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .pulse {
-            animation: pulse 0.3s ease-in-out;
+        .notification i {
+            font-size: 18px;
         }
         
         /* ========== RESPONSIVE ADJUSTMENTS ========== */
@@ -1383,7 +1108,7 @@
                 margin: 0 15px;
             }
             
-            .checkout-btn {
+            .agilizar-btn {
                 padding: 20px;
                 font-size: 16px;
             }
@@ -1477,10 +1202,6 @@
                     <div class="restaurant-tagline">Pedidos en línea</div>
                 </div>
             </div>
-            <div class="cart-header-badge" onclick="openCheckoutModal()">
-                <i class="fas fa-shopping-cart"></i>
-                <span id="headerCartCount">0</span>
-            </div>
         </header>
         
         <!-- APP NAVIGATION -->
@@ -1514,33 +1235,7 @@
             </section>
         </main>
         
-        <!-- FORMULARIO DE AGILIZAR -->
-        <div class="agilizar-form" id="agilizarForm">
-            <div class="agilizar-title">
-                <i class="fas fa-bolt"></i> Datos para Agilizar
-            </div>
-            <div class="form-row">
-                <div class="form-col">
-                    <label class="form-label" for="customerEmail">
-                        <i class="fas fa-envelope"></i> Correo electrónico <span class="required-star">*</span>
-                    </label>
-                    <input type="email" id="customerEmail" class="form-input" placeholder="ejemplo@correo.com" required>
-                </div>
-                <div class="form-col">
-                    <label class="form-label" for="customerPhone">
-                        <i class="fas fa-phone"></i> Celular <span class="required-star">*</span>
-                    </label>
-                    <input type="tel" id="customerPhone" class="form-input" placeholder="+57 300 123 4567" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <button class="submit-btn" onclick="submitOrderWithDetails()">
-                    <i class="fas fa-paper-plane"></i> Enviar Pedido Agilizado
-                </button>
-            </div>
-        </div>
-        
-        <!-- FOOTER PROFESIONAL -->
+        <!-- FOOTER -->
         <footer class="app-footer">
             <div class="footer-background"></div>
             <div class="footer-content">
@@ -1597,56 +1292,49 @@
             </div>
         </footer>
         
-        <!-- FLOATING CHECKOUT BUTTON -->
-        <div class="floating-checkout" id="floatingCheckout">
-            <button class="checkout-btn" onclick="showAgilizarForm()">
+        <!-- FLOATING AGILIZAR BUTTON -->
+        <div class="floating-agilizar" id="floatingAgilizar">
+            <button class="agilizar-btn" onclick="openAgilizarModal()">
                 <i class="fas fa-bolt"></i> Agilizar
             </button>
         </div>
         
-        <!-- MODAL DE ADICIONALES -->
-        <div class="customization-modal" id="customizationModal">
-            <div class="custom-header">
-                <h2 id="customItemName">Personalizar Item</h2>
-                <button class="close-modal" onclick="closeCustomizationModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <div class="custom-options" id="customOptions">
-                <!-- Opciones se cargan aquí -->
-            </div>
-            
-            <div class="quantity-selector">
-                <button class="qty-btn-large" onclick="changeCustomQuantity(-1)">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <div class="qty-value-large" id="customQuantity">1</div>
-                <button class="qty-btn-large" onclick="changeCustomQuantity(1)">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
-            
-            <button class="add-to-cart-btn" onclick="addCustomizedItem()">
-                <i class="fas fa-cart-plus"></i> Agregar al Pedido
-            </button>
-        </div>
-        
-        <!-- CHECKOUT MODAL -->
-        <div class="checkout-modal" id="checkoutModal">
-            <div class="modal-header">
+        <!-- MODAL AGILIZAR PANTALLA COMPLETA -->
+        <div class="agilizar-modal" id="agilizarModal">
+            <div class="agilizar-header">
                 <h2>Completar Pedido</h2>
-                <button class="close-modal" onclick="closeCheckoutModal()">
+                <button class="close-agilizar" onclick="closeAgilizarModal()">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             
-            <div class="modal-content">
+            <div class="agilizar-content">
+                <!-- INFORMACIÓN OCULTA (FECHA, HORA, MONEDA) -->
+                <div class="hidden-info" id="hiddenInfo">
+                    <input type="hidden" id="hiddenFecha">
+                    <input type="hidden" id="hiddenHora">
+                    <input type="hidden" id="hiddenMoneda" value="COP">
+                </div>
+                
                 <div class="form-group">
                     <label class="form-label" for="customerName">
                         <i class="fas fa-user"></i> Nombre completo <span class="required-star">*</span>
                     </label>
                     <input type="text" id="customerName" class="form-input" placeholder="Ej: Juan Pérez" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="customerEmail">
+                        <i class="fas fa-envelope"></i> Correo electrónico <span class="required-star">*</span>
+                    </label>
+                    <input type="email" id="customerEmail" class="form-input" placeholder="ejemplo@correo.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="customerPhone">
+                        <i class="fas fa-phone"></i> Número celular <span class="required-star">*</span>
+                    </label>
+                    <input type="tel" id="customerPhone" class="form-input" placeholder="+57 300 123 4567" required>
                 </div>
                 
                 <div class="form-group">
@@ -1672,27 +1360,30 @@
                     </select>
                 </div>
                 
-                <div class="form-group">
-                    <h3 style="margin-bottom: 15px; color: #333;">Resumen del Pedido</h3>
-                    <div id="checkoutOrderSummary" style="background: #fef6f4; padding: 15px; border-radius: 12px; border: 1px solid #ffe8e0;">
-                        <!-- Resumen se carga aquí -->
+                <!-- RESUMEN DE LO SELECCIONADO -->
+                <div class="selections-summary" id="selectionsSummary">
+                    <div class="summary-title">
+                        <i class="fas fa-shopping-bag"></i> Tu Selección
+                    </div>
+                    <div class="summary-list" id="summaryList">
+                        <!-- Los items seleccionados se mostrarán aquí -->
                     </div>
                 </div>
                 
-                <button class="submit-btn" onclick="submitOrder()">
-                    <i class="fas fa-paper-plane"></i> Enviar Pedido
+                <button class="agilizar-btn" onclick="submitAgilizarOrder()" style="margin-top: 20px;">
+                    <i class="fas fa-paper-plane"></i> Enviar Pedido Agilizado
                 </button>
             </div>
         </div>
         
-        <!-- LOADING OVERLAY -->
-        <div class="loading-overlay" id="loadingOverlay">
-            <div class="loader">
-                <span class="hour"></span>
-                <span class="min"></span>
-                <span class="circel"></span>
+        <!-- LOADING DOTS OVERLAY -->
+        <div class="dots-loading-overlay" id="dotsLoadingOverlay">
+            <div class="dots-container">
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
             </div>
-            <div class="loading-text">Enviando tu pedido...</div>
+            <div class="dots-loading-text">Enviando tu pedido...</div>
         </div>
         
         <!-- SUCCESS MODAL -->
@@ -1701,10 +1392,10 @@
                 <div class="success-icon">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <h3 class="success-title">¡Pedido Enviado!</h3>
-                <p class="success-message">Tu pedido ha sido registrado exitosamente y enviado a la cocina. Te esperamos pronto en el restaurante.</p>
-                <button class="btn-continue" onclick="continueShopping()">
-                    Continuar
+                <h3 class="success-title">¡Pedido Enviado Exitosamente!</h3>
+                <p class="success-message">Tu pedido ha sido registrado y enviado a la cocina. Te esperamos pronto en el restaurante.</p>
+                <button class="btn-continue" onclick="continueToHome()">
+                    Volver al Inicio
                 </button>
             </div>
         </div>
@@ -1716,10 +1407,7 @@
         const TELEGRAM_CHAT_ID = "7806030847";
         
         // ================= VARIABLES GLOBALES =================
-        let cart = [];
-        let currentItem = null;
-        let currentCustomizations = {};
-        let currentQuantity = 1;
+        let selectedItems = [];
         
         // ================= INICIALIZAR APP =================
         function initApp() {
@@ -1736,7 +1424,7 @@
                     renderCategories();
                     renderMenuItems('hamburguesas');
                     setupNavigation();
-                    updateCartCount();
+                    updateAgilizarButton();
                     
                     console.log("✅ APP Inicializada");
                 }, 500);
@@ -1869,8 +1557,8 @@
                             <div class="item-price">$${item.price.toLocaleString('es-CO')} COP</div>
                         </div>
                         <div class="item-desc">${item.description}</div>
-                        <button class="add-btn" onclick="openCustomization(${item.id})">
-                            <i class="fas fa-plus"></i> Agregar
+                        <button class="select-btn" onclick="selectItem(${item.id})">
+                            <i class="fas fa-plus"></i> Seleccionar
                         </button>
                     </div>
                 `;
@@ -1887,29 +1575,7 @@
                     description: "Carne de res a la parrilla con guarniciones",
                     price: 27960,
                     category: "hamburguesas",
-                    image: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
-                    options: [
-                        {
-                            title: "Tipo de carne",
-                            type: "radio",
-                            required: true,
-                            items: [
-                                { name: "Res", price: 0 },
-                                { name: "Cerdo", price: 3000 },
-                                { name: "Pollo", price: 2000 }
-                            ]
-                        },
-                        {
-                            title: "Guarniciones",
-                            type: "checkbox",
-                            required: false,
-                            items: [
-                                { name: "Papas fritas", price: 4000 },
-                                { name: "Ensalada", price: 3000 },
-                                { name: "Arroz", price: 2000 }
-                            ]
-                        }
-                    ]
+                    image: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 2,
@@ -1917,29 +1583,7 @@
                     description: "Plátano maduro frito crujiente",
                     price: 15960,
                     category: "postres",
-                    image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
-                    options: [
-                        {
-                            title: "Tamaño",
-                            type: "radio",
-                            required: true,
-                            items: [
-                                { name: "Pequeño", price: 0 },
-                                { name: "Mediano", price: 3000 },
-                                { name: "Grande", price: 5000 }
-                            ]
-                        },
-                        {
-                            title: "Salsas",
-                            type: "checkbox",
-                            required: false,
-                            items: [
-                                { name: "Salsa de ajo", price: 1000 },
-                                { name: "Salsa de queso", price: 1500 },
-                                { name: "Miel", price: 1000 }
-                            ]
-                        }
-                    ]
+                    image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 3,
@@ -1947,30 +1591,7 @@
                     description: "Carne de res, lechuga, tomate, queso cheddar",
                     price: 39960,
                     category: "hamburguesas",
-                    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
-                    options: [
-                        {
-                            title: "Tipo de carne",
-                            type: "radio",
-                            required: true,
-                            items: [
-                                { name: "Res", price: 0 },
-                                { name: "Pollo", price: 2000 },
-                                { name: "Vegetariana", price: 3000 }
-                            ]
-                        },
-                        {
-                            title: "Extras",
-                            type: "checkbox",
-                            required: false,
-                            items: [
-                                { name: "Queso extra", price: 2000 },
-                                { name: "Bacon", price: 3000 },
-                                { name: "Aguacate", price: 2500 },
-                                { name: "Champiñones", price: 2000 }
-                            ]
-                        }
-                    ]
+                    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 4,
@@ -1978,27 +1599,7 @@
                     description: "Carne con salsa BBQ, cebolla caramelizada",
                     price: 46000,
                     category: "hamburguesas",
-                    image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
-                    options: [
-                        {
-                            title: "Tipo de carne",
-                            type: "radio",
-                            required: true,
-                            items: [
-                                { name: "Res", price: 0 },
-                                { name: "Cerdo", price: 2000 }
-                            ]
-                        },
-                        {
-                            title: "Extras",
-                            type: "checkbox",
-                            required: false,
-                            items: [
-                                { name: "Queso cheddar", price: 2000 },
-                                { name: "Aros de cebolla", price: 4000 }
-                            ]
-                        }
-                    ]
+                    image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 5,
@@ -2006,29 +1607,7 @@
                     description: "Pizza mediana con pepperoni y queso",
                     price: 51960,
                     category: "pizzas",
-                    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
-                    options: [
-                        {
-                            title: "Tamaño",
-                            type: "radio",
-                            required: true,
-                            items: [
-                                { name: "Personal", price: -10000 },
-                                { name: "Mediana", price: 0 },
-                                { name: "Familiar", price: 15000 }
-                            ]
-                        },
-                        {
-                            title: "Ingredientes extra",
-                            type: "checkbox",
-                            required: false,
-                            items: [
-                                { name: "Extra queso", price: 3000 },
-                                { name: "Champiñones", price: 2000 },
-                                { name: "Pimientos", price: 1500 }
-                            ]
-                        }
-                    ]
+                    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 6,
@@ -2036,29 +1615,7 @@
                     description: "Pollo a la plancha con vegetales",
                     price: 34000,
                     category: "sandwiches",
-                    image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
-                    options: [
-                        {
-                            title: "Pan",
-                            type: "radio",
-                            required: true,
-                            items: [
-                                { name: "Blanco", price: 0 },
-                                { name: "Integral", price: 1000 },
-                                { name: "Brioche", price: 1500 }
-                            ]
-                        },
-                        {
-                            title: "Aderezos",
-                            type: "checkbox",
-                            required: false,
-                            items: [
-                                { name: "Mayonesa", price: 500 },
-                                { name: "Mostaza", price: 500 },
-                                { name: "Ketchup", price: 500 }
-                            ]
-                        }
-                    ]
+                    image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 7,
@@ -2066,19 +1623,7 @@
                     description: "500ml Coca-Cola, Sprite o Fanta",
                     price: 12000,
                     category: "bebidas",
-                    image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
-                    options: [
-                        {
-                            title: "Sabor",
-                            type: "radio",
-                            required: true,
-                            items: [
-                                { name: "Coca-Cola", price: 0 },
-                                { name: "Sprite", price: 0 },
-                                { name: "Fanta", price: 0 }
-                            ]
-                        }
-                    ]
+                    image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 8,
@@ -2086,238 +1631,316 @@
                     description: "Helado artesanal con topping",
                     price: 22000,
                     category: "postres",
-                    image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
-                    options: [
-                        {
-                            title: "Toppings",
-                            type: "checkbox",
-                            required: false,
-                            items: [
-                                { name: "Chocolate", price: 1000 },
-                                { name: "Caramelo", price: 1000 },
-                                { name: "Fresas", price: 2000 },
-                                { name: "Nueces", price: 1500 }
-                            ]
-                        }
-                    ]
+                    image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 }
             ];
         }
         
-        // ================= FUNCIONES DEL CARRITO =================
-        function updateCartCount() {
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('headerCartCount').textContent = totalItems;
-            
-            const floatingCheckout = document.getElementById('floatingCheckout');
-            if (totalItems > 0) {
-                floatingCheckout.style.display = 'block';
-            } else {
-                floatingCheckout.style.display = 'none';
-            }
-        }
-        
-        // ================= CUSTOMIZATION =================
-        function openCustomization(itemId) {
-            // Reproducir sonido de iPhone
-            playIphoneSound();
-            
-            // Vibrar el dispositivo
-            vibrateDevice();
-            
-            const items = getMenuItems();
-            currentItem = items.find(item => item.id === itemId);
-            if (!currentItem) return;
-            
-            currentCustomizations = {};
-            currentQuantity = 1;
-            
-            document.getElementById('customItemName').textContent = currentItem.name;
-            document.getElementById('customQuantity').textContent = currentQuantity;
-            
-            renderCustomizationOptions();
-            document.getElementById('customizationModal').classList.add('active');
-        }
-        
-        function closeCustomizationModal() {
-            document.getElementById('customizationModal').classList.remove('active');
-        }
-        
-        function renderCustomizationOptions() {
-            const container = document.getElementById('customOptions');
-            container.innerHTML = '';
-            
-            if (!currentItem.options || currentItem.options.length === 0) {
-                container.innerHTML = `
-                    <div class="option-group">
-                        <div class="option-title">
-                            Este item no requiere personalización
-                        </div>
-                    </div>
-                `;
-                return;
-            }
-            
-            currentItem.options.forEach((optionGroup, groupIndex) => {
-                const groupDiv = document.createElement('div');
-                groupDiv.className = 'option-group';
-                
-                groupDiv.innerHTML = `
-                    <div class="option-title">
-                        ${optionGroup.title}
-                        ${optionGroup.required ? '<span class="option-required">*</span>' : ''}
-                    </div>
-                `;
-                
-                optionGroup.items.forEach((option, optionIndex) => {
-                    const priceText = option.price > 0 ? `+$${option.price.toLocaleString('es-CO')} COP` : 
-                                   option.price < 0 ? `-$${Math.abs(option.price).toLocaleString('es-CO')} COP` : 'Incluido';
-                    
-                    const optionDiv = document.createElement('div');
-                    optionDiv.className = 'option-item';
-                    
-                    if (optionGroup.type === 'radio') {
-                        optionDiv.innerHTML = `
-                            <label class="option-label">
-                                <input type="radio" name="option-${groupIndex}" 
-                                       value="${option.name}" class="option-check"
-                                       ${optionIndex === 0 ? 'checked' : ''}
-                                       onchange="handleOptionSelection()">
-                                <span>${option.name}</span>
-                            </label>
-                            <div class="option-price">${priceText}</div>
-                        `;
-                    } else {
-                        optionDiv.innerHTML = `
-                            <label class="option-label">
-                                <input type="checkbox" value="${option.name}" class="option-check"
-                                       onchange="handleOptionSelection()">
-                                <span>${option.name}</span>
-                            </label>
-                            <div class="option-price">${priceText}</div>
-                        `;
-                    }
-                    
-                    groupDiv.appendChild(optionDiv);
-                });
-                
-                container.appendChild(groupDiv);
-            });
-        }
-        
-        function handleOptionSelection() {
-            // Actualizar selecciones
-            updateCustomizations();
-        }
-        
-        function changeCustomQuantity(delta) {
-            currentQuantity = Math.max(1, currentQuantity + delta);
-            document.getElementById('customQuantity').textContent = currentQuantity;
-        }
-        
-        function updateCustomizations() {
-            currentCustomizations = {};
-            
-            if (!currentItem.options) return;
-            
-            const optionGroups = document.querySelectorAll('.option-group');
-            
-            optionGroups.forEach((group, groupIndex) => {
-                const optionGroup = currentItem.options[groupIndex];
-                if (!optionGroup) return;
-                
-                if (optionGroup.type === 'radio') {
-                    const selected = document.querySelector(`input[name="option-${groupIndex}"]:checked`);
-                    if (selected) {
-                        currentCustomizations[optionGroup.title] = [selected.value];
-                    }
-                } else {
-                    const checked = [];
-                    group.querySelectorAll('input:checked').forEach(input => {
-                        checked.push(input.value);
-                    });
-                    
-                    if (checked.length > 0) {
-                        currentCustomizations[optionGroup.title] = checked;
-                    }
-                }
-            });
-        }
-        
-        function addCustomizedItem() {
-            if (!currentItem) return;
-            
+        // ================= FUNCIONES DE SELECCIÓN =================
+        function selectItem(itemId) {
             // Reproducir sonido de confirmación
             playConfirmSound();
             
             // Vibrar el dispositivo
             vibrateDevice();
             
-            // Obtener personalizaciones seleccionadas
-            updateCustomizations();
+            const items = getMenuItems();
+            const item = items.find(i => i.id === itemId);
             
-            // Calcular precio con personalizaciones
-            let itemPrice = currentItem.price;
-            let customizationText = "";
+            if (!item) return;
             
-            Object.entries(currentCustomizations).forEach(([groupName, options]) => {
-                const optionGroup = currentItem.options.find(opt => opt.title === groupName);
-                if (!optionGroup) return;
-                
-                options.forEach(optionName => {
-                    const option = optionGroup.items.find(item => item.name === optionName);
-                    if (option) {
-                        itemPrice += option.price;
-                        customizationText += `${optionName}, `;
-                    }
+            // Verificar si el item ya está seleccionado
+            const existingIndex = selectedItems.findIndex(i => i.id === itemId);
+            
+            if (existingIndex !== -1) {
+                // Si ya está seleccionado, lo quitamos
+                selectedItems.splice(existingIndex, 1);
+                showNotification(`✗ ${item.name} removido de la selección`, 'success');
+            } else {
+                // Si no está seleccionado, lo agregamos
+                selectedItems.push({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    quantity: 1
                 });
-            });
-            
-            if (customizationText) {
-                customizationText = customizationText.slice(0, -2);
+                showNotification(`✓ ${item.name} agregado a la selección`, 'success');
             }
             
-            // Agregar al carrito
-            cart.push({
-                id: currentItem.id,
-                name: currentItem.name,
-                price: itemPrice,
-                quantity: currentQuantity,
-                customizations: {...currentCustomizations},
-                customizationText: customizationText
+            // Actualizar botón de agilizar
+            updateAgilizarButton();
+        }
+        
+        function updateAgilizarButton() {
+            const floatingAgilizar = document.getElementById('floatingAgilizar');
+            if (selectedItems.length > 0) {
+                floatingAgilizar.style.display = 'block';
+            } else {
+                floatingAgilizar.style.display = 'none';
+            }
+        }
+        
+        // ================= AGILIZAR FUNCIONALIDAD =================
+        function openAgilizarModal() {
+            if (selectedItems.length === 0) {
+                showNotification('Selecciona al menos un item primero', 'success');
+                return;
+            }
+            
+            // Actualizar información oculta con fecha y hora actual
+            const now = new Date();
+            const fecha = now.toLocaleDateString('es-ES', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            const hora = now.toLocaleTimeString('es-ES', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
             });
             
-            // Mostrar notificación
-            showNotification(`✓ ${currentItem.name} agregado al pedido`, 'success');
+            document.getElementById('hiddenFecha').value = fecha;
+            document.getElementById('hiddenHora').value = hora;
             
-            // Actualizar contador
-            updateCartCount();
+            // Limpiar formulario
+            document.getElementById('customerName').value = '';
+            document.getElementById('customerEmail').value = '';
+            document.getElementById('customerPhone').value = '';
+            document.getElementById('tableSelect').value = '';
             
-            // Cerrar modal
-            closeCustomizationModal();
+            // Actualizar resumen de selecciones
+            updateSelectionsSummary();
+            
+            // Mostrar modal
+            document.getElementById('agilizarModal').classList.add('active');
+            
+            // Deshabilitar scroll del body
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeAgilizarModal() {
+            document.getElementById('agilizarModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function updateSelectionsSummary() {
+            const container = document.getElementById('summaryList');
+            container.innerHTML = '';
+            
+            if (selectedItems.length === 0) {
+                container.innerHTML = '<p style="color: #666; text-align: center;">No hay items seleccionados</p>';
+                return;
+            }
+            
+            // Calcular total
+            let total = 0;
+            
+            selectedItems.forEach((item, index) => {
+                total += item.price * item.quantity;
+                
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'summary-item';
+                itemDiv.innerHTML = `
+                    <div class="item-name">${item.name} x${item.quantity}</div>
+                    <div class="item-price">$${(item.price * item.quantity).toLocaleString('es-CO')} COP</div>
+                `;
+                container.appendChild(itemDiv);
+            });
+            
+            // Agregar total
+            const totalDiv = document.createElement('div');
+            totalDiv.className = 'summary-item';
+            totalDiv.style.borderTop = '2px solid #ff6b6b';
+            totalDiv.style.paddingTop = '15px';
+            totalDiv.style.marginTop = '10px';
+            totalDiv.innerHTML = `
+                <div class="item-name" style="font-size: 18px; font-weight: 800;">TOTAL</div>
+                <div class="item-price" style="font-size: 20px; font-weight: 800; color: #ff4757;">$${total.toLocaleString('es-CO')} COP</div>
+            `;
+            container.appendChild(totalDiv);
+        }
+        
+        function submitAgilizarOrder() {
+            // Validar formulario
+            const name = document.getElementById('customerName').value.trim();
+            const email = document.getElementById('customerEmail').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+            const table = document.getElementById('tableSelect').value;
+            
+            if (!name || !email || !phone || !table) {
+                showNotification('Por favor completa todos los campos requeridos', 'success');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showNotification('Por favor ingresa un correo electrónico válido', 'success');
+                return;
+            }
+            
+            if (!validatePhone(phone)) {
+                showNotification('Por favor ingresa un número de celular válido', 'success');
+                return;
+            }
+            
+            // Obtener información oculta
+            const fecha = document.getElementById('hiddenFecha').value;
+            const hora = document.getElementById('hiddenHora').value;
+            const moneda = document.getElementById('hiddenMoneda').value;
+            
+            // Mostrar loading dots
+            document.getElementById('dotsLoadingOverlay').classList.add('active');
+            
+            // Simular procesamiento
+            setTimeout(async () => {
+                try {
+                    // Enviar a Telegram
+                    const success = await sendToTelegram({
+                        name,
+                        email,
+                        phone,
+                        table,
+                        fecha,
+                        hora,
+                        moneda,
+                        items: selectedItems
+                    });
+                    
+                    // Ocultar loading
+                    document.getElementById('dotsLoadingOverlay').classList.remove('active');
+                    
+                    if (success) {
+                        // Cerrar modal de agilizar
+                        closeAgilizarModal();
+                        
+                        // Mostrar modal de éxito
+                        document.getElementById('successModal').classList.add('active');
+                    } else {
+                        showNotification('Error al enviar el pedido. Intenta de nuevo.', 'success');
+                    }
+                } catch (error) {
+                    // Ocultar loading
+                    document.getElementById('dotsLoadingOverlay').classList.remove('active');
+                    
+                    showNotification('Error de conexión. Verifica tu internet.', 'success');
+                    console.error('Error:', error);
+                }
+            }, 2000);
+        }
+        
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        function validatePhone(phone) {
+            // Validar formato básico de teléfono colombiano
+            const re = /^[+]?[\d\s-]+$/;
+            return re.test(phone) && phone.replace(/[\s-]/g, '').length >= 10;
+        }
+        
+        // ================= TELEGRAM =================
+        async function sendToTelegram(orderData) {
+            // Calcular total
+            let subtotal = 0;
+            orderData.items.forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+            
+            const iva = Math.round(subtotal * 0.10);
+            const total = subtotal + iva;
+            
+            // Formatear mensaje
+            let message = `🛎️ *NUEVO PEDIDO - RESTAURANTE EXPRESS* 🛎️\n\n`;
+            message += `*📅 Fecha:* ${orderData.fecha}\n`;
+            message += `*🕒 Hora:* ${orderData.hora}\n`;
+            message += `*💰 Moneda:* Pesos Colombianos (${orderData.moneda})\n`;
+            message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+            message += `*👤 CLIENTE:*\n`;
+            message += `• Nombre: ${orderData.name}\n`;
+            message += `• Correo: ${orderData.email}\n`;
+            message += `• Celular: ${orderData.phone}\n`;
+            message += `• ${orderData.table === 'barra' ? 'Barra' : orderData.table === 'para_llevar' ? 'Para Llevar' : 'Mesa'} : ${orderData.table}\n\n`;
+            
+            message += `*📋 DETALLE DEL PEDIDO:*\n`;
+            
+            orderData.items.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                message += `\n${index + 1}. *${item.name}* x${item.quantity}\n`;
+                message += `   Precio unitario: $${item.price.toLocaleString('es-CO')} ${orderData.moneda}\n`;
+                message += `   Subtotal: $${itemTotal.toLocaleString('es-CO')} ${orderData.moneda}\n`;
+            });
+            
+            message += `\n*💰 RESUMEN DE PAGO:*\n`;
+            message += `━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `Subtotal: $${subtotal.toLocaleString('es-CO')} ${orderData.moneda}\n`;
+            message += `IVA (10%): $${iva.toLocaleString('es-CO')} ${orderData.moneda}\n`;
+            message += `*TOTAL: $${total.toLocaleString('es-CO')} ${orderData.moneda}*\n`;
+            
+            message += `\n────────────────────\n`;
+            message += `✅ *Pedido recibido exitosamente*\n`;
+            message += `⏱️ *Tiempo estimado: 20-30 minutos*\n`;
+            message += `🙏 *¡Gracias por tu preferencia!*`;
+            
+            // Codificar y enviar
+            const encodedMessage = encodeURIComponent(message);
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${encodedMessage}&parse_mode=Markdown`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                return data.ok;
+            } catch (error) {
+                console.error('Error Telegram:', error);
+                return false;
+            }
+        }
+        
+        // ================= FUNCIONES ADICIONALES =================
+        function continueToHome() {
+            // Cerrar modal de éxito
+            document.getElementById('successModal').classList.remove('active');
+            
+            // LIMPIAR TODO ABSOLUTAMENTE TODO
+            selectedItems = [];
+            
+            // Limpiar formularios
+            document.getElementById('customerName').value = '';
+            document.getElementById('customerEmail').value = '';
+            document.getElementById('customerPhone').value = '';
+            document.getElementById('tableSelect').value = '';
+            
+            // Limpiar información oculta
+            document.getElementById('hiddenFecha').value = '';
+            document.getElementById('hiddenHora').value = '';
+            
+            // Limpiar resumen
+            document.getElementById('summaryList').innerHTML = '';
+            
+            // Ocultar botón de agilizar
+            document.getElementById('floatingAgilizar').style.display = 'none';
+            
+            // Scroll to top y mostrar menú principal
+            window.scrollTo(0, 0);
+            
+            // Actualizar categoría activa
+            document.querySelectorAll('.category-chip').forEach(chip => {
+                chip.classList.remove('active');
+            });
+            document.querySelectorAll('.category-chip')[0].classList.add('active');
+            
+            // Renderizar menú inicial
+            renderMenuItems('hamburguesas');
+            
+            // Habilitar scroll si estaba deshabilitado
+            document.body.style.overflow = 'auto';
+            
+            // Mostrar notificación de éxito
+            showNotification('✅ Todo ha sido limpiado. ¡Listo para un nuevo pedido!', 'success');
         }
         
         // ================= SONIDOS Y VIBRACIÓN =================
-        function playIphoneSound() {
-            // Crear contexto de audio
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-            oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.1);
-            
-            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-            
-            oscillator.start();
-            oscillator.stop(audioContext.currentTime + 0.1);
-        }
-        
         function playConfirmSound() {
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
             const oscillator = audioContext.createOscillator();
@@ -2340,313 +1963,6 @@
         function vibrateDevice() {
             if (navigator.vibrate) {
                 navigator.vibrate(50);
-            }
-        }
-        
-        // ================= AGILIZAR FUNCIONALIDAD =================
-        function showAgilizarForm() {
-            if (cart.length === 0) {
-                showNotification('Agrega items al pedido primero', 'success');
-                return;
-            }
-            
-            const agilizarForm = document.getElementById('agilizarForm');
-            
-            // Alternar visibilidad del formulario
-            if (agilizarForm.classList.contains('active')) {
-                agilizarForm.classList.remove('active');
-            } else {
-                agilizarForm.classList.add('active');
-                // Scroll al formulario
-                agilizarForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }
-        
-        function submitOrderWithDetails() {
-            // Validar datos adicionales
-            const name = document.getElementById('customerName').value.trim();
-            const email = document.getElementById('customerEmail').value.trim();
-            const phone = document.getElementById('customerPhone').value.trim();
-            const table = document.getElementById('tableSelect').value;
-            
-            if (!name || !email || !phone || !table) {
-                showNotification('Por favor completa todos los campos requeridos', 'success');
-                return;
-            }
-            
-            if (!validateEmail(email)) {
-                showNotification('Por favor ingresa un correo electrónico válido', 'success');
-                return;
-            }
-            
-            if (!validatePhone(phone)) {
-                showNotification('Por favor ingresa un número de celular válido', 'success');
-                return;
-            }
-            
-            // Mostrar loading
-            document.getElementById('loadingOverlay').classList.add('active');
-            
-            // Simular procesamiento
-            setTimeout(async () => {
-                try {
-                    // Enviar a Telegram con todos los datos
-                    const success = await sendToTelegram({
-                        name,
-                        email,
-                        phone,
-                        table,
-                        cart
-                    });
-                    
-                    // Ocultar loading
-                    document.getElementById('loadingOverlay').classList.remove('active');
-                    
-                    if (success) {
-                        // Ocultar formulario
-                        document.getElementById('agilizarForm').classList.remove('active');
-                        
-                        // Mostrar modal de éxito
-                        document.getElementById('successModal').classList.add('active');
-                        
-                        // Limpiar carrito
-                        cart = [];
-                        updateCartCount();
-                        
-                        // Limpiar formularios
-                        document.getElementById('customerName').value = '';
-                        document.getElementById('customerEmail').value = '';
-                        document.getElementById('customerPhone').value = '';
-                        document.getElementById('tableSelect').value = '';
-                    } else {
-                        showNotification('Error al enviar el pedido. Intenta de nuevo.', 'success');
-                    }
-                } catch (error) {
-                    // Ocultar loading
-                    document.getElementById('loadingOverlay').classList.remove('active');
-                    
-                    showNotification('Error de conexión. Verifica tu internet.', 'success');
-                    console.error('Error:', error);
-                }
-            }, 2000);
-        }
-        
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-        
-        function validatePhone(phone) {
-            // Validar formato básico de teléfono colombiano
-            const re = /^[+]?[\d\s-]+$/;
-            return re.test(phone) && phone.replace(/[\s-]/g, '').length >= 10;
-        }
-        
-        // ================= CHECKOUT =================
-        function openCheckoutModal() {
-            if (cart.length === 0) {
-                showNotification('Agrega items al pedido primero', 'success');
-                return;
-            }
-            
-            // Resetear formulario
-            document.getElementById('customerName').value = '';
-            document.getElementById('tableSelect').value = '';
-            
-            // Actualizar resumen en el modal
-            updateCheckoutOrderSummary();
-            
-            document.getElementById('checkoutModal').classList.add('active');
-        }
-        
-        function closeCheckoutModal() {
-            document.getElementById('checkoutModal').classList.remove('active');
-        }
-        
-        function updateCheckoutOrderSummary() {
-            const container = document.getElementById('checkoutOrderSummary');
-            let summaryHTML = '';
-            
-            // Calcular subtotal
-            let subtotal = 0;
-            
-            cart.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
-                subtotal += itemTotal;
-                
-                summaryHTML += `
-                    <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #ffe8e0;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                            <span style="font-weight: 600;">${item.name} x${item.quantity}</span>
-                            <span style="font-weight: 700; color: #ff6b6b;">$${itemTotal.toLocaleString('es-CO')} COP</span>
-                        </div>
-                        ${item.customizationText ? `
-                            <div style="font-size: 13px; color: #666; background: #fff8f6; padding: 8px 12px; border-radius: 8px; margin-top: 5px; border-left: 3px solid #ff6b6b;">
-                                <i class="fas fa-cog" style="margin-right: 5px;"></i>${item.customizationText}
-                            </div>
-                        ` : ''}
-                    </div>
-                `;
-            });
-            
-            const iva = Math.round(subtotal * 0.10);
-            const total = subtotal + iva;
-            
-            summaryHTML += `
-                <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #ffe8e0;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px;">
-                        <span>Subtotal:</span>
-                        <span>$${subtotal.toLocaleString('es-CO')} COP</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px;">
-                        <span>IVA (10%):</span>
-                        <span>$${iva.toLocaleString('es-CO')} COP</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 18px; font-weight: 800; color: #ff6b6b;">
-                        <span>Total:</span>
-                        <span>$${total.toLocaleString('es-CO')} COP</span>
-                    </div>
-                </div>
-            `;
-            
-            container.innerHTML = summaryHTML;
-        }
-        
-        function submitOrder() {
-            // Validar formulario
-            const name = document.getElementById('customerName').value.trim();
-            const table = document.getElementById('tableSelect').value;
-            
-            if (!name || !table) {
-                showNotification('Por favor completa todos los campos requeridos', 'success');
-                return;
-            }
-            
-            // Mostrar loading overlay
-            document.getElementById('loadingOverlay').classList.add('active');
-            
-            // Deshabilitar scroll
-            document.body.style.overflow = 'hidden';
-            
-            // Simular procesamiento
-            setTimeout(async () => {
-                try {
-                    // Enviar a Telegram
-                    const success = await sendToTelegram({
-                        name,
-                        table,
-                        cart
-                    });
-                    
-                    // Ocultar loading
-                    document.getElementById('loadingOverlay').classList.remove('active');
-                    
-                    // Habilitar scroll
-                    document.body.style.overflow = 'auto';
-                    
-                    if (success) {
-                        // Cerrar modal de checkout
-                        closeCheckoutModal();
-                        
-                        // Mostrar modal de éxito
-                        document.getElementById('successModal').classList.add('active');
-                        
-                        // Limpiar carrito
-                        cart = [];
-                        updateCartCount();
-                    } else {
-                        showNotification('Error al enviar el pedido. Intenta de nuevo.', 'success');
-                    }
-                } catch (error) {
-                    // Ocultar loading
-                    document.getElementById('loadingOverlay').classList.remove('active');
-                    
-                    // Habilitar scroll
-                    document.body.style.overflow = 'auto';
-                    
-                    showNotification('Error de conexión. Verifica tu internet.', 'success');
-                    console.error('Error:', error);
-                }
-            }, 2000);
-        }
-        
-        // ================= TELEGRAM =================
-        async function sendToTelegram(orderData) {
-            // Obtener fecha y hora actual
-            const now = new Date();
-            const fecha = now.toLocaleDateString('es-ES', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            const hora = now.toLocaleTimeString('es-ES', {
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-            
-            // Calcular totales
-            let subtotal = 0;
-            orderData.cart.forEach(item => {
-                subtotal += item.price * item.quantity;
-            });
-            
-            const iva = Math.round(subtotal * 0.10);
-            const total = subtotal + iva;
-            
-            // Formatear mensaje
-            let message = `🛎️ *NUEVO PEDIDO - RESTAURANTE EXPRESS* 🛎️\n\n`;
-            message += `*📅 Fecha:* ${fecha}\n`;
-            message += `*🕒 Hora:* ${hora}\n`;
-            message += `*💰 Moneda:* Pesos Colombianos (COP)\n`;
-            message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
-            message += `*👤 CLIENTE:*\n`;
-            message += `• Nombre: ${orderData.name}\n`;
-            
-            if (orderData.email) {
-                message += `• Correo: ${orderData.email}\n`;
-            }
-            
-            if (orderData.phone) {
-                message += `• Celular: ${orderData.phone}\n`;
-            }
-            
-            message += `• ${orderData.table === 'barra' ? 'Barra' : orderData.table === 'para_llevar' ? 'Para Llevar' : 'Mesa'} : ${orderData.table}\n\n`;
-            
-            message += `*📋 DETALLE DEL PEDIDO:*\n`;
-            
-            orderData.cart.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
-                message += `\n${index + 1}. *${item.name}* x${item.quantity}\n`;
-                message += `   Precio unitario: $${item.price.toLocaleString('es-CO')} COP\n`;
-                message += `   Subtotal: $${itemTotal.toLocaleString('es-CO')} COP\n`;
-                if (item.customizationText) {
-                    message += `   Personalizaciones: ${item.customizationText}\n`;
-                }
-            });
-            
-            message += `\n*💰 RESUMEN DE PAGO:*\n`;
-            message += `━━━━━━━━━━━━━━━━━━━━\n`;
-            message += `Subtotal: $${subtotal.toLocaleString('es-CO')} COP\n`;
-            message += `IVA (10%): $${iva.toLocaleString('es-CO')} COP\n`;
-            message += `*TOTAL: $${total.toLocaleString('es-CO')} COP*\n`;
-            
-            message += `\n────────────────────\n`;
-            message += `✅ *Pedido recibido exitosamente*\n`;
-            message += `⏱️ *Tiempo estimado: 20-30 minutos*\n`;
-            message += `🙏 *¡Gracias por tu preferencia!*`;
-            
-            // Codificar y enviar
-            const encodedMessage = encodeURIComponent(message);
-            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${encodedMessage}&parse_mode=Markdown`;
-            
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                return data.ok;
-            } catch (error) {
-                console.error('Error Telegram:', error);
-                return false;
             }
         }
         
@@ -2685,15 +2001,6 @@
                     }
                 }, 300);
             }, 3000);
-        }
-        
-        // ================= FUNCIONES ADICIONALES =================
-        function continueShopping() {
-            // Cerrar modal de éxito
-            document.getElementById('successModal').classList.remove('active');
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
         }
         
         // ================= INICIALIZAR =================
