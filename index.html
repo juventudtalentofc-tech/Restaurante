@@ -24,13 +24,106 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            background: #fff;
             color: #333;
             line-height: 1.5;
             min-height: 100vh;
             padding: 0;
             margin: 0;
             overflow-x: hidden;
+        }
+        
+        /* ========== PANTALLA DE PRESENTACIÓN ========== */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff7c7c 0%, #ff9a5a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .splash-logo {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            animation: pulse 2s infinite;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            border: 3px solid white;
+        }
+        
+        .splash-logo i {
+            font-size: 60px;
+            color: #ff6b6b;
+        }
+        
+        .splash-text {
+            text-align: center;
+            color: white;
+        }
+        
+        .splash-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .splash-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .splash-loading {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+        }
+        
+        .loading-dots {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: loadingDots 1.5s infinite;
+        }
+        
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes loadingDots {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
         }
         
         /* ========== APP CONTAINER ========== */
@@ -42,6 +135,12 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
         
         /* ========== APP HEADER - SALMONSITO ========== */
@@ -127,6 +226,44 @@
             opacity: 0.95;
             letter-spacing: 0.5px;
             color: rgba(255,255,255,0.95);
+        }
+        
+        .cart-header-badge {
+            position: relative;
+            background: rgba(255,255,255,0.25);
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .cart-header-badge:hover {
+            background: rgba(255,255,255,0.35);
+            transform: scale(1.05);
+        }
+        
+        .cart-header-badge span {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            min-width: 22px;
+            height: 22px;
+            border-radius: 11px;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ff6b6b;
+            box-shadow: 0 2px 8px rgba(255, 71, 87, 0.4);
         }
         
         /* ========== APP NAVIGATION - SALMONSITO ========== */
@@ -1016,6 +1153,190 @@
             font-size: 18px;
         }
         
+        /* ========== FOOTER PROFESIONAL ========== */
+        .app-footer {
+            background: linear-gradient(135deg, #333, #444);
+            color: white;
+            padding: 40px 20px 30px;
+            margin-top: auto;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.1), rgba(255, 142, 83, 0.1));
+            z-index: 0;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .footer-logo i {
+            font-size: 32px;
+            color: #ff6b6b;
+        }
+        
+        .footer-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .footer-tagline {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+            max-width: 400px;
+            line-height: 1.6;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .social-icon:hover {
+            background: #ff6b6b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .footer-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+        
+        .info-column h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #ff6b6b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .info-column p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        
+        .footer-divider {
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px 0;
+        }
+        
+        .footer-copyright {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+        
+        /* ========== FORMULARIOS EXTRAS PARA AGILIZAR ========== */
+        .agilizar-form {
+            background: #fef6f4;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border: 2px solid #ffe8e0;
+            display: none;
+        }
+        
+        .agilizar-form.active {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .agilizar-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .agilizar-title i {
+            color: #ff6b6b;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-col {
+            flex: 1;
+            min-width: 200px;
+        }
+        
         /* ========== ANIMATIONS ========== */
         @keyframes slideInRight {
             from {
@@ -1066,6 +1387,14 @@
                 padding: 20px;
                 font-size: 16px;
             }
+            
+            .splash-title {
+                font-size: 28px;
+            }
+            
+            .footer-info {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (min-width: 768px) {
@@ -1111,7 +1440,27 @@
     </style>
 </head>
 <body>
-    <div class="app-container">
+    <!-- PANTALLA DE PRESENTACIÓN -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-logo">
+            <i class="fas fa-utensils"></i>
+        </div>
+        <div class="splash-text">
+            <h1 class="splash-title">Restaurante Express</h1>
+            <p class="splash-subtitle">Pedidos rápidos y deliciosos</p>
+        </div>
+        <div class="splash-loading">
+            <span>Cargando experiencia</span>
+            <div class="loading-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- APP PRINCIPAL -->
+    <div class="app-container" id="appContainer" style="display: none;">
         <!-- APP HEADER -->
         <header class="app-header">
             <div class="header-left">
@@ -1139,9 +1488,6 @@
             <button class="nav-btn active" data-section="menu">
                 <i class="fas fa-utensils"></i> Menú
             </button>
-            <button class="nav-btn" data-section="order" style="display: none;">
-                <i class="fas fa-shopping-cart"></i> Mi Pedido
-            </button>
         </nav>
         
         <!-- APP CONTENT -->
@@ -1168,9 +1514,92 @@
             </section>
         </main>
         
+        <!-- FORMULARIO DE AGILIZAR -->
+        <div class="agilizar-form" id="agilizarForm">
+            <div class="agilizar-title">
+                <i class="fas fa-bolt"></i> Datos para Agilizar
+            </div>
+            <div class="form-row">
+                <div class="form-col">
+                    <label class="form-label" for="customerEmail">
+                        <i class="fas fa-envelope"></i> Correo electrónico <span class="required-star">*</span>
+                    </label>
+                    <input type="email" id="customerEmail" class="form-input" placeholder="ejemplo@correo.com" required>
+                </div>
+                <div class="form-col">
+                    <label class="form-label" for="customerPhone">
+                        <i class="fas fa-phone"></i> Celular <span class="required-star">*</span>
+                    </label>
+                    <input type="tel" id="customerPhone" class="form-input" placeholder="+57 300 123 4567" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="submit-btn" onclick="submitOrderWithDetails()">
+                    <i class="fas fa-paper-plane"></i> Enviar Pedido Agilizado
+                </button>
+            </div>
+        </div>
+        
+        <!-- FOOTER PROFESIONAL -->
+        <footer class="app-footer">
+            <div class="footer-background"></div>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3 class="footer-title">Restaurante Express</h3>
+                <p class="footer-tagline">Servicio rápido y de calidad. Disfruta de la mejor experiencia gastronómica con entrega inmediata y atención personalizada.</p>
+                
+                <div class="footer-social">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+                
+                <div class="footer-info">
+                    <div class="info-column">
+                        <h4>Horario</h4>
+                        <p>Lunes a Viernes: 11am - 10pm</p>
+                        <p>Sábados: 12pm - 11pm</p>
+                        <p>Domingos: 12pm - 9pm</p>
+                    </div>
+                    
+                    <div class="info-column">
+                        <h4>Contacto</h4>
+                        <p><i class="fas fa-phone"></i> +57 1 234 5678</p>
+                        <p><i class="fas fa-envelope"></i> info@restauranteexpress.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Bogotá, Colombia</p>
+                    </div>
+                    
+                    <div class="info-column">
+                        <h4>Métodos de Pago</h4>
+                        <p>Efectivo (COP)</p>
+                        <p>Tarjetas crédito/débito</p>
+                        <p>Transferencias bancarias</p>
+                    </div>
+                </div>
+                
+                <div class="footer-divider"></div>
+                
+                <div class="footer-copyright">
+                    © 2024 Restaurante Express. Todos los derechos reservados. <br>
+                    Desarrollado con <i class="fas fa-heart" style="color: #ff6b6b;"></i> para una mejor experiencia gastronómica.
+                </div>
+            </div>
+        </footer>
+        
         <!-- FLOATING CHECKOUT BUTTON -->
         <div class="floating-checkout" id="floatingCheckout">
-            <button class="checkout-btn" onclick="openCheckoutModal()">
+            <button class="checkout-btn" onclick="showAgilizarForm()">
                 <i class="fas fa-bolt"></i> Agilizar
             </button>
         </div>
@@ -1244,13 +1673,6 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label" for="specialInstructions">
-                        <i class="fas fa-sticky-note"></i> Instrucciones especiales
-                    </label>
-                    <textarea id="specialInstructions" class="form-textarea" rows="4" placeholder="Ej: Sin cebolla, salsa aparte, bien cocido, alergias, etc..."></textarea>
-                </div>
-                
-                <div class="form-group">
                     <h3 style="margin-bottom: 15px; color: #333;">Resumen del Pedido</h3>
                     <div id="checkoutOrderSummary" style="background: #fef6f4; padding: 15px; border-radius: 12px; border: 1px solid #ffe8e0;">
                         <!-- Resumen se carga aquí -->
@@ -1301,20 +1723,24 @@
         
         // ================= INICIALIZAR APP =================
         function initApp() {
-            // Renderizar carrusel de ofertas
-            renderOffersCarousel();
-            
-            // Renderizar categorías y menú
-            renderCategories();
-            renderMenuItems('hamburguesas');
-            
-            // Configurar navegación
-            setupNavigation();
-            
-            // Actualizar contador
-            updateCartCount();
-            
-            console.log("✅ APP Inicializada");
+            // Ocultar splash screen después de 2 segundos
+            setTimeout(() => {
+                document.getElementById('splashScreen').classList.add('hidden');
+                
+                setTimeout(() => {
+                    document.getElementById('splashScreen').style.display = 'none';
+                    document.getElementById('appContainer').style.display = 'flex';
+                    
+                    // Renderizar componentes
+                    renderOffersCarousel();
+                    renderCategories();
+                    renderMenuItems('hamburguesas');
+                    setupNavigation();
+                    updateCartCount();
+                    
+                    console.log("✅ APP Inicializada");
+                }, 500);
+            }, 2000);
         }
         
         function renderOffersCarousel() {
@@ -1352,8 +1778,8 @@
                     <div class="offer-content">
                         <h3 class="offer-title">${offer.title}</h3>
                         <p class="offer-desc">${offer.description}</p>
-                        <div class="offer-price">$${offer.price.toLocaleString('es-CO')}</div>
-                        <div class="offer-old-price">$${offer.oldPrice.toLocaleString('es-CO')}</div>
+                        <div class="offer-price">$${offer.price.toLocaleString('es-CO')} COP</div>
+                        <div class="offer-old-price">$${offer.oldPrice.toLocaleString('es-CO')} COP</div>
                     </div>
                 `;
                 container.appendChild(offerCard);
@@ -1440,7 +1866,7 @@
                             <div class="item-name">${item.name}</div>
                         </div>
                         <div class="item-price-container">
-                            <div class="item-price">$${item.price.toLocaleString('es-CO')}</div>
+                            <div class="item-price">$${item.price.toLocaleString('es-CO')} COP</div>
                         </div>
                         <div class="item-desc">${item.description}</div>
                         <button class="add-btn" onclick="openCustomization(${item.id})">
@@ -1744,8 +2170,8 @@
                 `;
                 
                 optionGroup.items.forEach((option, optionIndex) => {
-                    const priceText = option.price > 0 ? `+$${option.price.toLocaleString('es-CO')}` : 
-                                   option.price < 0 ? `-$${Math.abs(option.price).toLocaleString('es-CO')}` : 'Incluido';
+                    const priceText = option.price > 0 ? `+$${option.price.toLocaleString('es-CO')} COP` : 
+                                   option.price < 0 ? `-$${Math.abs(option.price).toLocaleString('es-CO')} COP` : 'Incluido';
                     
                     const optionDiv = document.createElement('div');
                     optionDiv.className = 'option-item';
@@ -1917,6 +2343,105 @@
             }
         }
         
+        // ================= AGILIZAR FUNCIONALIDAD =================
+        function showAgilizarForm() {
+            if (cart.length === 0) {
+                showNotification('Agrega items al pedido primero', 'success');
+                return;
+            }
+            
+            const agilizarForm = document.getElementById('agilizarForm');
+            
+            // Alternar visibilidad del formulario
+            if (agilizarForm.classList.contains('active')) {
+                agilizarForm.classList.remove('active');
+            } else {
+                agilizarForm.classList.add('active');
+                // Scroll al formulario
+                agilizarForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+        
+        function submitOrderWithDetails() {
+            // Validar datos adicionales
+            const name = document.getElementById('customerName').value.trim();
+            const email = document.getElementById('customerEmail').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+            const table = document.getElementById('tableSelect').value;
+            
+            if (!name || !email || !phone || !table) {
+                showNotification('Por favor completa todos los campos requeridos', 'success');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showNotification('Por favor ingresa un correo electrónico válido', 'success');
+                return;
+            }
+            
+            if (!validatePhone(phone)) {
+                showNotification('Por favor ingresa un número de celular válido', 'success');
+                return;
+            }
+            
+            // Mostrar loading
+            document.getElementById('loadingOverlay').classList.add('active');
+            
+            // Simular procesamiento
+            setTimeout(async () => {
+                try {
+                    // Enviar a Telegram con todos los datos
+                    const success = await sendToTelegram({
+                        name,
+                        email,
+                        phone,
+                        table,
+                        cart
+                    });
+                    
+                    // Ocultar loading
+                    document.getElementById('loadingOverlay').classList.remove('active');
+                    
+                    if (success) {
+                        // Ocultar formulario
+                        document.getElementById('agilizarForm').classList.remove('active');
+                        
+                        // Mostrar modal de éxito
+                        document.getElementById('successModal').classList.add('active');
+                        
+                        // Limpiar carrito
+                        cart = [];
+                        updateCartCount();
+                        
+                        // Limpiar formularios
+                        document.getElementById('customerName').value = '';
+                        document.getElementById('customerEmail').value = '';
+                        document.getElementById('customerPhone').value = '';
+                        document.getElementById('tableSelect').value = '';
+                    } else {
+                        showNotification('Error al enviar el pedido. Intenta de nuevo.', 'success');
+                    }
+                } catch (error) {
+                    // Ocultar loading
+                    document.getElementById('loadingOverlay').classList.remove('active');
+                    
+                    showNotification('Error de conexión. Verifica tu internet.', 'success');
+                    console.error('Error:', error);
+                }
+            }, 2000);
+        }
+        
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        function validatePhone(phone) {
+            // Validar formato básico de teléfono colombiano
+            const re = /^[+]?[\d\s-]+$/;
+            return re.test(phone) && phone.replace(/[\s-]/g, '').length >= 10;
+        }
+        
         // ================= CHECKOUT =================
         function openCheckoutModal() {
             if (cart.length === 0) {
@@ -1927,7 +2452,6 @@
             // Resetear formulario
             document.getElementById('customerName').value = '';
             document.getElementById('tableSelect').value = '';
-            document.getElementById('specialInstructions').value = '';
             
             // Actualizar resumen en el modal
             updateCheckoutOrderSummary();
@@ -1954,7 +2478,7 @@
                     <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #ffe8e0;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                             <span style="font-weight: 600;">${item.name} x${item.quantity}</span>
-                            <span style="font-weight: 700; color: #ff6b6b;">$${itemTotal.toLocaleString('es-CO')}</span>
+                            <span style="font-weight: 700; color: #ff6b6b;">$${itemTotal.toLocaleString('es-CO')} COP</span>
                         </div>
                         ${item.customizationText ? `
                             <div style="font-size: 13px; color: #666; background: #fff8f6; padding: 8px 12px; border-radius: 8px; margin-top: 5px; border-left: 3px solid #ff6b6b;">
@@ -1972,15 +2496,15 @@
                 <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #ffe8e0;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px;">
                         <span>Subtotal:</span>
-                        <span>$${subtotal.toLocaleString('es-CO')}</span>
+                        <span>$${subtotal.toLocaleString('es-CO')} COP</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px;">
                         <span>IVA (10%):</span>
-                        <span>$${iva.toLocaleString('es-CO')}</span>
+                        <span>$${iva.toLocaleString('es-CO')} COP</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 18px; font-weight: 800; color: #ff6b6b;">
                         <span>Total:</span>
-                        <span>$${total.toLocaleString('es-CO')}</span>
+                        <span>$${total.toLocaleString('es-CO')} COP</span>
                     </div>
                 </div>
             `;
@@ -1988,11 +2512,10 @@
             container.innerHTML = summaryHTML;
         }
         
-        async function submitOrder() {
+        function submitOrder() {
             // Validar formulario
             const name = document.getElementById('customerName').value.trim();
             const table = document.getElementById('tableSelect').value;
-            const instructions = document.getElementById('specialInstructions').value.trim();
             
             if (!name || !table) {
                 showNotification('Por favor completa todos los campos requeridos', 'success');
@@ -2012,7 +2535,6 @@
                     const success = await sendToTelegram({
                         name,
                         table,
-                        instructions,
                         cart
                     });
                     
@@ -2050,6 +2572,19 @@
         
         // ================= TELEGRAM =================
         async function sendToTelegram(orderData) {
+            // Obtener fecha y hora actual
+            const now = new Date();
+            const fecha = now.toLocaleDateString('es-ES', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            const hora = now.toLocaleTimeString('es-ES', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
             // Calcular totales
             let subtotal = 0;
             orderData.cart.forEach(item => {
@@ -2061,29 +2596,40 @@
             
             // Formatear mensaje
             let message = `🛎️ *NUEVO PEDIDO - RESTAURANTE EXPRESS* 🛎️\n\n`;
-            message += `*Cliente:* ${orderData.name}\n`;
-            message += `*${orderData.table === 'barra' ? 'Barra' : orderData.table === 'para_llevar' ? 'Para Llevar' : 'Mesa'} :* ${orderData.table}\n`;
-            message += `*Hora:* ${new Date().toLocaleString('es-ES')}\n\n`;
+            message += `*📅 Fecha:* ${fecha}\n`;
+            message += `*🕒 Hora:* ${hora}\n`;
+            message += `*💰 Moneda:* Pesos Colombianos (COP)\n`;
+            message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+            message += `*👤 CLIENTE:*\n`;
+            message += `• Nombre: ${orderData.name}\n`;
+            
+            if (orderData.email) {
+                message += `• Correo: ${orderData.email}\n`;
+            }
+            
+            if (orderData.phone) {
+                message += `• Celular: ${orderData.phone}\n`;
+            }
+            
+            message += `• ${orderData.table === 'barra' ? 'Barra' : orderData.table === 'para_llevar' ? 'Para Llevar' : 'Mesa'} : ${orderData.table}\n\n`;
+            
             message += `*📋 DETALLE DEL PEDIDO:*\n`;
             
             orderData.cart.forEach((item, index) => {
                 const itemTotal = item.price * item.quantity;
                 message += `\n${index + 1}. *${item.name}* x${item.quantity}\n`;
-                message += `   Precio: $${item.price.toLocaleString('es-CO')}\n`;
-                message += `   Subtotal: $${itemTotal.toLocaleString('es-CO')}\n`;
+                message += `   Precio unitario: $${item.price.toLocaleString('es-CO')} COP\n`;
+                message += `   Subtotal: $${itemTotal.toLocaleString('es-CO')} COP\n`;
                 if (item.customizationText) {
                     message += `   Personalizaciones: ${item.customizationText}\n`;
                 }
             });
             
             message += `\n*💰 RESUMEN DE PAGO:*\n`;
-            message += `Subtotal: $${subtotal.toLocaleString('es-CO')}\n`;
-            message += `IVA (10%): $${iva.toLocaleString('es-CO')}\n`;
-            message += `*TOTAL: $${total.toLocaleString('es-CO')}*\n`;
-            
-            if (orderData.instructions) {
-                message += `\n*📝 INSTRUCCIONES ESPECIALES:*\n${orderData.instructions}\n`;
-            }
+            message += `━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `Subtotal: $${subtotal.toLocaleString('es-CO')} COP\n`;
+            message += `IVA (10%): $${iva.toLocaleString('es-CO')} COP\n`;
+            message += `*TOTAL: $${total.toLocaleString('es-CO')} COP*\n`;
             
             message += `\n────────────────────\n`;
             message += `✅ *Pedido recibido exitosamente*\n`;
