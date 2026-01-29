@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>🍽️ Restaurante Express - Pedidos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
     <style>
         /* ========== RESET Y CONFIGURACIÓN BASE ========== */
         * {
@@ -24,7 +24,7 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            background: #fff;
+            background: linear-gradient(135deg, #fef6f4 0%, #fff8f6 100%);
             color: #333;
             line-height: 1.5;
             min-height: 100vh;
@@ -158,6 +158,8 @@
             border-bottom-left-radius: 25px;
             border-bottom-right-radius: 25px;
             min-height: 85px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
         
         .header-left {
@@ -241,6 +243,8 @@
             transform: translateY(-10px);
             border: 1px solid #ffe8e0;
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
         
         .nav-btn {
@@ -441,7 +445,7 @@
             box-shadow: 0 4px 12px rgba(255, 107, 107, 0.25);
         }
         
-        /* ========== MENU GRID ========== */
+        /* ========== MENU GRID MEJORADO ========== */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
@@ -450,7 +454,19 @@
             margin-bottom: 20px;
         }
         
-        /* ========== MENU ITEM CARD ========== */
+        @media (max-width: 360px) {
+            .menu-grid {
+                grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .menu-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+        }
+        
+        /* ========== MENU ITEM CARD MEJORADO ========== */
         .menu-card {
             background: white;
             border-radius: 18px;
@@ -469,11 +485,42 @@
             box-shadow: 0 10px 25px rgba(255, 107, 107, 0.2);
         }
         
-        .item-image {
+        .item-image-container {
+            position: relative;
             width: 100%;
             height: 140px;
+            overflow: hidden;
+        }
+        
+        .item-image {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             background: linear-gradient(135deg, #ffe8e0, #ffd7cc);
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-card:hover .item-image {
+            transform: scale(1.05);
+        }
+        
+        .item-price-badge {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
         
         .item-content {
@@ -494,23 +541,10 @@
             line-height: 1.3;
             margin-bottom: 8px;
             min-height: 42px;
-        }
-        
-        .item-price-container {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-            background: #fff8f6;
-            padding: 8px 12px;
-            border-radius: 10px;
-            border: 1px solid #ffe8e0;
-        }
-        
-        .item-price {
-            color: #ff6b6b;
-            font-weight: 800;
-            font-size: 18px;
-            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         
         .item-desc {
@@ -525,9 +559,28 @@
             flex: 1;
         }
         
+        .item-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+        
+        .item-full-price {
+            color: #ff6b6b;
+            font-weight: 800;
+            font-size: 16px;
+            background: #fff8f6;
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid #ffe8e0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
         .select-btn {
-            width: 100%;
-            padding: 14px;
+            padding: 12px 20px;
             background: linear-gradient(135deg, #ff6b6b, #ff8e53);
             color: white;
             border: none;
@@ -540,13 +593,87 @@
             justify-content: center;
             gap: 8px;
             transition: all 0.3s;
-            margin-top: auto;
             box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
+            flex: 1;
+            max-width: 120px;
         }
         
         .select-btn:hover {
             transform: scale(0.98);
             box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .select-btn.selected {
+            background: linear-gradient(135deg, #34c759, #2ecc71);
+        }
+        
+        .select-btn.selected i {
+            transform: rotate(45deg);
+        }
+        
+        /* ========== NOTIFICACIÓN MEJORADA ========== */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #333;
+            padding: 16px 24px;
+            border-radius: 16px;
+            font-weight: 600;
+            z-index: 3000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 320px;
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-left: 4px solid #ff8e53;
+            overflow: hidden;
+        }
+        
+        .notification:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 142, 83, 0.1));
+            z-index: -1;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification i {
+            font-size: 20px;
+            color: #ff6b6b;
+        }
+        
+        .notification-content {
+            flex: 1;
+        }
+        
+        .notification-close {
+            background: transparent;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 50%;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        
+        .notification-close:hover {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
         }
         
         /* ========== FLOATING AGILIZAR BUTTON ========== */
@@ -555,7 +682,9 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             padding: 15px 20px;
             box-shadow: 0 -6px 30px rgba(255, 107, 107, 0.2);
             z-index: 90;
@@ -563,7 +692,7 @@
             border-top-left-radius: 25px;
             border-top-right-radius: 25px;
             margin-top: auto;
-            border-top: 1px solid #ffe8e0;
+            border-top: 1px solid rgba(255, 232, 224, 0.5);
         }
         
         .agilizar-btn {
@@ -606,7 +735,7 @@
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
         }
         
-        /* ========== MODAL AGILIZAR PANTALLA COMPLETA ========== */
+        /* ========== MODAL AGILIZAR MEJORADO ========== */
         .agilizar-modal {
             position: fixed;
             top: 0;
@@ -618,6 +747,18 @@
             display: none;
             flex-direction: column;
             overflow-y: auto;
+            animation: slideInUp 0.4s ease-out;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
         
         .agilizar-modal.active {
@@ -636,6 +777,7 @@
             z-index: 1;
             border-bottom-left-radius: 25px;
             border-bottom-right-radius: 25px;
+            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
         }
         
         .agilizar-header h2 {
@@ -656,6 +798,8 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
         
         .close-agilizar:hover {
@@ -667,6 +811,9 @@
             flex: 1;
             padding: 25px 20px;
             overflow-y: auto;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
         }
         
         .form-group {
@@ -705,7 +852,7 @@
         
         .form-select {
             appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff6b6b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-image: url("data:image/svg+xml;charset=UTF8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff6b6b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
             background-position: right 15px center;
             background-size: 20px;
@@ -719,20 +866,29 @@
             box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
         }
         
-        /* ========== RESUMEN DE SELECCIONES ========== */
+        /* ========== RESUMEN DE SELECCIONES MEJORADO ========== */
         .selections-summary {
-            background: #fef6f4;
-            padding: 20px;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 25px;
+            border-radius: 20px;
             margin: 25px 0;
-            border: 2px solid #ffe8e0;
+            border: 2px solid rgba(255, 232, 224, 0.5);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.1);
+        }
+        
+        .summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
         }
         
         .summary-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             color: #333;
-            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -742,35 +898,154 @@
             color: #ff6b6b;
         }
         
+        .clear-all-btn {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            color: #ff6b6b;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .clear-all-btn:hover {
+            background: rgba(255, 107, 107, 0.2);
+        }
+        
         .summary-list {
-            max-height: 200px;
+            max-height: 300px;
             overflow-y: auto;
             padding-right: 10px;
+        }
+        
+        .summary-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .summary-list::-webkit-scrollbar-thumb {
+            background: #ff6b6b;
+            border-radius: 10px;
         }
         
         .summary-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #ffe8e0;
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 232, 224, 0.5);
+            background: rgba(255, 248, 246, 0.5);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            transition: all 0.3s;
         }
         
         .summary-item:last-child {
             border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .summary-item:hover {
+            background: rgba(255, 248, 246, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.1);
+        }
+        
+        .item-info {
+            flex: 1;
         }
         
         .item-name {
             font-weight: 600;
             color: #333;
+            font-size: 15px;
         }
         
         .item-price {
             font-weight: 700;
             color: #ff6b6b;
+            font-size: 16px;
         }
         
-        /* ========== INFORMACIÓN OCULTA (FECHA, HORA, MONEDA) ========== */
+        .item-quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        
+        .quantity-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: none;
+            background: #fff8f6;
+            color: #ff6b6b;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            border: 1px solid #ffe8e0;
+        }
+        
+        .quantity-btn:hover {
+            background: #ff6b6b;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .item-quantity {
+            font-weight: 600;
+            color: #333;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .remove-item-btn {
+            background: rgba(255, 71, 87, 0.1);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            color: #ff4757;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .remove-item-btn:hover {
+            background: rgba(255, 71, 87, 0.2);
+            transform: translateY(-1px);
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0 0;
+            margin-top: 20px;
+            border-top: 2px solid rgba(255, 107, 107, 0.3);
+        }
+        
+        .total-label {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .total-price {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ff4757;
+        }
+        
+        /* ========== INFORMACIÓN OCULTA ========== */
         .hidden-info {
             display: none;
         }
@@ -856,7 +1131,9 @@
         }
         
         .success-content {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             padding: 50px 30px;
             border-radius: 25px;
             text-align: center;
@@ -864,7 +1141,7 @@
             width: 100%;
             animation: pop-in 0.4s ease-out;
             box-shadow: 0 20px 60px rgba(255, 107, 107, 0.3);
-            border: 1px solid #ffe8e0;
+            border: 1px solid rgba(255, 232, 224, 0.5);
         }
         
         @keyframes pop-in {
@@ -1054,41 +1331,11 @@
             width: 100%;
         }
         
-        /* ========== NOTIFICATION ========== */
-        .notification {
-            position: fixed;
-            top: 120px;
-            right: 20px;
-            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            z-index: 3000;
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            max-width: 300px;
-            border-left: 4px solid #ff8e53;
-            transform: translateX(120%);
-            transition: transform 0.3s ease-out;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .notification.show {
-            transform: translateX(0);
-        }
-        
-        .notification i {
-            font-size: 18px;
-        }
-        
         /* ========== RESPONSIVE ADJUSTMENTS ========== */
         @media (max-width: 360px) {
             .menu-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 14px;
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 12px;
             }
             
             .restaurant-name {
@@ -1120,6 +1367,11 @@
             .footer-info {
                 grid-template-columns: 1fr;
             }
+            
+            .item-price-badge {
+                font-size: 12px;
+                padding: 5px 10px;
+            }
         }
         
         @media (min-width: 768px) {
@@ -1140,6 +1392,15 @@
             
             .app-nav {
                 margin: 0 30px;
+            }
+            
+            .notification {
+                right: 50%;
+                transform: translateX(120%) translateX(250px);
+            }
+            
+            .notification.show {
+                transform: translateX(0) translateX(250px);
             }
         }
         
@@ -1295,7 +1556,7 @@
         <!-- FLOATING AGILIZAR BUTTON -->
         <div class="floating-agilizar" id="floatingAgilizar">
             <button class="agilizar-btn" onclick="openAgilizarModal()">
-                <i class="fas fa-bolt"></i> Agilizar
+                <i class="fas fa-bolt"></i> Agilizar Pedido (0)
             </button>
         </div>
         
@@ -1362,11 +1623,20 @@
                 
                 <!-- RESUMEN DE LO SELECCIONADO -->
                 <div class="selections-summary" id="selectionsSummary">
-                    <div class="summary-title">
-                        <i class="fas fa-shopping-bag"></i> Tu Selección
+                    <div class="summary-header">
+                        <div class="summary-title">
+                            <i class="fas fa-shopping-bag"></i> Tu Selección
+                        </div>
+                        <button class="clear-all-btn" onclick="clearAllSelections()">
+                            <i class="fas fa-trash"></i> Limpiar Todo
+                        </button>
                     </div>
                     <div class="summary-list" id="summaryList">
                         <!-- Los items seleccionados se mostrarán aquí -->
+                    </div>
+                    <div class="summary-total">
+                        <div class="total-label">TOTAL</div>
+                        <div class="total-price" id="totalPrice">$0 COP</div>
                     </div>
                 </div>
                 
@@ -1499,7 +1769,7 @@
             });
         }
         
-        // ================= RENDERIZAR MENÚ =================
+        // ================= RENDERIZAR MENÚ MEJORADO =================
         function renderCategories() {
             const container = document.getElementById('categoriesContainer');
             container.innerHTML = '';
@@ -1547,19 +1817,33 @@
             items.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'menu-card';
+                
+                // Verificar si el item está seleccionado
+                const isSelected = selectedItems.some(selected => selected.id === item.id);
+                
                 card.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" class="item-image">
+                    <div class="item-image-container">
+                        <img src="${item.image}" alt="${item.name}" class="item-image">
+                        <div class="item-price-badge">
+                            <i class="fas fa-tag"></i>
+                            $${item.price.toLocaleString('es-CO')} COP
+                        </div>
+                    </div>
                     <div class="item-content">
                         <div class="item-header">
                             <div class="item-name">${item.name}</div>
                         </div>
-                        <div class="item-price-container">
-                            <div class="item-price">$${item.price.toLocaleString('es-CO')} COP</div>
-                        </div>
                         <div class="item-desc">${item.description}</div>
-                        <button class="select-btn" onclick="selectItem(${item.id})">
-                            <i class="fas fa-plus"></i> Seleccionar
-                        </button>
+                        <div class="item-footer">
+                            <div class="item-full-price">
+                                <i class="fas fa-money-bill-wave"></i>
+                                $${item.price.toLocaleString('es-CO')} COP
+                            </div>
+                            <button class="select-btn ${isSelected ? 'selected' : ''}" onclick="selectItem(${item.id})" data-item-id="${item.id}">
+                                <i class="fas ${isSelected ? 'fa-times' : 'fa-plus'}"></i>
+                                ${isSelected ? 'Remover' : 'Seleccionar'}
+                            </button>
+                        </div>
                     </div>
                 `;
                 
@@ -1571,16 +1855,16 @@
             return [
                 {
                     id: 1,
-                    name: "Churrasco",
-                    description: "Carne de res a la parrilla con guarniciones",
+                    name: "Churrasco Premium",
+                    description: "Carne de res a la parrilla con guarniciones especiales y salsa de la casa",
                     price: 27960,
                     category: "hamburguesas",
                     image: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 2,
-                    name: "Plátano Frito",
-                    description: "Plátano maduro frito crujiente",
+                    name: "Plátano Frito Especial",
+                    description: "Plátano maduro frito crujiente con queso y crema",
                     price: 15960,
                     category: "postres",
                     image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
@@ -1588,7 +1872,7 @@
                 {
                     id: 3,
                     name: "Hamburguesa Clásica",
-                    description: "Carne de res, lechuga, tomate, queso cheddar",
+                    description: "Carne de res 200g, lechuga fresca, tomate, queso cheddar y salsa especial",
                     price: 39960,
                     category: "hamburguesas",
                     image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
@@ -1596,39 +1880,39 @@
                 {
                     id: 4,
                     name: "Hamburguesa BBQ",
-                    description: "Carne con salsa BBQ, cebolla caramelizada",
+                    description: "Carne 200g con salsa BBQ casera, cebolla caramelizada y bacon",
                     price: 46000,
                     category: "hamburguesas",
                     image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 5,
-                    name: "Pizza Pepperoni",
-                    description: "Pizza mediana con pepperoni y queso",
+                    name: "Pizza Pepperoni Grande",
+                    description: "Pizza grande 14\" con pepperoni y queso mozzarella extra",
                     price: 51960,
                     category: "pizzas",
                     image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 6,
-                    name: "Sándwich de Pollo",
-                    description: "Pollo a la plancha con vegetales",
+                    name: "Sándwich de Pollo Gourmet",
+                    description: "Pollo a la plancha con vegetales frescos y salsa de aguacate",
                     price: 34000,
                     category: "sandwiches",
                     image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 7,
-                    name: "Refresco Grande",
-                    description: "500ml Coca-Cola, Sprite o Fanta",
+                    name: "Refresco Premium Grande",
+                    description: "Coca-Cola, Sprite o Fanta 750ml con hielo y limón",
                     price: 12000,
                     category: "bebidas",
                     image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 8,
-                    name: "Helado de Vainilla",
-                    description: "Helado artesanal con topping",
+                    name: "Helado de Vainilla Artesanal",
+                    description: "Helado artesanal con topping de chocolate y frutos secos",
                     price: 22000,
                     category: "postres",
                     image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
@@ -1636,7 +1920,7 @@
             ];
         }
         
-        // ================= FUNCIONES DE SELECCIÓN =================
+        // ================= FUNCIONES DE SELECCIÓN MEJORADAS =================
         function selectItem(itemId) {
             // Reproducir sonido de confirmación
             playConfirmSound();
@@ -1657,7 +1941,7 @@
                 selectedItems.splice(existingIndex, 1);
                 showNotification(`✗ ${item.name} removido de la selección`, 'success');
             } else {
-                // Si no está seleccionado, lo agregamos
+                // Si no está seleccionado, lo agregamos con cantidad 1
                 selectedItems.push({
                     id: item.id,
                     name: item.name,
@@ -1669,18 +1953,40 @@
             
             // Actualizar botón de agilizar
             updateAgilizarButton();
+            
+            // Actualizar botón en la tarjeta
+            updateItemCardButton(itemId);
+        }
+        
+        function updateItemCardButton(itemId) {
+            const button = document.querySelector(`button[data-item-id="${itemId}"]`);
+            const isSelected = selectedItems.some(item => item.id === itemId);
+            
+            if (button) {
+                if (isSelected) {
+                    button.classList.add('selected');
+                    button.innerHTML = '<i class="fas fa-times"></i> Remover';
+                } else {
+                    button.classList.remove('selected');
+                    button.innerHTML = '<i class="fas fa-plus"></i> Seleccionar';
+                }
+            }
         }
         
         function updateAgilizarButton() {
             const floatingAgilizar = document.getElementById('floatingAgilizar');
+            const agilizarBtn = floatingAgilizar.querySelector('.agilizar-btn');
+            const totalItems = selectedItems.reduce((sum, item) => sum + item.quantity, 0);
+            
             if (selectedItems.length > 0) {
                 floatingAgilizar.style.display = 'block';
+                agilizarBtn.innerHTML = `<i class="fas fa-bolt"></i> Agilizar Pedido (${totalItems})`;
             } else {
                 floatingAgilizar.style.display = 'none';
             }
         }
         
-        // ================= AGILIZAR FUNCIONALIDAD =================
+        // ================= AGILIZAR FUNCIONALIDAD MEJORADA =================
         function openAgilizarModal() {
             if (selectedItems.length === 0) {
                 showNotification('Selecciona al menos un item primero', 'success');
@@ -1713,7 +2019,7 @@
             // Actualizar resumen de selecciones
             updateSelectionsSummary();
             
-            // Mostrar modal
+            // Mostrar modal con animación
             document.getElementById('agilizarModal').classList.add('active');
             
             // Deshabilitar scroll del body
@@ -1727,10 +2033,13 @@
         
         function updateSelectionsSummary() {
             const container = document.getElementById('summaryList');
+            const totalPriceElement = document.getElementById('totalPrice');
+            
             container.innerHTML = '';
             
             if (selectedItems.length === 0) {
-                container.innerHTML = '<p style="color: #666; text-align: center;">No hay items seleccionados</p>';
+                container.innerHTML = '<p style="color: #666; text-align: center; padding: 30px;">No hay items seleccionados</p>';
+                totalPriceElement.textContent = '$0 COP';
                 return;
             }
             
@@ -1738,28 +2047,87 @@
             let total = 0;
             
             selectedItems.forEach((item, index) => {
-                total += item.price * item.quantity;
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
                 
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'summary-item';
                 itemDiv.innerHTML = `
-                    <div class="item-name">${item.name} x${item.quantity}</div>
-                    <div class="item-price">$${(item.price * item.quantity).toLocaleString('es-CO')} COP</div>
+                    <div class="item-info">
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-price">$${item.price.toLocaleString('es-CO')} COP</div>
+                        <div class="item-quantity-controls">
+                            <button class="quantity-btn" onclick="decreaseQuantity(${item.id})">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="item-quantity">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="increaseQuantity(${item.id})">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="remove-item-btn" onclick="removeItem(${item.id})">
+                                <i class="fas fa-trash"></i> Eliminar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="item-price" style="font-size: 18px;">
+                        $${itemTotal.toLocaleString('es-CO')} COP
+                    </div>
                 `;
                 container.appendChild(itemDiv);
             });
             
-            // Agregar total
-            const totalDiv = document.createElement('div');
-            totalDiv.className = 'summary-item';
-            totalDiv.style.borderTop = '2px solid #ff6b6b';
-            totalDiv.style.paddingTop = '15px';
-            totalDiv.style.marginTop = '10px';
-            totalDiv.innerHTML = `
-                <div class="item-name" style="font-size: 18px; font-weight: 800;">TOTAL</div>
-                <div class="item-price" style="font-size: 20px; font-weight: 800; color: #ff4757;">$${total.toLocaleString('es-CO')} COP</div>
-            `;
-            container.appendChild(totalDiv);
+            // Actualizar total
+            totalPriceElement.textContent = `$${total.toLocaleString('es-CO')} COP`;
+        }
+        
+        function increaseQuantity(itemId) {
+            const item = selectedItems.find(item => item.id === itemId);
+            if (item) {
+                item.quantity++;
+                updateSelectionsSummary();
+                updateAgilizarButton();
+                showNotification(`➕ Cantidad aumentada: ${item.name}`, 'success');
+            }
+        }
+        
+        function decreaseQuantity(itemId) {
+            const item = selectedItems.find(item => item.id === itemId);
+            if (item && item.quantity > 1) {
+                item.quantity--;
+                updateSelectionsSummary();
+                updateAgilizarButton();
+                showNotification(`➖ Cantidad reducida: ${item.name}`, 'success');
+            }
+        }
+        
+        function removeItem(itemId) {
+            const itemIndex = selectedItems.findIndex(item => item.id === itemId);
+            if (itemIndex !== -1) {
+                const itemName = selectedItems[itemIndex].name;
+                selectedItems.splice(itemIndex, 1);
+                
+                // Actualizar interfaz
+                updateSelectionsSummary();
+                updateAgilizarButton();
+                updateItemCardButton(itemId);
+                
+                showNotification(`🗑️ ${itemName} eliminado del pedido`, 'success');
+            }
+        }
+        
+        function clearAllSelections() {
+            if (selectedItems.length === 0) return;
+            
+            if (confirm('¿Estás seguro de que quieres eliminar todos los items del pedido?')) {
+                selectedItems.forEach(item => {
+                    updateItemCardButton(item.id);
+                });
+                
+                selectedItems = [];
+                updateSelectionsSummary();
+                updateAgilizarButton();
+                showNotification('🧹 Todos los items han sido eliminados', 'success');
+            }
         }
         
         function submitAgilizarOrder() {
@@ -1917,6 +2285,7 @@
             
             // Limpiar resumen
             document.getElementById('summaryList').innerHTML = '';
+            document.getElementById('totalPrice').textContent = '$0 COP';
             
             // Ocultar botón de agilizar
             document.getElementById('floatingAgilizar').style.display = 'none';
@@ -1942,22 +2311,27 @@
         
         // ================= SONIDOS Y VIBRACIÓN =================
         function playConfirmSound() {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(1200, audioContext.currentTime);
-            oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.1);
-            
-            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-            
-            oscillator.start();
-            oscillator.stop(audioContext.currentTime + 0.1);
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(1200, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.1);
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.1);
+            } catch (error) {
+                // Si hay error, simplemente continuar
+                console.log('Audio context no disponible');
+            }
         }
         
         function vibrateDevice() {
@@ -1966,24 +2340,35 @@
             }
         }
         
-        // ================= NOTIFICACIONES =================
+        // ================= NOTIFICACIONES MEJORADAS =================
         function showNotification(text, type = 'success') {
-            // Crear notificación
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.style.background = 'linear-gradient(135deg, #ff6b6b, #ff8e53)';
-            
-            notification.innerHTML = `
-                <i class="fas fa-check-circle"></i>
-                <span>${text}</span>
-            `;
-            
             // Remover notificaciones anteriores
             document.querySelectorAll('.notification').forEach(n => {
                 if (n.parentNode) {
                     document.body.removeChild(n);
                 }
             });
+            
+            // Crear notificación
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            
+            // Determinar ícono según tipo
+            let icon = 'fa-check-circle';
+            let color = '#ff6b6b';
+            
+            if (type === 'success') {
+                icon = 'fa-check-circle';
+                color = '#ff6b6b';
+            }
+            
+            notification.innerHTML = `
+                <i class="fas ${icon}" style="color: ${color};"></i>
+                <div class="notification-content">${text}</div>
+                <button class="notification-close" onclick="closeNotification(this)">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
             
             document.body.appendChild(notification);
             
@@ -1992,19 +2377,34 @@
                 notification.classList.add('show');
             }, 10);
             
-            // Remover después de 3 segundos
+            // Remover automáticamente después de 4 segundos
             setTimeout(() => {
+                closeNotification(notification.querySelector('.notification-close'));
+            }, 4000);
+        }
+        
+        function closeNotification(button) {
+            const notification = button.closest('.notification');
+            if (notification) {
                 notification.classList.remove('show');
                 setTimeout(() => {
                     if (notification.parentNode) {
                         document.body.removeChild(notification);
                     }
                 }, 300);
-            }, 3000);
+            }
         }
         
         // ================= INICIALIZAR =================
         document.addEventListener('DOMContentLoaded', initApp);
+        
+        // Prevenir cierre accidental
+        window.addEventListener('beforeunload', function (e) {
+            if (selectedItems.length > 0) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
     </script>
 </body>
 </html>
