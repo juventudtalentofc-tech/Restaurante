@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>🍽️ Restaurante Express - Pedidos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <style>
         /* ========== RESET Y CONFIGURACIÓN BASE ========== */
         * {
@@ -20,19 +20,17 @@
             height: 100%;
             overflow-x: hidden;
             touch-action: manipulation;
-            scroll-behavior: smooth;
         }
         
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #fef6f4 0%, #fff8f6 100%);
+            background: #fff;
             color: #333;
             line-height: 1.5;
             min-height: 100vh;
             padding: 0;
             margin: 0;
             overflow-x: hidden;
-            -webkit-overflow-scrolling: touch;
         }
         
         /* ========== PANTALLA DE PRESENTACIÓN ========== */
@@ -160,8 +158,6 @@
             border-bottom-left-radius: 25px;
             border-bottom-right-radius: 25px;
             min-height: 85px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
         }
         
         .header-left {
@@ -245,8 +241,6 @@
             transform: translateY(-10px);
             border: 1px solid #ffe8e0;
             overflow: hidden;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
         }
         
         .nav-btn {
@@ -314,13 +308,11 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
         }
         
         /* ========== MENU SECTION ========== */
         .menu-section {
-            padding: 20px 15px 120px;
+            padding: 20px 15px 100px;
             display: none;
             flex: 1;
         }
@@ -449,34 +441,21 @@
             box-shadow: 0 4px 12px rgba(255, 107, 107, 0.25);
         }
         
-        /* ========== MENU GRID OPTIMIZADO ========== */
+        /* ========== MENU GRID ========== */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
-            gap: 18px;
+            gap: 16px;
             padding: 0 5px;
             margin-bottom: 20px;
         }
         
-        @media (max-width: 360px) {
-            .menu-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
-            }
-        }
-        
-        @media (min-width: 768px) {
-            .menu-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            }
-        }
-        
-        /* ========== MENU ITEM CARD OPTIMIZADO ========== */
+        /* ========== MENU ITEM CARD ========== */
         .menu-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.15);
+            box-shadow: 0 5px 18px rgba(255, 107, 107, 0.12);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             height: 100%;
@@ -487,180 +466,122 @@
         
         .menu-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.25);
-        }
-        
-        .item-image-container {
-            position: relative;
-            width: 100%;
-            height: 150px;
-            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.2);
         }
         
         .item-image {
             width: 100%;
-            height: 100%;
+            height: 140px;
             object-fit: cover;
             background: linear-gradient(135deg, #ffe8e0, #ffd7cc);
-            transition: transform 0.4s ease;
-        }
-        
-        .menu-card:hover .item-image {
-            transform: scale(1.05);
-        }
-        
-        .item-price-badge {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 12px;
-            font-weight: 800;
-            font-size: 15px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-            border: 2px solid rgba(255,255,255,0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
         }
         
         .item-content {
-            padding: 18px;
+            padding: 16px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
         
         .item-header {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .item-name {
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 700;
             color: #333;
             line-height: 1.3;
             margin-bottom: 8px;
-            min-height: 44px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            min-height: 42px;
+        }
+        
+        .item-price-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            background: #fff8f6;
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid #ffe8e0;
+        }
+        
+        .item-price {
+            color: #ff6b6b;
+            font-weight: 800;
+            font-size: 18px;
+            flex: 1;
         }
         
         .item-desc {
-            font-size: 13px;
+            font-size: 12.5px;
             color: #666;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             line-height: 1.5;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
             flex: 1;
         }
         
-        .item-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: auto;
-        }
-        
         .select-btn {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             background: linear-gradient(135deg, #ff6b6b, #ff8e53);
             color: white;
             border: none;
-            border-radius: 14px;
+            border-radius: 12px;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .select-btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: 0.5s;
-        }
-        
-        .select-btn:hover:before {
-            left: 100%;
+            margin-top: auto;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
         }
         
         .select-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+            transform: scale(0.98);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
         }
-        
-        .select-btn.selected {
-            background: linear-gradient(135deg, #34c759, #2ecc71);
-        }
-        
-        .select-btn.selected i {
-            transform: rotate(45deg);
-        }
-        
-        /* ========== NOTIFICACIÓN ELIMINADA ========== */
-        /* Las notificaciones han sido removidas según solicitud */
         
         /* ========== FLOATING AGILIZAR BUTTON ========== */
         .floating-agilizar {
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 0;
+            left: 0;
+            right: 0;
             background: white;
-            padding: 5px;
-            box-shadow: 0 8px 35px rgba(255, 107, 107, 0.3);
+            padding: 15px 20px;
+            box-shadow: 0 -6px 30px rgba(255, 107, 107, 0.2);
             z-index: 90;
             display: none;
-            border-radius: 20px;
-            border: 2px solid #ff6b6b;
-            min-width: 90%;
-            max-width: 400px;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-5px); }
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            margin-top: auto;
+            border-top: 1px solid #ffe8e0;
         }
         
         .agilizar-btn {
             width: 100%;
-            padding: 20px;
+            padding: 22px;
             background: linear-gradient(135deg, #ff6b6b, #ff8e53);
             color: white;
             border: none;
-            border-radius: 18px;
+            border-radius: 15px;
             font-size: 18px;
-            font-weight: 800;
+            font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
             transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -681,36 +602,22 @@
         }
         
         .agilizar-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
         }
         
-        /* ========== MODAL AGILIZAR OPTIMIZADO ========== */
+        /* ========== MODAL AGILIZAR PANTALLA COMPLETA ========== */
         .agilizar-modal {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: white;
             z-index: 1000;
             display: none;
             flex-direction: column;
             overflow-y: auto;
-            animation: slideInUp 0.4s ease-out;
-        }
-        
-        @keyframes slideInUp {
-            from {
-                transform: translateY(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
         }
         
         .agilizar-modal.active {
@@ -729,29 +636,26 @@
             z-index: 1;
             border-bottom-left-radius: 25px;
             border-bottom-right-radius: 25px;
-            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
         }
         
         .agilizar-header h2 {
-            font-size: 26px;
-            font-weight: 800;
+            font-size: 24px;
+            font-weight: 700;
         }
         
         .close-agilizar {
             background: rgba(255,255,255,0.25);
             border: none;
-            width: 50px;
-            height: 50px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             color: white;
-            font-size: 22px;
+            font-size: 20px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
         }
         
         .close-agilizar:hover {
@@ -763,9 +667,6 @@
             flex: 1;
             padding: 25px 20px;
             overflow-y: auto;
-            max-width: 500px;
-            margin: 0 auto;
-            width: 100%;
         }
         
         .form-group {
@@ -778,46 +679,35 @@
             gap: 10px;
             margin-bottom: 10px;
             font-weight: 600;
-            color: white;
-            font-size: 16px;
+            color: #333;
+            font-size: 15px;
         }
         
         .form-label i {
             color: #ff6b6b;
-            width: 24px;
-            font-size: 18px;
+            width: 20px;
         }
         
         .required-star {
             color: #ff4757;
-            margin-left: 5px;
         }
         
         .form-input, .form-select, .form-textarea {
             width: 100%;
-            padding: 18px 20px;
-            border: 2px solid rgba(255, 232, 224, 0.5);
-            border-radius: 15px;
+            padding: 18px;
+            border: 2px solid #ffe8e0;
+            border-radius: 12px;
             font-size: 16px;
             font-family: 'Poppins', sans-serif;
             transition: all 0.3s;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        
-        .form-input::placeholder,
-        .form-select:invalid,
-        .form-textarea::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+            background: #fff8f6;
         }
         
         .form-select {
             appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff6b6b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff6b6b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
-            background-position: right 20px center;
+            background-position: right 15px center;
             background-size: 20px;
             padding-right: 50px;
         }
@@ -825,199 +715,62 @@
         .form-input:focus, .form-select:focus, .form-textarea:focus {
             outline: none;
             border-color: #ff6b6b;
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
         }
         
-        /* ========== RESUMEN DE SELECCIONES OPTIMIZADO ========== */
+        /* ========== RESUMEN DE SELECCIONES ========== */
         .selections-summary {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 25px;
-            border-radius: 20px;
+            background: #fef6f4;
+            padding: 20px;
+            border-radius: 15px;
             margin: 25px 0;
-            border: 2px solid rgba(255, 232, 224, 0.3);
-        }
-        
-        .summary-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+            border: 2px solid #ffe8e0;
         }
         
         .summary-title {
-            font-size: 22px;
-            font-weight: 800;
-            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
         
         .summary-title i {
             color: #ff6b6b;
-            font-size: 20px;
-        }
-        
-        .clear-all-btn {
-            background: rgba(255, 107, 107, 0.2);
-            border: 1px solid rgba(255, 107, 107, 0.4);
-            color: #ff6b6b;
-            padding: 10px 18px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .clear-all-btn:hover {
-            background: rgba(255, 107, 107, 0.3);
-            transform: translateY(-2px);
         }
         
         .summary-list {
-            max-height: 300px;
+            max-height: 200px;
             overflow-y: auto;
             padding-right: 10px;
-        }
-        
-        .summary-list::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .summary-list::-webkit-scrollbar-thumb {
-            background: #ff6b6b;
-            border-radius: 10px;
         }
         
         .summary-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px;
-            border-bottom: 1px solid rgba(255, 232, 224, 0.2);
-            background: rgba(255, 248, 246, 0.1);
-            border-radius: 15px;
-            margin-bottom: 12px;
-            transition: all 0.3s;
+            padding: 12px 0;
+            border-bottom: 1px solid #ffe8e0;
         }
         
         .summary-item:last-child {
             border-bottom: none;
-            margin-bottom: 0;
-        }
-        
-        .summary-item:hover {
-            background: rgba(255, 248, 246, 0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.1);
-        }
-        
-        .item-info {
-            flex: 1;
         }
         
         .item-name {
-            font-weight: 700;
-            color: white;
-            font-size: 16px;
-            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
         }
         
         .item-price {
             font-weight: 700;
             color: #ff6b6b;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
         
-        .item-quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: 12px;
-        }
-        
-        .quantity-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(255, 107, 107, 0.2);
-            color: white;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            border: 1px solid rgba(255, 107, 107, 0.4);
-        }
-        
-        .quantity-btn:hover {
-            background: #ff6b6b;
-            transform: scale(1.1);
-        }
-        
-        .item-quantity {
-            font-weight: 700;
-            color: white;
-            min-width: 30px;
-            text-align: center;
-            font-size: 16px;
-        }
-        
-        .remove-item-btn {
-            background: rgba(255, 71, 87, 0.2);
-            border: 1px solid rgba(255, 71, 87, 0.4);
-            color: #ff4757;
-            padding: 10px 18px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .remove-item-btn:hover {
-            background: rgba(255, 71, 87, 0.3);
-            transform: translateY(-2px);
-        }
-        
-        .summary-total {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 0 0;
-            margin-top: 25px;
-            border-top: 2px solid rgba(255, 107, 107, 0.4);
-        }
-        
-        .total-label {
-            font-size: 20px;
-            font-weight: 800;
-            color: white;
-        }
-        
-        .total-price {
-            font-size: 28px;
-            font-weight: 900;
-            color: #ff4757;
-            text-shadow: 0 2px 10px rgba(255, 71, 87, 0.3);
-        }
-        
-        /* ========== INFORMACIÓN OCULTA ========== */
+        /* ========== INFORMACIÓN OCULTA (FECHA, HORA, MONEDA) ========== */
         .hidden-info {
             display: none;
         }
@@ -1030,8 +783,8 @@
             right: 0;
             bottom: 0;
             background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 2000;
             display: none;
             flex-direction: column;
@@ -1047,13 +800,13 @@
         
         .dots-container {
             display: flex;
-            gap: 20px;
-            margin-bottom: 40px;
+            gap: 15px;
+            margin-bottom: 30px;
         }
         
         .loading-dot {
-            width: 25px;
-            height: 25px;
+            width: 20px;
+            height: 20px;
             background: #ff9a5a;
             border-radius: 50%;
             animation: bounce 1.4s infinite ease-in-out;
@@ -1074,11 +827,11 @@
         }
         
         .dots-loading-text {
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: 600;
             text-align: center;
             color: #ff9a5a;
-            text-shadow: 0 2px 15px rgba(255, 154, 90, 0.4);
+            text-shadow: 0 2px 10px rgba(255, 154, 90, 0.3);
         }
         
         /* ========== SUCCESS MODAL ========== */
@@ -1089,8 +842,8 @@
             right: 0;
             bottom: 0;
             background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 2000;
             display: none;
             align-items: center;
@@ -1103,17 +856,15 @@
         }
         
         .success-content {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
+            background: white;
             padding: 50px 30px;
-            border-radius: 30px;
+            border-radius: 25px;
             text-align: center;
             max-width: 400px;
             width: 100%;
             animation: pop-in 0.4s ease-out;
-            box-shadow: 0 25px 70px rgba(255, 107, 107, 0.4);
-            border: 2px solid rgba(255, 232, 224, 0.5);
+            box-shadow: 0 20px 60px rgba(255, 107, 107, 0.3);
+            border: 1px solid #ffe8e0;
         }
         
         @keyframes pop-in {
@@ -1128,47 +879,47 @@
         }
         
         .success-icon {
-            font-size: 90px;
+            font-size: 80px;
             color: #ff6b6b;
-            margin-bottom: 30px;
-            animation: bounceSuccess 0.6s ease-out;
+            margin-bottom: 25px;
+            animation: bounceSuccess 0.5s ease-out;
         }
         
         @keyframes bounceSuccess {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-15px); }
         }
         
         .success-title {
-            font-size: 32px;
-            font-weight: 800;
+            font-size: 28px;
+            font-weight: 700;
             color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .success-message {
             color: #666;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             line-height: 1.6;
-            font-size: 17px;
+            font-size: 16px;
         }
         
         .btn-continue {
-            padding: 20px 50px;
+            padding: 18px 45px;
             background: linear-gradient(135deg, #ff6b6b, #ff8e53);
             color: white;
             border: none;
-            border-radius: 15px;
-            font-size: 18px;
-            font-weight: 700;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 6px 25px rgba(255, 107, 107, 0.4);
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
         }
         
         .btn-continue:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
         }
         
         /* ========== FOOTER ========== */
@@ -1303,10 +1054,40 @@
             width: 100%;
         }
         
+        /* ========== NOTIFICATION ========== */
+        .notification {
+            position: fixed;
+            top: 120px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            z-index: 3000;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 300px;
+            border-left: 4px solid #ff8e53;
+            transform: translateX(120%);
+            transition: transform 0.3s ease-out;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification i {
+            font-size: 18px;
+        }
+        
         /* ========== RESPONSIVE ADJUSTMENTS ========== */
         @media (max-width: 360px) {
             .menu-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 gap: 14px;
             }
             
@@ -1328,7 +1109,7 @@
             }
             
             .agilizar-btn {
-                padding: 18px;
+                padding: 20px;
                 font-size: 16px;
             }
             
@@ -1339,23 +1120,13 @@
             .footer-info {
                 grid-template-columns: 1fr;
             }
-            
-            .item-price-badge {
-                font-size: 13px;
-                padding: 6px 12px;
-            }
-            
-            .select-btn {
-                padding: 14px;
-                font-size: 14px;
-            }
         }
         
         @media (min-width: 768px) {
             .app-container {
                 max-width: 500px;
                 margin: 0 auto;
-                box-shadow: 0 0 50px rgba(255, 107, 107, 0.3);
+                box-shadow: 0 0 50px rgba(255, 107, 107, 0.2);
                 border-radius: 30px;
                 overflow: hidden;
                 min-height: 90vh;
@@ -1370,46 +1141,26 @@
             .app-nav {
                 margin: 0 30px;
             }
-            
-            .floating-agilizar {
-                min-width: 400px;
-            }
         }
         
         /* ========== SCROLLBAR PERSONALIZADO ========== */
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
         }
         
         ::-webkit-scrollbar-track {
-            background: rgba(255, 248, 246, 0.5);
+            background: #fff8f6;
             border-radius: 10px;
         }
         
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            background: #ff6b6b;
             border-radius: 10px;
         }
         
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #ff8e53, #ff6b6b);
-        }
-        
-        /* ========== ANIMACIONES SUAVES ========== */
-        * {
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-        
-        /* ========== MEJORAS DE DESPLAZAMIENTO ========== */
-        .app-content {
-            scrollbar-width: thin;
-            scrollbar-color: #ff6b6b #fff8f6;
-        }
-        
-        .menu-grid, .offers-carousel, .categories-scroll {
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
+            background: #ff8e53;
         }
     </style>
 </head>
@@ -1544,7 +1295,7 @@
         <!-- FLOATING AGILIZAR BUTTON -->
         <div class="floating-agilizar" id="floatingAgilizar">
             <button class="agilizar-btn" onclick="openAgilizarModal()">
-                <i class="fas fa-bolt"></i> Agilizar Pedido (0)
+                <i class="fas fa-bolt"></i> Agilizar
             </button>
         </div>
         
@@ -1611,20 +1362,11 @@
                 
                 <!-- RESUMEN DE LO SELECCIONADO -->
                 <div class="selections-summary" id="selectionsSummary">
-                    <div class="summary-header">
-                        <div class="summary-title">
-                            <i class="fas fa-shopping-bag"></i> Tu Selección
-                        </div>
-                        <button class="clear-all-btn" onclick="clearAllSelections()">
-                            <i class="fas fa-trash"></i> Limpiar Todo
-                        </button>
+                    <div class="summary-title">
+                        <i class="fas fa-shopping-bag"></i> Tu Selección
                     </div>
                     <div class="summary-list" id="summaryList">
                         <!-- Los items seleccionados se mostrarán aquí -->
-                    </div>
-                    <div class="summary-total">
-                        <div class="total-label">TOTAL</div>
-                        <div class="total-price" id="totalPrice">$0 COP</div>
                     </div>
                 </div>
                 
@@ -1684,43 +1426,9 @@
                     setupNavigation();
                     updateAgilizarButton();
                     
-                    // Optimizar desplazamiento
-                    optimizeScroll();
-                    
-                    console.log("✅ APP Inicializada y Optimizada");
+                    console.log("✅ APP Inicializada");
                 }, 500);
             }, 2000);
-        }
-        
-        // ================= OPTIMIZAR DESPLAZAMIENTO =================
-        function optimizeScroll() {
-            // Prevenir recarga al deslizar
-            let startY = 0;
-            let startX = 0;
-            let isScrolling = false;
-            
-            document.addEventListener('touchstart', function(e) {
-                startY = e.touches[0].pageY;
-                startX = e.touches[0].pageX;
-                isScrolling = false;
-            }, { passive: true });
-            
-            document.addEventListener('touchmove', function(e) {
-                if (!isScrolling) {
-                    isScrolling = true;
-                }
-            }, { passive: true });
-            
-            document.addEventListener('touchend', function(e) {
-                if (!isScrolling) {
-                    return;
-                }
-            }, { passive: true });
-            
-            // Smooth scroll para elementos táctiles
-            document.querySelectorAll('a, button').forEach(element => {
-                element.style.touchAction = 'manipulation';
-            });
         }
         
         function renderOffersCarousel() {
@@ -1785,13 +1493,13 @@
                     // Solo tenemos la sección de menú
                     document.getElementById('menuSection').classList.add('active');
                     
-                    // Scroll to top suave
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    // Scroll to top
+                    window.scrollTo(0, 0);
                 });
             });
         }
         
-        // ================= RENDERIZAR MENÚ OPTIMIZADO =================
+        // ================= RENDERIZAR MENÚ =================
         function renderCategories() {
             const container = document.getElementById('categoriesContainer');
             container.innerHTML = '';
@@ -1822,11 +1530,8 @@
                     chip.classList.add('active');
                     renderMenuItems(category.id);
                     
-                    // Scroll to menu grid suave
-                    document.getElementById('menuGrid').scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    // Scroll to menu grid
+                    document.getElementById('menuGrid').scrollIntoView({ behavior: 'smooth' });
                 });
                 
                 container.appendChild(chip);
@@ -1842,29 +1547,19 @@
             items.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'menu-card';
-                
-                // Verificar si el item está seleccionado
-                const isSelected = selectedItems.some(selected => selected.id === item.id);
-                
                 card.innerHTML = `
-                    <div class="item-image-container">
-                        <img src="${item.image}" alt="${item.name}" class="item-image" loading="lazy">
-                        <div class="item-price-badge">
-                            <i class="fas fa-tag"></i>
-                            $${item.price.toLocaleString('es-CO')} COP
-                        </div>
-                    </div>
+                    <img src="${item.image}" alt="${item.name}" class="item-image">
                     <div class="item-content">
                         <div class="item-header">
                             <div class="item-name">${item.name}</div>
                         </div>
-                        <div class="item-desc">${item.description}</div>
-                        <div class="item-footer">
-                            <button class="select-btn ${isSelected ? 'selected' : ''}" onclick="selectItem(${item.id})" data-item-id="${item.id}">
-                                <i class="fas ${isSelected ? 'fa-times' : 'fa-plus'}"></i>
-                                ${isSelected ? 'Remover' : 'Seleccionar'}
-                            </button>
+                        <div class="item-price-container">
+                            <div class="item-price">$${item.price.toLocaleString('es-CO')} COP</div>
                         </div>
+                        <div class="item-desc">${item.description}</div>
+                        <button class="select-btn" onclick="selectItem(${item.id})">
+                            <i class="fas fa-plus"></i> Seleccionar
+                        </button>
                     </div>
                 `;
                 
@@ -1876,16 +1571,16 @@
             return [
                 {
                     id: 1,
-                    name: "Churrasco Premium",
-                    description: "Carne de res a la parrilla con guarniciones especiales y salsa de la casa",
+                    name: "Churrasco",
+                    description: "Carne de res a la parrilla con guarniciones",
                     price: 27960,
                     category: "hamburguesas",
                     image: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 2,
-                    name: "Plátano Frito Especial",
-                    description: "Plátano maduro frito crujiente con queso y crema",
+                    name: "Plátano Frito",
+                    description: "Plátano maduro frito crujiente",
                     price: 15960,
                     category: "postres",
                     image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
@@ -1893,7 +1588,7 @@
                 {
                     id: 3,
                     name: "Hamburguesa Clásica",
-                    description: "Carne de res 200g, lechuga fresca, tomate, queso cheddar y salsa especial",
+                    description: "Carne de res, lechuga, tomate, queso cheddar",
                     price: 39960,
                     category: "hamburguesas",
                     image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
@@ -1901,39 +1596,39 @@
                 {
                     id: 4,
                     name: "Hamburguesa BBQ",
-                    description: "Carne 200g con salsa BBQ casera, cebolla caramelizada y bacon",
+                    description: "Carne con salsa BBQ, cebolla caramelizada",
                     price: 46000,
                     category: "hamburguesas",
                     image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 5,
-                    name: "Pizza Pepperoni Grande",
-                    description: "Pizza grande 14\" con pepperoni y queso mozzarella extra",
+                    name: "Pizza Pepperoni",
+                    description: "Pizza mediana con pepperoni y queso",
                     price: 51960,
                     category: "pizzas",
                     image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 6,
-                    name: "Sándwich de Pollo Gourmet",
-                    description: "Pollo a la plancha con vegetales frescos y salsa de aguacate",
+                    name: "Sándwich de Pollo",
+                    description: "Pollo a la plancha con vegetales",
                     price: 34000,
                     category: "sandwiches",
                     image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 7,
-                    name: "Refresco Premium Grande",
-                    description: "Coca-Cola, Sprite o Fanta 750ml con hielo y limón",
+                    name: "Refresco Grande",
+                    description: "500ml Coca-Cola, Sprite o Fanta",
                     price: 12000,
                     category: "bebidas",
                     image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
                 },
                 {
                     id: 8,
-                    name: "Helado de Vainilla Artesanal",
-                    description: "Helado artesanal con topping de chocolate y frutos secos",
+                    name: "Helado de Vainilla",
+                    description: "Helado artesanal con topping",
                     price: 22000,
                     category: "postres",
                     image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80"
@@ -1941,7 +1636,7 @@
             ];
         }
         
-        // ================= FUNCIONES DE SELECCIÓN OPTIMIZADAS =================
+        // ================= FUNCIONES DE SELECCIÓN =================
         function selectItem(itemId) {
             // Reproducir sonido de confirmación
             playConfirmSound();
@@ -1960,55 +1655,35 @@
             if (existingIndex !== -1) {
                 // Si ya está seleccionado, lo quitamos
                 selectedItems.splice(existingIndex, 1);
+                showNotification(`✗ ${item.name} removido de la selección`, 'success');
             } else {
-                // Si no está seleccionado, lo agregamos con cantidad 1
+                // Si no está seleccionado, lo agregamos
                 selectedItems.push({
                     id: item.id,
                     name: item.name,
                     price: item.price,
                     quantity: 1
                 });
+                showNotification(`✓ ${item.name} agregado a la selección`, 'success');
             }
             
             // Actualizar botón de agilizar
             updateAgilizarButton();
-            
-            // Actualizar botón en la tarjeta
-            updateItemCardButton(itemId);
-        }
-        
-        function updateItemCardButton(itemId) {
-            const button = document.querySelector(`button[data-item-id="${itemId}"]`);
-            const isSelected = selectedItems.some(item => item.id === itemId);
-            
-            if (button) {
-                if (isSelected) {
-                    button.classList.add('selected');
-                    button.innerHTML = '<i class="fas fa-times"></i> Remover';
-                } else {
-                    button.classList.remove('selected');
-                    button.innerHTML = '<i class="fas fa-plus"></i> Seleccionar';
-                }
-            }
         }
         
         function updateAgilizarButton() {
             const floatingAgilizar = document.getElementById('floatingAgilizar');
-            const agilizarBtn = floatingAgilizar.querySelector('.agilizar-btn');
-            const totalItems = selectedItems.reduce((sum, item) => sum + item.quantity, 0);
-            
             if (selectedItems.length > 0) {
                 floatingAgilizar.style.display = 'block';
-                agilizarBtn.innerHTML = `<i class="fas fa-bolt"></i> Agilizar Pedido (${totalItems})`;
             } else {
                 floatingAgilizar.style.display = 'none';
             }
         }
         
-        // ================= AGILIZAR FUNCIONALIDAD OPTIMIZADA =================
+        // ================= AGILIZAR FUNCIONALIDAD =================
         function openAgilizarModal() {
             if (selectedItems.length === 0) {
-                // No mostrar notificación según solicitud
+                showNotification('Selecciona al menos un item primero', 'success');
                 return;
             }
             
@@ -2038,7 +1713,7 @@
             // Actualizar resumen de selecciones
             updateSelectionsSummary();
             
-            // Mostrar modal con animación
+            // Mostrar modal
             document.getElementById('agilizarModal').classList.add('active');
             
             // Deshabilitar scroll del body
@@ -2052,13 +1727,10 @@
         
         function updateSelectionsSummary() {
             const container = document.getElementById('summaryList');
-            const totalPriceElement = document.getElementById('totalPrice');
-            
             container.innerHTML = '';
             
             if (selectedItems.length === 0) {
-                container.innerHTML = '<p style="color: rgba(255,255,255,0.7); text-align: center; padding: 30px;">No hay items seleccionados</p>';
-                totalPriceElement.textContent = '$0 COP';
+                container.innerHTML = '<p style="color: #666; text-align: center;">No hay items seleccionados</p>';
                 return;
             }
             
@@ -2066,84 +1738,28 @@
             let total = 0;
             
             selectedItems.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
+                total += item.price * item.quantity;
                 
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'summary-item';
                 itemDiv.innerHTML = `
-                    <div class="item-info">
-                        <div class="item-name">${item.name}</div>
-                        <div class="item-price">
-                            <i class="fas fa-tag"></i>
-                            $${item.price.toLocaleString('es-CO')} COP
-                        </div>
-                        <div class="item-quantity-controls">
-                            <button class="quantity-btn" onclick="decreaseQuantity(${item.id})">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <span class="item-quantity">${item.quantity}</span>
-                            <button class="quantity-btn" onclick="increaseQuantity(${item.id})">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                            <button class="remove-item-btn" onclick="removeItem(${item.id})">
-                                <i class="fas fa-trash"></i> Eliminar
-                            </button>
-                        </div>
-                    </div>
-                    <div class="item-price" style="font-size: 18px;">
-                        $${itemTotal.toLocaleString('es-CO')} COP
-                    </div>
+                    <div class="item-name">${item.name} x${item.quantity}</div>
+                    <div class="item-price">$${(item.price * item.quantity).toLocaleString('es-CO')} COP</div>
                 `;
                 container.appendChild(itemDiv);
             });
             
-            // Actualizar total
-            totalPriceElement.textContent = `$${total.toLocaleString('es-CO')} COP`;
-        }
-        
-        function increaseQuantity(itemId) {
-            const item = selectedItems.find(item => item.id === itemId);
-            if (item) {
-                item.quantity++;
-                updateSelectionsSummary();
-                updateAgilizarButton();
-            }
-        }
-        
-        function decreaseQuantity(itemId) {
-            const item = selectedItems.find(item => item.id === itemId);
-            if (item && item.quantity > 1) {
-                item.quantity--;
-                updateSelectionsSummary();
-                updateAgilizarButton();
-            }
-        }
-        
-        function removeItem(itemId) {
-            const itemIndex = selectedItems.findIndex(item => item.id === itemId);
-            if (itemIndex !== -1) {
-                selectedItems.splice(itemIndex, 1);
-                
-                // Actualizar interfaz
-                updateSelectionsSummary();
-                updateAgilizarButton();
-                updateItemCardButton(itemId);
-            }
-        }
-        
-        function clearAllSelections() {
-            if (selectedItems.length === 0) return;
-            
-            if (confirm('¿Estás seguro de que quieres eliminar todos los items del pedido?')) {
-                selectedItems.forEach(item => {
-                    updateItemCardButton(item.id);
-                });
-                
-                selectedItems = [];
-                updateSelectionsSummary();
-                updateAgilizarButton();
-            }
+            // Agregar total
+            const totalDiv = document.createElement('div');
+            totalDiv.className = 'summary-item';
+            totalDiv.style.borderTop = '2px solid #ff6b6b';
+            totalDiv.style.paddingTop = '15px';
+            totalDiv.style.marginTop = '10px';
+            totalDiv.innerHTML = `
+                <div class="item-name" style="font-size: 18px; font-weight: 800;">TOTAL</div>
+                <div class="item-price" style="font-size: 20px; font-weight: 800; color: #ff4757;">$${total.toLocaleString('es-CO')} COP</div>
+            `;
+            container.appendChild(totalDiv);
         }
         
         function submitAgilizarOrder() {
@@ -2154,17 +1770,17 @@
             const table = document.getElementById('tableSelect').value;
             
             if (!name || !email || !phone || !table) {
-                alert('Por favor completa todos los campos requeridos');
+                showNotification('Por favor completa todos los campos requeridos', 'success');
                 return;
             }
             
             if (!validateEmail(email)) {
-                alert('Por favor ingresa un correo electrónico válido');
+                showNotification('Por favor ingresa un correo electrónico válido', 'success');
                 return;
             }
             
             if (!validatePhone(phone)) {
-                alert('Por favor ingresa un número de celular válido');
+                showNotification('Por favor ingresa un número de celular válido', 'success');
                 return;
             }
             
@@ -2201,13 +1817,13 @@
                         // Mostrar modal de éxito
                         document.getElementById('successModal').classList.add('active');
                     } else {
-                        alert('Error al enviar el pedido. Intenta de nuevo.');
+                        showNotification('Error al enviar el pedido. Intenta de nuevo.', 'success');
                     }
                 } catch (error) {
                     // Ocultar loading
                     document.getElementById('dotsLoadingOverlay').classList.remove('active');
                     
-                    alert('Error de conexión. Verifica tu internet.');
+                    showNotification('Error de conexión. Verifica tu internet.', 'success');
                     console.error('Error:', error);
                 }
             }, 2000);
@@ -2301,13 +1917,12 @@
             
             // Limpiar resumen
             document.getElementById('summaryList').innerHTML = '';
-            document.getElementById('totalPrice').textContent = '$0 COP';
             
             // Ocultar botón de agilizar
             document.getElementById('floatingAgilizar').style.display = 'none';
             
             // Scroll to top y mostrar menú principal
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo(0, 0);
             
             // Actualizar categoría activa
             document.querySelectorAll('.category-chip').forEach(chip => {
@@ -2320,31 +1935,29 @@
             
             // Habilitar scroll si estaba deshabilitado
             document.body.style.overflow = 'auto';
+            
+            // Mostrar notificación de éxito
+            showNotification('✅ Todo ha sido limpiado. ¡Listo para un nuevo pedido!', 'success');
         }
         
         // ================= SONIDOS Y VIBRACIÓN =================
         function playConfirmSound() {
-            try {
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                oscillator.type = 'sine';
-                oscillator.frequency.setValueAtTime(1200, audioContext.currentTime);
-                oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.1);
-                
-                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-                
-                oscillator.start();
-                oscillator.stop(audioContext.currentTime + 0.1);
-            } catch (error) {
-                // Si hay error, simplemente continuar
-                console.log('Audio context no disponible');
-            }
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(1200, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.1);
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + 0.1);
         }
         
         function vibrateDevice() {
@@ -2353,33 +1966,45 @@
             }
         }
         
+        // ================= NOTIFICACIONES =================
+        function showNotification(text, type = 'success') {
+            // Crear notificación
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.style.background = 'linear-gradient(135deg, #ff6b6b, #ff8e53)';
+            
+            notification.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <span>${text}</span>
+            `;
+            
+            // Remover notificaciones anteriores
+            document.querySelectorAll('.notification').forEach(n => {
+                if (n.parentNode) {
+                    document.body.removeChild(n);
+                }
+            });
+            
+            document.body.appendChild(notification);
+            
+            // Mostrar con animación
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            // Remover después de 3 segundos
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
         // ================= INICIALIZAR =================
         document.addEventListener('DOMContentLoaded', initApp);
-        
-        // Prevenir cierre accidental
-        window.addEventListener('beforeunload', function (e) {
-            if (selectedItems.length > 0) {
-                e.preventDefault();
-                e.returnValue = '';
-            }
-        });
-        
-        // Optimizar para dispositivos móviles
-        document.addEventListener('touchmove', function(e) {
-            if (e.scale !== 1) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-        
-        // Prevenir zoom con doble toque
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(e) {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                e.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
     </script>
 </body>
 </html>
