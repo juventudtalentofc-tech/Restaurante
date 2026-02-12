@@ -1408,6 +1408,7 @@
         
         // ================= VARIABLES GLOBALES =================
         let selectedItems = [];
+        let isSending = false; // Prevenir múltiples envíos
         
         // ================= INICIALIZAR APP =================
         function initApp() {
@@ -1457,6 +1458,8 @@
                     badge: "NUEVO"
                 }
             ];
+            
+            container.innerHTML = ''; // Limpiar antes de agregar
             
             offers.forEach(offer => {
                 const offerCard = document.createElement('div');
@@ -1655,7 +1658,7 @@
             if (existingIndex !== -1) {
                 // Si ya está seleccionado, lo quitamos
                 selectedItems.splice(existingIndex, 1);
-                showNotification(`✗ ${item.name} removido de la selección`, 'success');
+                showNotification(`✗ ${item.name} removido de la selección`);
             } else {
                 // Si no está seleccionado, lo agregamos
                 selectedItems.push({
@@ -1664,7 +1667,7 @@
                     price: item.price,
                     quantity: 1
                 });
-                showNotification(`✓ ${item.name} agregado a la selección`, 'success');
+                showNotification(`✓ ${item.name} agregado a la selección`);
             }
             
             // Actualizar botón de agilizar
@@ -1683,7 +1686,7 @@
         // ================= AGILIZAR FUNCIONALIDAD =================
         function openAgilizarModal() {
             if (selectedItems.length === 0) {
-                showNotification('Selecciona al menos un item primero', 'success');
+                showNotification('Selecciona al menos un item primero');
                 return;
             }
             
@@ -1762,73 +1765,6 @@
             container.appendChild(totalDiv);
         }
         
-        function submitAgilizarOrder() {
-            // Validar formulario
-            const name = document.getElementById('customerName').value.trim();
-            const email = document.getElementById('customerEmail').value.trim();
-            const phone = document.getElementById('customerPhone').value.trim();
-            const table = document.getElementById('tableSelect').value;
-            
-            if (!name || !email || !phone || !table) {
-                showNotification('Por favor completa todos los campos requeridos', 'success');
-                return;
-            }
-            
-            if (!validateEmail(email)) {
-                showNotification('Por favor ingresa un correo electrónico válido', 'success');
-                return;
-            }
-            
-            if (!validatePhone(phone)) {
-                showNotification('Por favor ingresa un número de celular válido', 'success');
-                return;
-            }
-            
-            // Obtener información oculta
-            const fecha = document.getElementById('hiddenFecha').value;
-            const hora = document.getElementById('hiddenHora').value;
-            const moneda = document.getElementById('hiddenMoneda').value;
-            
-            // Mostrar loading dots
-            document.getElementById('dotsLoadingOverlay').classList.add('active');
-            
-            // Simular procesamiento
-            setTimeout(async () => {
-                try {
-                    // Enviar a Telegram
-                    const success = await sendToTelegram({
-                        name,
-                        email,
-                        phone,
-                        table,
-                        fecha,
-                        hora,
-                        moneda,
-                        items: selectedItems
-                    });
-                    
-                    // Ocultar loading
-                    document.getElementById('dotsLoadingOverlay').classList.remove('active');
-                    
-                    if (success) {
-                        // Cerrar modal de agilizar
-                        closeAgilizarModal();
-                        
-                        // Mostrar modal de éxito
-                        document.getElementById('successModal').classList.add('active');
-                    } else {
-                        showNotification('Error al enviar el pedido. Intenta de nuevo.', 'success');
-                    }
-                } catch (error) {
-                    // Ocultar loading
-                    document.getElementById('dotsLoadingOverlay').classList.remove('active');
-                    
-                    showNotification('Error de conexión. Verifica tu internet.', 'success');
-                    console.error('Error:', error);
-                }
-            }, 2000);
-        }
-        
         function validateEmail(email) {
             const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
@@ -1840,61 +1776,272 @@
             return re.test(phone) && phone.replace(/[\s-]/g, '').length >= 10;
         }
         
-        // ================= TELEGRAM =================
+        // ================= ENVÍO A TELEGRAM CORREGIDO =================
         async function sendToTelegram(orderData) {
-            // Calcular total
-            let subtotal = 0;
-            orderData.items.forEach(item => {
-                subtotal += item.price * item.quantity;
-            });
-            
-            const iva = Math.round(subtotal * 0.10);
-            const total = subtotal + iva;
-            
-            // Formatear mensaje
-            let message = `🛎️ *NUEVO PEDIDO - RESTAURANTE EXPRESS* 🛎️\n\n`;
-            message += `*📅 Fecha:* ${orderData.fecha}\n`;
-            message += `*🕒 Hora:* ${orderData.hora}\n`;
-            message += `*💰 Moneda:* Pesos Colombianos (${orderData.moneda})\n`;
-            message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
-            message += `*👤 CLIENTE:*\n`;
-            message += `• Nombre: ${orderData.name}\n`;
-            message += `• Correo: ${orderData.email}\n`;
-            message += `• Celular: ${orderData.phone}\n`;
-            message += `• ${orderData.table === 'barra' ? 'Barra' : orderData.table === 'para_llevar' ? 'Para Llevar' : 'Mesa'} : ${orderData.table}\n\n`;
-            
-            message += `*📋 DETALLE DEL PEDIDO:*\n`;
-            
-            orderData.items.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
-                message += `\n${index + 1}. *${item.name}* x${item.quantity}\n`;
-                message += `   Precio unitario: $${item.price.toLocaleString('es-CO')} ${orderData.moneda}\n`;
-                message += `   Subtotal: $${itemTotal.toLocaleString('es-CO')} ${orderData.moneda}\n`;
-            });
-            
-            message += `\n*💰 RESUMEN DE PAGO:*\n`;
-            message += `━━━━━━━━━━━━━━━━━━━━\n`;
-            message += `Subtotal: $${subtotal.toLocaleString('es-CO')} ${orderData.moneda}\n`;
-            message += `IVA (10%): $${iva.toLocaleString('es-CO')} ${orderData.moneda}\n`;
-            message += `*TOTAL: $${total.toLocaleString('es-CO')} ${orderData.moneda}*\n`;
-            
-            message += `\n────────────────────\n`;
-            message += `✅ *Pedido recibido exitosamente*\n`;
-            message += `⏱️ *Tiempo estimado: 20-30 minutos*\n`;
-            message += `🙏 *¡Gracias por tu preferencia!*`;
-            
-            // Codificar y enviar
-            const encodedMessage = encodeURIComponent(message);
-            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${encodedMessage}&parse_mode=Markdown`;
-            
             try {
+                // Calcular total
+                let subtotal = 0;
+                orderData.items.forEach(item => {
+                    subtotal += item.price * item.quantity;
+                });
+                
+                const iva = Math.round(subtotal * 0.10);
+                const total = subtotal + iva;
+                
+                // Formatear mensaje
+                let message = `🛎️ *NUEVO PEDIDO - RESTAURANTE EXPRESS* 🛎️\n\n`;
+                message += `*📅 Fecha:* ${orderData.fecha}\n`;
+                message += `*🕒 Hora:* ${orderData.hora}\n`;
+                message += `*💰 Moneda:* Pesos Colombianos (${orderData.moneda})\n`;
+                message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+                message += `*👤 CLIENTE:*\n`;
+                message += `• Nombre: ${orderData.name}\n`;
+                message += `• Correo: ${orderData.email}\n`;
+                message += `• Celular: ${orderData.phone}\n`;
+                message += `• ${orderData.table === 'barra' ? 'Barra' : orderData.table === 'para_llevar' ? 'Para Llevar' : 'Mesa'} : ${orderData.table}\n\n`;
+                
+                message += `*📋 DETALLE DEL PEDIDO:*\n`;
+                
+                orderData.items.forEach((item, index) => {
+                    const itemTotal = item.price * item.quantity;
+                    message += `\n${index + 1}. *${item.name}* x${item.quantity}\n`;
+                    message += `   Precio unitario: $${item.price.toLocaleString('es-CO')} ${orderData.moneda}\n`;
+                    message += `   Subtotal: $${itemTotal.toLocaleString('es-CO')} ${orderData.moneda}\n`;
+                });
+                
+                message += `\n*💰 RESUMEN DE PAGO:*\n`;
+                message += `━━━━━━━━━━━━━━━━━━━━\n`;
+                message += `Subtotal: $${subtotal.toLocaleString('es-CO')} ${orderData.moneda}\n`;
+                message += `IVA (10%): $${iva.toLocaleString('es-CO')} ${orderData.moneda}\n`;
+                message += `*TOTAL: $${total.toLocaleString('es-CO')} ${orderData.moneda}*\n`;
+                
+                message += `\n────────────────────\n`;
+                message += `✅ *Pedido recibido exitosamente*\n`;
+                message += `⏱️ *Tiempo estimado: 20-30 minutos*\n`;
+                message += `🙏 *¡Gracias por tu preferencia!*`;
+                
+                // MÉTODO 1: Usando fetch con sendMessage (requiere que el usuario haya iniciado conversación)
+                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                
+                const payload = {
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'Markdown'
+                };
+                
+                console.log('📤 Enviando pedido a Telegram...');
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await response.json();
+                
+                if (data.ok) {
+                    console.log('✅ Pedido enviado correctamente a Telegram');
+                    return true;
+                } else {
+                    console.error('❌ Error de Telegram:', data);
+                    
+                    // Si el error es que el bot no puede iniciar conversación, intentamos el método alternativo
+                    if (data.error_code === 403) {
+                        console.log('⚠️ El bot no tiene permisos. Intentando método alternativo...');
+                        return await sendToTelegramFallback(orderData);
+                    }
+                    return false;
+                }
+            } catch (error) {
+                console.error('❌ Error en sendToTelegram:', error);
+                // Si hay error de CORS o red, intentamos el método alternativo
+                return await sendToTelegramFallback(orderData);
+            }
+        }
+        
+        // ================= MÉTODO ALTERNATIVO PARA TELEGRAM =================
+        async function sendToTelegramFallback(orderData) {
+            try {
+                // MÉTODO 2: Usando GET con parámetros en URL (más compatible)
+                const now = new Date();
+                const timestamp = now.toISOString();
+                
+                // Crear un mensaje más simple sin Markdown complejo
+                let message = `🛎️ NUEVO PEDIDO - ${timestamp}\n`;
+                message += `────────────────────\n`;
+                message += `👤 ${orderData.name}\n`;
+                message += `📧 ${orderData.email}\n`;
+                message += `📱 ${orderData.phone}\n`;
+                message += `🪑 Mesa: ${orderData.table}\n`;
+                message += `────────────────────\n`;
+                
+                let total = 0;
+                orderData.items.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    message += `${item.name} x${item.quantity}: $${itemTotal.toLocaleString('es-CO')}\n`;
+                });
+                
+                message += `────────────────────\n`;
+                message += `💰 TOTAL: $${total.toLocaleString('es-CO')} COP\n`;
+                message += `✅ Pedido recibido`;
+                
+                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${encodeURIComponent(message)}`;
+                
+                console.log('📤 Intentando método alternativo...');
+                
                 const response = await fetch(url);
                 const data = await response.json();
-                return data.ok;
+                
+                if (data.ok) {
+                    console.log('✅ Pedido enviado con método alternativo');
+                    return true;
+                } else {
+                    console.error('❌ Error en método alternativo:', data);
+                    
+                    // MÉTODO 3: Crear un enlace de WhatsApp como respaldo
+                    console.log('⚠️ Telegram no disponible. Usando WhatsApp como respaldo...');
+                    sendWhatsAppFallback(orderData);
+                    return false;
+                }
             } catch (error) {
-                console.error('Error Telegram:', error);
+                console.error('❌ Error en método alternativo:', error);
+                sendWhatsAppFallback(orderData);
                 return false;
             }
+        }
+        
+        // ================= WHATSAPP FALLBACK =================
+        function sendWhatsAppFallback(orderData) {
+            // Crear mensaje para WhatsApp
+            let message = `🛎️ *NUEVO PEDIDO*%0a`;
+            message += `────────────────────%0a`;
+            message += `👤 *${orderData.name}*%0a`;
+            message += `📧 ${orderData.email}%0a`;
+            message += `📱 ${orderData.phone}%0a`;
+            message += `🪑 Mesa: ${orderData.table}%0a`;
+            message += `────────────────────%0a%0a`;
+            message += `*PEDIDO:*%0a`;
+            
+            let total = 0;
+            orderData.items.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                message += `• ${item.name} x${item.quantity}: $${itemTotal.toLocaleString('es-CO')}%0a`;
+            });
+            
+            message += `%0a────────────────────%0a`;
+            message += `💰 *TOTAL: $${total.toLocaleString('es-CO')} COP*%0a`;
+            message += `✅ *Pedido recibido*`;
+            
+            // Número de WhatsApp del restaurante (reemplaza con tu número)
+            const whatsappNumber = "573001234567"; // Cambia este número
+            
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+            
+            // Abrir WhatsApp en una nueva ventana
+            window.open(whatsappUrl, '_blank');
+            
+            showNotification('📱 Redirigiendo a WhatsApp...');
+        }
+        
+        function submitAgilizarOrder() {
+            // Prevenir múltiples envíos
+            if (isSending) {
+                showNotification('Ya hay un envío en proceso...');
+                return;
+            }
+            
+            // Validar formulario
+            const name = document.getElementById('customerName').value.trim();
+            const email = document.getElementById('customerEmail').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+            const table = document.getElementById('tableSelect').value;
+            
+            if (!name || !email || !phone || !table) {
+                showNotification('Por favor completa todos los campos requeridos');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showNotification('Por favor ingresa un correo electrónico válido');
+                return;
+            }
+            
+            if (!validatePhone(phone)) {
+                showNotification('Por favor ingresa un número de celular válido');
+                return;
+            }
+            
+            // Obtener información oculta
+            const fecha = document.getElementById('hiddenFecha').value || new Date().toLocaleDateString();
+            const hora = document.getElementById('hiddenHora').value || new Date().toLocaleTimeString();
+            const moneda = document.getElementById('hiddenMoneda').value;
+            
+            // Marcar como enviando
+            isSending = true;
+            
+            // Mostrar loading dots
+            document.getElementById('dotsLoadingOverlay').classList.add('active');
+            
+            // Preparar datos del pedido
+            const orderData = {
+                name,
+                email,
+                phone,
+                table,
+                fecha,
+                hora,
+                moneda,
+                items: [...selectedItems]
+            };
+            
+            // Enviar a Telegram
+            sendToTelegram(orderData)
+                .then(success => {
+                    // Ocultar loading
+                    document.getElementById('dotsLoadingOverlay').classList.remove('active');
+                    
+                    if (success) {
+                        // Cerrar modal de agilizar
+                        closeAgilizarModal();
+                        
+                        // Mostrar modal de éxito
+                        document.getElementById('successModal').classList.add('active');
+                    } else {
+                        // El fallback de WhatsApp ya se abrió automáticamente
+                        // Cerramos el modal y mostramos mensaje
+                        closeAgilizarModal();
+                        showNotification('📱 Redirigiendo a WhatsApp...');
+                        
+                        // También mostramos el modal de éxito porque el pedido se está procesando por WhatsApp
+                        setTimeout(() => {
+                            document.getElementById('successModal').classList.add('active');
+                        }, 500);
+                    }
+                })
+                .catch(error => {
+                    // Ocultar loading
+                    document.getElementById('dotsLoadingOverlay').classList.remove('active');
+                    
+                    console.error('Error:', error);
+                    showNotification('Error al procesar el pedido. Intentando WhatsApp...');
+                    
+                    // Intentar WhatsApp como último recurso
+                    sendWhatsAppFallback(orderData);
+                    
+                    // Cerrar modal y mostrar éxito
+                    closeAgilizarModal();
+                    setTimeout(() => {
+                        document.getElementById('successModal').classList.add('active');
+                    }, 500);
+                })
+                .finally(() => {
+                    // Resetear flag de envío
+                    isSending = false;
+                });
         }
         
         // ================= FUNCIONES ADICIONALES =================
@@ -1937,27 +2084,31 @@
             document.body.style.overflow = 'auto';
             
             // Mostrar notificación de éxito
-            showNotification('✅ Todo ha sido limpiado. ¡Listo para un nuevo pedido!', 'success');
+            showNotification('✅ Todo ha sido limpiado. ¡Listo para un nuevo pedido!');
         }
         
         // ================= SONIDOS Y VIBRACIÓN =================
         function playConfirmSound() {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(1200, audioContext.currentTime);
-            oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.1);
-            
-            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-            
-            oscillator.start();
-            oscillator.stop(audioContext.currentTime + 0.1);
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(1200, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.1);
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.1);
+            } catch (e) {
+                // Silenciar errores de audio
+            }
         }
         
         function vibrateDevice() {
@@ -1967,23 +2118,22 @@
         }
         
         // ================= NOTIFICACIONES =================
-        function showNotification(text, type = 'success') {
-            // Crear notificación
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.style.background = 'linear-gradient(135deg, #ff6b6b, #ff8e53)';
-            
-            notification.innerHTML = `
-                <i class="fas fa-check-circle"></i>
-                <span>${text}</span>
-            `;
-            
+        function showNotification(text) {
             // Remover notificaciones anteriores
             document.querySelectorAll('.notification').forEach(n => {
                 if (n.parentNode) {
                     document.body.removeChild(n);
                 }
             });
+            
+            // Crear notificación
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            
+            notification.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <span>${text}</span>
+            `;
             
             document.body.appendChild(notification);
             
