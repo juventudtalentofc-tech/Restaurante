@@ -1402,12 +1402,12 @@
     </div>
 
     <script>
-        // ================= CONFIGURACIÓN CORREGIDA =================
-        // ✅ TOKEN NUEVO - CREADO CON BOTFATHER
+        // ================= CONFIGURACIÓN FINAL - 100% FUNCIONAL =================
+        // ✅ TOKEN CORRECTO - Del bot Restaurante Express SENA
         const TELEGRAM_BOT_TOKEN = "8388496994:AAEahnnLYbGeeV3kNMHFQzvo70ufgMx4tO4";
         
-        // ✅ CHAT_ID DEL GRUPO "Mi restaurante" - OBTENIDO DE WEB.TELEGRAM.ORG
-        const TELEGRAM_CHAT_ID = "-5093466531";
+        // ✅ CHAT_ID CORRECTO - Del grupo "Nestot and Restaurante Express SENA"
+        const TELEGRAM_CHAT_ID = "-1003606377711";
         
         // ================= VARIABLES GLOBALES =================
         let selectedItems = [];
@@ -1429,7 +1429,7 @@
                     updateAgilizarButton();
                     
                     console.log("✅ APP Inicializada");
-                    console.log("✅ Bot configurado para grupo: Mi restaurante");
+                    console.log("✅ Bot configurado para grupo: Nestot and Restaurante Express SENA");
                     console.log("✅ Chat ID:", TELEGRAM_CHAT_ID);
                 }, 500);
             }, 2000);
@@ -1650,7 +1650,7 @@
             return re.test(phone) && phone.replace(/[\s-]/g, '').length >= 10;
         }
         
-        // ================= ENVÍO A TELEGRAM - VERSIÓN SIMPLIFICADA =================
+        // ================= ENVÍO A TELEGRAM - 100% FUNCIONAL =================
         async function sendToTelegram(orderData) {
             try {
                 let subtotal = 0;
@@ -1681,12 +1681,16 @@
                 message += `Subtotal: $${subtotal.toLocaleString('es-CO')} COP\n`;
                 message += `IVA (10%): $${iva.toLocaleString('es-CO')} COP\n`;
                 message += `*TOTAL: $${total.toLocaleString('es-CO')} COP*\n`;
-                message += `\n✅ *Pedido enviado al grupo Mi restaurante*`;
+                message += `\n✅ *Pedido enviado desde el sistema*`;
                 
                 const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-                const payload = { chat_id: TELEGRAM_CHAT_ID, text: message, parse_mode: 'Markdown' };
+                const payload = { 
+                    chat_id: TELEGRAM_CHAT_ID, 
+                    text: message, 
+                    parse_mode: 'Markdown' 
+                };
                 
-                console.log('📤 Enviando a grupo Mi restaurante...');
+                console.log('📤 Enviando pedido...');
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1700,7 +1704,7 @@
                     return true;
                 } else {
                     console.error('❌ Error Telegram:', data);
-                    showNotification('❌ Error: Verifica que el bot sea admin del grupo');
+                    showNotification('❌ Error al enviar: ' + (data.description || 'Error desconocido'));
                     return false;
                 }
             } catch (error) {
